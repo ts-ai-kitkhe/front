@@ -12,8 +12,8 @@ $handle-size: 10px;
   touch-action: none;
 
   .handle {
-    width: 10px;
-    height: 10px;
+    width: $handle-size;
+    height: $handle-size;
     position: absolute;
     z-index: 111;
     background: #eee;
