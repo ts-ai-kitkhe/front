@@ -1,59 +1,75 @@
 // Styles for VueDraggableResizable components
 
-$handle-size: 7px;
+$handle-size: 10px;
 
 .vdr {
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
+  position: absolute;
   outline: 1px solid black;
-  border: none;
+  touch-action: none;
 
   .handle {
-    width: $handle-size;
-    height: $handle-size;
+    width: 10px;
+    height: 10px;
+    position: absolute;
     z-index: 111;
-  }
+    background: #eee;
+    border: 1px solid black;
 
-  .handle-tl {
-    top: -$handle-size;
-    left: -$handle-size;
-  }
+    &.handle-tl {
+      top: -$handle-size;
+      left: -$handle-size;
+      cursor: nw-resize;
+    }
 
-  .handle-tm {
-    top: -$handle-size;
-    margin-left: calc($handle-size / -2);
-  }
+    &.handle-tm {
+      top: -$handle-size;
+      left: 50%;
+      margin-left: calc($handle-size / -2);
+      cursor: n-resize;
+    }
 
-  .handle-tr {
-    top: -$handle-size;
-    right: -$handle-size;
-  }
+    &.handle-tr {
+      top: -$handle-size;
+      right: -$handle-size;
+      cursor: ne-resize;
+    }
 
-  .handle-ml {
-    left: -$handle-size;
-    margin-top: calc($handle-size / -2);
-  }
+    &.handle-ml {
+      top: 50%;
+      left: -$handle-size;
+      margin-top: calc($handle-size / -2);
+      cursor: w-resize;
+    }
 
-  .handle-mr {
-    right: -$handle-size;
-    margin-top: calc($handle-size / -2);
-  }
+    &.handle-mr {
+      right: -$handle-size;
+      top: 50%;
+      margin-top: calc($handle-size / -2);
+      cursor: e-resize;
+    }
 
-  .handle-bl {
-    bottom: -$handle-size;
-    left: -$handle-size;
-  }
+    &.handle-bl {
+      bottom: -$handle-size;
+      left: -$handle-size;
+      cursor: sw-resize;
+    }
 
-  .handle-bm {
-    bottom: -$handle-size;
-    margin-left: calc($handle-size / -2);
-  }
+    &.handle-bm {
+      bottom: -$handle-size;
+      left: 50%;
+      margin-left: calc($handle-size / -2);
+      cursor: s-resize;
+    }
 
-  .handle-br {
-    bottom: -$handle-size;
-    right: -$handle-size;
+    &.handle-br {
+      bottom: -$handle-size;
+      right: -$handle-size;
+      cursor: se-resize;
+    }
   }
 
   .word {
@@ -65,5 +81,6 @@ $handle-size: 7px;
   &.rect-active {
     outline: 2px solid #a2cd48;
     box-shadow: 0px 0px 0px 999999px rgba(0, 0, 0, 0.8);
+    z-index: 9 !important;
   }
 }
