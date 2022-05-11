@@ -1,8 +1,21 @@
 <template>
   <div class="operator-container">
-    <div class="description">
-      <h1 class="title">Book title goes here</h1>
-      <h2 class="author">Author goes here</h2>
+    <div class="upper-panel">
+      <div class="description">
+        <h1 class="title">Book title goes here</h1>
+        <h2 class="author">Author goes here</h2>
+      </div>
+      <div class="nav-panel">
+        <div class="arrow-container right">
+          <i class="arrow arrow-right"></i>
+        </div>
+        <input type="text" class="current-page" value="1" />
+        <div class="slash">/</div>
+        <div class="pages-total">13</div>
+        <div class="arrow-container left">
+          <i class="arrow arrow-left"></i>
+        </div>
+      </div>
     </div>
     <div class="img-wrapper">
       <img
@@ -23,19 +36,18 @@
             @activated="onActivated"
             @deactivated="onDeactivated"
           >
-            <div class="letter">
-              <p>{{ rect.char }}</p>
-            </div>
+            <div class="word">{{ rect.word }}</div>
           </VueDraggableResizable>
         </div>
       </div>
     </div>
     <div class="bottom-panel">
-      <div v-show="!addRectMode" class="letter-input">
+      <div v-show="!addRectMode" class="word-input">
         <input type="text" />
         <button>დადასტურება</button>
       </div>
       <button v-show="addRectMode">მართკუთხედის დამატება</button>
+      <button>რედაქტირების დასრულება</button>
     </div>
   </div>
 </template>
@@ -74,7 +86,7 @@ export default {
       return await fetch('/coords.json')
         .then((response) => response.json())
         .then((data) => {
-          const imgShape = { h: 748, w: 570 }
+          const imgShape = { h: 2120, w: 1406 }
           const screenSize = { h: this.imageHeight, w: this.imageWidth }
 
           const rescaleH = (x) => (x / imgShape.h) * screenSize.h
@@ -86,7 +98,7 @@ export default {
             y: rescaleH(coords[0][1]),
             h: rescaleH(coords[2][1] - coords[0][1]),
             w: rescaleW(coords[2][0] - coords[0][0]),
-            char: 'ჯ',
+            word: 'ჯ',
           }))
         })
     },
@@ -103,23 +115,91 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-$handle-size: 7px;
+@import '~/assets/scss/vdr.scss';
 
 .operator-container {
-  .description {
+  .upper-panel {
+    height: 15vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    height: 15vh;
 
-    .title {
-      font-size: 2rem;
+    .description {
+      .title {
+        font-size: 2rem;
+      }
+
+      .author {
+        font-size: 1rem;
+      }
     }
 
-    .author {
-      font-size: 1rem;
+    .nav-panel {
+      margin: 10px 0;
+      line-height: 30px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+
+      .current-page {
+        width: 55px;
+        height: 24px;
+        line-height: 24px;
+        border: 1px solid black;
+        text-align: center;
+      }
+
+      .slash {
+        margin: 0 10px;
+      }
+
+      .arrow-container {
+        height: 26px;
+        width: 40px;
+        margin: 0 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: black;
+        border-radius: 20px;
+        cursor: pointer;
+
+        .arrow {
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          display: inline-block;
+          padding: 4px;
+          transition: 0.2s ease-in-out;
+        }
+
+        .arrow-left {
+          transform: rotate(-45deg);
+          margin-left: -3px;
+        }
+
+        .arrow-right {
+          transform: rotate(135deg);
+          margin-right: -3px;
+        }
+
+        &.right {
+          &:hover {
+            .arrow-right {
+              margin-right: 2px;
+            }
+          }
+        }
+
+        &.left {
+          &:hover {
+            .arrow-left {
+              margin-left: 2px;
+            }
+          }
+        }
+      }
     }
   }
 
@@ -127,7 +207,8 @@ $handle-size: 7px;
     border: 1px solid black;
     overflow: scroll;
     position: relative;
-    height: 65vh;
+    height: 70vh;
+    user-select: none;
 
     img {
       width: 100%;
@@ -137,76 +218,6 @@ $handle-size: 7px;
       position: absolute;
       top: 0;
       left: 0;
-
-      .vdr {
-        outline: 1px solid black;
-        border: none;
-
-        .handle {
-          width: $handle-size;
-          height: $handle-size;
-          z-index: 111;
-        }
-
-        .handle-tl {
-          top: -$handle-size;
-          left: -$handle-size;
-        }
-
-        .handle-tm {
-          top: -$handle-size;
-          margin-left: calc($handle-size / -2);
-        }
-
-        .handle-tr {
-          top: -$handle-size;
-          right: -$handle-size;
-        }
-
-        .handle-ml {
-          left: -$handle-size;
-          margin-top: calc($handle-size / -2);
-        }
-
-        .handle-mr {
-          right: -$handle-size;
-          margin-top: calc($handle-size / -2);
-        }
-
-        .handle-bl {
-          bottom: -$handle-size;
-          left: -$handle-size;
-        }
-
-        .handle-bm {
-          bottom: -$handle-size;
-          margin-left: calc($handle-size / -2);
-        }
-
-        .handle-br {
-          bottom: -$handle-size;
-          right: -$handle-size;
-        }
-
-        .letter {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 100%;
-
-          p {
-            color: transparent;
-            cursor: default;
-            margin: 0;
-            text-align: center;
-          }
-        }
-
-        &.rect-active {
-          outline: 2px solid #a2cd48;
-          box-shadow: 0px 0px 0px 999999px rgba(0, 0, 0, 0.8);
-        }
-      }
     }
   }
 
@@ -217,13 +228,17 @@ $handle-size: 7px;
     margin-top: 40px;
     gap: 20px;
 
-    .letter-input {
+    .word-input {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
+
+      input {
+        border: 1px solid black;
+      }
     }
   }
 }

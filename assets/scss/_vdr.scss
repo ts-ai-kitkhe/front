@@ -1,0 +1,69 @@
+// Styles for VueDraggableResizable components
+
+$handle-size: 7px;
+
+.vdr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  outline: 1px solid black;
+  border: none;
+
+  .handle {
+    width: $handle-size;
+    height: $handle-size;
+    z-index: 111;
+  }
+
+  .handle-tl {
+    top: -$handle-size;
+    left: -$handle-size;
+  }
+
+  .handle-tm {
+    top: -$handle-size;
+    margin-left: calc($handle-size / -2);
+  }
+
+  .handle-tr {
+    top: -$handle-size;
+    right: -$handle-size;
+  }
+
+  .handle-ml {
+    left: -$handle-size;
+    margin-top: calc($handle-size / -2);
+  }
+
+  .handle-mr {
+    right: -$handle-size;
+    margin-top: calc($handle-size / -2);
+  }
+
+  .handle-bl {
+    bottom: -$handle-size;
+    left: -$handle-size;
+  }
+
+  .handle-bm {
+    bottom: -$handle-size;
+    margin-left: calc($handle-size / -2);
+  }
+
+  .handle-br {
+    bottom: -$handle-size;
+    right: -$handle-size;
+  }
+
+  .word {
+    color: transparent;
+    cursor: default;
+    user-select: none;
+  }
+
+  &.rect-active {
+    outline: 2px solid #a2cd48;
+    box-shadow: 0px 0px 0px 999999px rgba(0, 0, 0, 0.8);
+  }
+}
