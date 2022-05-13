@@ -39,6 +39,7 @@
             :h="rect.h"
             :x="rect.x"
             :y="rect.y"
+            :z="99"
           >
             <div class="word">{{ rect.word }}</div>
           </VueDraggableResizable>

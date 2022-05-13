@@ -15,7 +15,6 @@ $handle-size: 10px;
     width: $handle-size;
     height: $handle-size;
     position: absolute;
-    z-index: 111;
     background: #eee;
     border: 1px solid black;
 
@@ -82,5 +81,11 @@ $handle-size: 10px;
     outline: 2px solid #a2cd48;
     box-shadow: 0px 0px 0px 999999px rgba(0, 0, 0, 0.8);
     z-index: 9 !important;
+  }
+
+  &:hover {
+    .word {
+      color: white;
+    }
   }
 }
