@@ -81,6 +81,12 @@ $handle-size: 10px;
     outline: 2px solid #a2cd48;
     box-shadow: 0px 0px 0px 999999px rgba(0, 0, 0, 0.8);
     z-index: 9 !important;
+
+    &:hover {
+      .word {
+        color: transparent;
+      }
+    }
   }
 
   &:hover {
