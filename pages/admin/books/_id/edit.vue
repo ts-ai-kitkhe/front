@@ -6,13 +6,19 @@
         <h2 class="author">Author goes here</h2>
       </div>
       <div class="nav-panel">
-        <div class="arrow-container right">
+        <div
+          class="arrow-container right"
+          :class="{ 'is-hidden': currPage === 1 }"
+        >
           <i class="arrow arrow-right"></i>
         </div>
-        <input type="text" class="current-page" value="1" />
+        <input type="text" class="current-page" :value="currPage" />
         <div class="slash">/</div>
-        <div class="pages-total">13</div>
-        <div class="arrow-container left">
+        <div class="pages-total">{{ numPages }}</div>
+        <div
+          class="arrow-container left"
+          :class="{ 'is-hidden': currPage === numPages }"
+        >
           <i class="arrow arrow-left"></i>
         </div>
       </div>
@@ -33,8 +39,6 @@
             :h="rect.h"
             :x="rect.x"
             :y="rect.y"
-            @activated="onActivated"
-            @deactivated="onDeactivated"
           >
             <div class="word">{{ rect.word }}</div>
           </VueDraggableResizable>
@@ -58,6 +62,8 @@ export default {
     return {
       rectCoords: [],
       activatedCounter: 0,
+      currPage: 1,
+      numPages: 13,
     }
   },
 
@@ -196,6 +202,27 @@ export default {
           &:hover {
             .arrow-left {
               margin-left: 2px;
+            }
+          }
+        }
+      }
+
+      .is-hidden {
+        cursor: not-allowed;
+        background-color: darkgray;
+
+        &.right {
+          &:hover {
+            .arrow-right {
+              margin-right: -3px;
+            }
+          }
+        }
+
+        &.left {
+          &:hover {
+            .arrow-left {
+              margin-left: -3px;
             }
           }
         }
