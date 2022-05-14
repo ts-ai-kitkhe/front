@@ -51,7 +51,9 @@
         <input type="text" />
         <button>დადასტურება</button>
       </div>
-      <button v-show="addRectMode">მართკუთხედის დამატება</button>
+      <button v-show="addRectMode" @click="addNewRect">
+        მართკუთხედის დამატება
+      </button>
       <button>რედაქტირების დასრულება</button>
     </div>
   </div>
@@ -116,6 +118,18 @@ export default {
 
     onDeactivated() {
       this.activatedCounter--
+    },
+
+    addNewRect() {
+      const initRectDim = 50
+      this.rectCoords.push({
+        id: 131313,
+        x: 0,
+        y: 0,
+        h: initRectDim,
+        w: initRectDim,
+        word: 'ჯ',
+      })
     },
   },
 }
