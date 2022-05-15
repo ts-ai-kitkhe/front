@@ -67,6 +67,7 @@ export default {
       activatedCounter: 0,
       currPage: 1,
       numPages: 13,
+      topY: 0,
     }
   },
 
@@ -88,6 +89,18 @@ export default {
     addRectMode() {
       return this.activatedCounter === 0
     },
+  },
+
+  mounted() {
+    document
+      .querySelector('.img-wrapper')
+      .addEventListener('scroll', this.updateCooordinates)
+  },
+
+  destroyed() {
+    document
+      .querySelector('.img-wrapper')
+      .removeEventListener('scroll', this.updateCooordinates)
   },
 
   methods: {
@@ -112,24 +125,22 @@ export default {
         })
     },
 
-    onActivated() {
-      this.activatedCounter++
-    },
-
-    onDeactivated() {
-      this.activatedCounter--
-    },
-
     addNewRect() {
       const initRectDim = 50
+      const margin = 10
+
       this.rectCoords.push({
         id: 131313,
-        x: 0,
-        y: 0,
+        x: margin,
+        y: this.topY + margin,
         h: initRectDim,
         w: initRectDim,
         word: 'ჯ',
       })
+    },
+
+    updateCooordinates(e) {
+      this.topY = e.target.scrollTop
     },
   },
 }
