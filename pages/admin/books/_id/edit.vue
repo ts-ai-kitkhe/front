@@ -23,7 +23,7 @@
         </div>
       </div>
     </div>
-    <div class="img-wrapper">
+    <div ref="imgWrapper" class="img-wrapper">
       <img
         id="main-img"
         ref="mainImg"
@@ -92,15 +92,11 @@ export default {
   },
 
   mounted() {
-    document
-      .querySelector('.img-wrapper')
-      .addEventListener('scroll', this.updateCooordinates)
+    this.$refs.imgWrapper.addEventListener('scroll', this.updateCooordinates)
   },
 
   destroyed() {
-    document
-      .querySelector('.img-wrapper')
-      .removeEventListener('scroll', this.updateCooordinates)
+    this.$refs.imgWrapper.removeEventListener('scroll', this.updateCooordinates)
   },
 
   methods: {
