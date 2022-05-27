@@ -75,6 +75,10 @@ $handle-size: 10px;
     color: transparent;
     cursor: default;
     user-select: none;
+    font-family: monospace;
+    font-size: 20px;
+    white-space: nowrap;
+    text-align: center;
   }
 
   &.rect-active {
