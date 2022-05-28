@@ -17,6 +17,7 @@ $handle-size: 10px;
     position: absolute;
     background: #eee;
     border: 1px solid black;
+    z-index: 98;
 
     &.handle-tl {
       top: -$handle-size;
@@ -79,6 +80,8 @@ $handle-size: 10px;
     font-size: 20px;
     white-space: nowrap;
     text-align: center;
+    font-weight: bold;
+    z-index: 100;
   }
 
   &.rect-active {
