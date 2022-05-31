@@ -1,5 +1,5 @@
 <template>
-  <div>Books</div>
+  <div>About us</div>
 </template>
 
 <script>
