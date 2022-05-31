@@ -20,15 +20,26 @@ export default {}
   h1 {
     font-size: 15vw;
     margin-bottom: 10vh;
+
+    @include md {
+      font-size: 18vw;
+    }
   }
 
   .landing-btn {
+    position: absolute;
+    top: 80%;
     color: black;
     background-color: white;
     padding: 10px 20px;
     border: 2px solid black;
     border-radius: 30px;
-    font-size: 25px;
+    font-size: 1.5rem;
+
+    @include sm {
+      padding: 6px 12px;
+      font-size: 1.1rem;
+    }
 
     &:hover {
       text-decoration: none;
