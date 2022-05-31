@@ -1,7 +1,7 @@
 <template>
   <div class="landing-wrapper">
     <h1>წაიკითხე</h1>
-    <NuxtLink to="/books" class="landing-btn">მთავარი გვერდი</NuxtLink>
+    <NuxtLink to="/feed" class="landing-btn">მთავარი გვერდი</NuxtLink>
   </div>
 </template>
 
