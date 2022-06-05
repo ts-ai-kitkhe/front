@@ -35,7 +35,7 @@ export default {
     '@nuxtjs/style-resources',
   ],
   styleResources: {
-    scss: ['./assets/scss/_breakpoints.scss'],
+    scss: ['./assets/scss/_breakpoints.scss', './assets/scss/_variables.scss'],
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules

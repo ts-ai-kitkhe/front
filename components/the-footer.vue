@@ -10,6 +10,12 @@ export default {}
 
 <style lang="scss" scoped>
 footer {
-  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: $footer-height;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page-container">
     <the-header />
     <nuxt />
     <the-footer />
