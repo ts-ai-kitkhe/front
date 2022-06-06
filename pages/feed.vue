@@ -16,8 +16,8 @@
       </div>
       <div class="swiper">
         <div class="swiper-wrapper">
-          <div v-for="i in 10" :key="i" class="swiper-slide">
-            <book-card />
+          <div v-for="book in booksData" :key="book.id" class="swiper-slide">
+            <book-card :book-info="book" />
           </div>
         </div>
       </div>
@@ -31,8 +31,17 @@
 import { Swiper, Navigation } from 'swiper'
 import 'swiper/swiper-bundle.min.css'
 
+import { books } from '@/assets/dummydata.js'
+
 export default {
   layout: 'catalogue',
+
+  data() {
+    return {
+      booksData: books,
+    }
+  },
+
   mounted() {
     Swiper.use([Navigation])
     /* eslint-disable no-unused-vars */
@@ -45,10 +54,10 @@ export default {
         480: {
           slidesPerView: 2,
         },
-        768: {
+        700: {
           slidesPerView: 3,
         },
-        992: {
+        950: {
           slidesPerView: 4,
         },
         1200: {
@@ -98,6 +107,7 @@ export default {
           display: flex;
           align-items: center;
           justify-content: center;
+          height: auto;
         }
       }
     }
