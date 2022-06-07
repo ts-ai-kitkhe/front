@@ -1,5 +1,5 @@
 <template>
-  <div class="book-card-container">
+  <NuxtLink :to="`/books/${bookInfo.id}`" class="book-card-container">
     <div class="card">
       <img :src="bookInfo.image" alt="Book Card Image" />
       <div class="card-body">
@@ -7,7 +7,7 @@
         <h6>{{ bookInfo.author }}</h6>
       </div>
     </div>
-  </div>
+  </NuxtLink>
 </template>
 
 <script>
@@ -23,6 +23,9 @@ export default {
 
 <style lang="scss" scoped>
 .book-card-container {
+  color: black;
+  text-decoration: none;
+
   .card {
     width: 10rem;
     border: none;
