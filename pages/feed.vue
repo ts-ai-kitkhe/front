@@ -17,7 +17,7 @@
       <div class="swiper">
         <div class="swiper-wrapper">
           <div v-for="book in booksData" :key="book.id" class="swiper-slide">
-            <book-card :book-info="book" />
+            <swiper-card :book-info="book" />
           </div>
         </div>
       </div>
