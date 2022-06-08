@@ -34,7 +34,7 @@
 <script>
 import { Swiper, Navigation } from 'swiper'
 import 'swiper/swiper-bundle.min.css'
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   layout: 'catalogue',
