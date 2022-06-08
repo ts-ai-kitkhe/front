@@ -1,5 +1,5 @@
 <template>
-  <div class="feed-container content-wrap">
+  <div v-if="initialized" class="feed-container content-wrap">
     <div class="container-fluid cover-img-container p-0">
       <div class="row-fluid">
         <img
@@ -16,8 +16,12 @@
       </div>
       <div class="swiper">
         <div class="swiper-wrapper">
-          <div v-for="book in booksData" :key="book.id" class="swiper-slide">
-            <swiper-card :book-info="book" />
+          <div
+            v-for="card in allSwiperCards"
+            :key="card.id"
+            class="swiper-slide"
+          >
+            <swiper-card :card-info="card" />
           </div>
         </div>
       </div>
@@ -30,45 +34,53 @@
 <script>
 import { Swiper, Navigation } from 'swiper'
 import 'swiper/swiper-bundle.min.css'
-
-import { books } from '@/assets/dummydata.js'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   layout: 'catalogue',
 
   data() {
     return {
-      booksData: books,
+      initialized: false,
     }
   },
 
+  computed: mapGetters('swiper', ['allSwiperCards']),
+
   mounted() {
-    Swiper.use([Navigation])
-    /* eslint-disable no-unused-vars */
-    const swiper = new Swiper('.swiper', {
-      direction: 'horizontal',
-      loop: true,
-      slidesPerView: 1,
-      modules: [Navigation],
-      breakpoints: {
-        480: {
-          slidesPerView: 2,
+    this.getSwiperCards().then(() => {
+      Swiper.use([Navigation])
+      /* eslint-disable no-unused-vars */
+      const swiper = new Swiper('.swiper', {
+        direction: 'horizontal',
+        loop: true,
+        slidesPerView: 1,
+        modules: [Navigation],
+        breakpoints: {
+          480: {
+            slidesPerView: 2,
+          },
+          700: {
+            slidesPerView: 3,
+          },
+          950: {
+            slidesPerView: 4,
+          },
+          1200: {
+            slidesPerView: 5,
+          },
         },
-        700: {
-          slidesPerView: 3,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
         },
-        950: {
-          slidesPerView: 4,
-        },
-        1200: {
-          slidesPerView: 5,
-        },
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
+      })
     })
+    this.initialized = true
+  },
+
+  methods: {
+    ...mapActions('swiper', ['getSwiperCards']),
   },
 }
 </script>
@@ -100,7 +112,7 @@ export default {
       overflow: hidden;
       position: relative;
       width: 100%;
-      margin: 50px 0;
+      margin: 20px 0;
 
       .swiper-wrapper {
         .swiper-slide {

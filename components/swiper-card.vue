@@ -1,10 +1,10 @@
 <template>
-  <NuxtLink :to="`/books/${bookInfo.id}`" class="book-card-container">
+  <NuxtLink :to="`/books/${cardInfo.id}`" class="book-card-container">
     <div class="card">
-      <img :src="bookInfo.image" alt="Book Card Image" />
+      <img :src="cardInfo.image" alt="Book Card Image" />
       <div class="card-body">
-        <h5>{{ bookInfo.title }}</h5>
-        <h6>{{ bookInfo.author }}</h6>
+        <h5>{{ cardInfo.title }}</h5>
+        <h6>{{ cardInfo.author }}</h6>
       </div>
     </div>
   </NuxtLink>
@@ -13,7 +13,7 @@
 <script>
 export default {
   props: {
-    bookInfo: {
+    cardInfo: {
       type: Object,
       default: null,
     },
