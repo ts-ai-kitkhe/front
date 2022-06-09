@@ -1,6 +1,8 @@
 <template>
-  <div class="container">
-    {{ bookById }}
+  <div class="book-single-container my-5">
+    <div class="container">
+      {{ bookById }}
+    </div>
   </div>
 </template>
 
@@ -28,4 +30,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.book-single-container {
+}
+</style>

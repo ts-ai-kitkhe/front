@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="`/books/${cardInfo.id}`" class="book-card-container">
+  <NuxtLink :to="`/books/${cardInfo.id}`" class="swiper-card-container">
     <div class="card">
       <img :src="cardInfo.image" alt="Book Card Image" />
       <div class="card-body">
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.book-card-container {
+.swiper-card-container {
   color: black;
   text-decoration: none;
 

@@ -1,20 +1,20 @@
 <template>
-  <div v-if="initialized" class="feed-container content-wrap">
+  <div class="feed-container content-wrap">
     <div class="container-fluid cover-img-container p-0">
       <div class="row-fluid">
         <img
           src="~/assets/images/no_img.png"
           alt="feed-cover"
-          class="cover-img"
+          class="cover-img mb-5"
         />
       </div>
     </div>
-    <div class="container-xl books-swiper">
-      <div class="details">
+    <div v-if="initialized" class="container-xl books-swiper">
+      <div class="details mt-3">
         <h2>ბოლოს დამატებული</h2>
         <NuxtLink to="/books" class="link-btn">ნახე მეტი</NuxtLink>
       </div>
-      <div class="swiper">
+      <div class="swiper mb-2">
         <div class="swiper-wrapper">
           <div
             v-for="card in allSwiperCards"
@@ -89,7 +89,6 @@ export default {
 .feed-container {
   .cover-img-container {
     .cover-img {
-      margin: 10px 0 50px;
       width: 100%;
     }
   }
@@ -101,7 +100,6 @@ export default {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin: 20px 0;
 
       h2 {
         font-size: 18px;
@@ -112,7 +110,6 @@ export default {
       overflow: hidden;
       position: relative;
       width: 100%;
-      margin: 20px 0;
 
       .swiper-wrapper {
         .swiper-slide {

@@ -25,6 +25,8 @@ export default {}
 
 <style lang="scss" scoped>
 header {
+  border-bottom: 1px solid black;
+
   .navbar {
     .nav-item {
       padding: 10px 15px;
