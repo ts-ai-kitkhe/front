@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-3">
+  <div class="col-lg-3 col-md-4 col-sm-4 col-7 my-3">
     <NuxtLink :to="`/books/${bookInfo.id}`" class="book-card-container">
       <div class="card">
         <img :src="bookInfo.image" alt="Book Card Image" />
