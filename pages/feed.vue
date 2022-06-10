@@ -28,6 +28,9 @@
       <div class="swiper-btn swiper-button-prev"></div>
       <div class="swiper-btn swiper-button-next"></div>
     </div>
+    <div v-else class="text-center">
+      <b-spinner></b-spinner>
+    </div>
   </div>
 </template>
 
