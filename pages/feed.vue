@@ -4,7 +4,7 @@
       <div class="row-fluid">
         <img
           src="~/assets/images/no_img.png"
-          alt="feed-cover"
+          alt="Main Feed Cover"
           class="cover-img mb-5"
         />
       </div>

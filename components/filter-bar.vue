@@ -5,7 +5,7 @@
         <template #default>Filters</template>
       </b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
-        <div class="sidebar-dropdown my-3">
+        <div class="sidebar-dropdown mb-5">
           <p>Dropdown:</p>
           <b-dd text="Choice 1">
             <b-dd-item>Choice 1</b-dd-item>
@@ -13,12 +13,12 @@
             <b-dd-item>Choice 3</b-dd-item>
           </b-dd>
         </div>
-        <div class="sidebar-form-group my-5">
+        <div class="sidebar-form-group mb-5">
           <b-form-group label="Form Group">
             <b-check-group :options="options" stacked></b-check-group>
           </b-form-group>
         </div>
-        <div class="sidebar-range my-5">
+        <div class="sidebar-range mb-5">
           <label for="range">Range with step</label>
           <b-input
             v-model="rangeValue"
@@ -29,7 +29,7 @@
           ></b-input>
           <div>Value: {{ rangeValue }}</div>
         </div>
-        <div class="sidebar-radio my-5">
+        <div class="sidebar-radio mb-5">
           <b-form-group label="Radio buttons">
             <b-form-radio v-model="radio" value="A">Option A</b-form-radio>
             <b-form-radio v-model="radio" value="B">Option B</b-form-radio>
@@ -73,7 +73,7 @@ export default {
 
     .navbar-toggler {
       color: black;
-      border: 1px solid black;
+      font-size: 18px;
     }
 
     .navbar-collapse {
