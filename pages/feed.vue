@@ -10,7 +10,7 @@
       </div>
     </div>
     <div v-if="initialized" class="container-xl books-swiper">
-      <div class="details mt-3">
+      <div class="details mb-5">
         <h2>ბოლოს დამატებული</h2>
         <NuxtLink to="/books" class="link-btn">ნახე მეტი</NuxtLink>
       </div>
