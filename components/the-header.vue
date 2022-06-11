@@ -1,21 +1,15 @@
 <template>
   <header>
-    <nav class="navbar navbar-expand-sm navbar-light">
+    <b-navbar toggleable="sm">
       <NuxtLink to="/feed" class="navbar-brand">LOGO</NuxtLink>
-      <button class="navbar-toggler" type="button" data-toggle="collapse">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <NuxtLink to="/books" class="header-btn">წიგნები</NuxtLink>
-          </li>
-          <li class="nav-item">
-            <NuxtLink to="/about" class="header-btn">ჩვენ შესახებ</NuxtLink>
-          </li>
-        </ul>
-      </div>
-    </nav>
+      <b-navbar-toggle target="header-collapse"></b-navbar-toggle>
+      <b-collapse id="header-collapse" is-nav>
+        <b-navbar-nav class="ml-auto">
+          <NuxtLink to="/books" class="header-btn">წიგნები</NuxtLink>
+          <NuxtLink to="/about" class="header-btn">ჩვენ შესახებ</NuxtLink>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
   </header>
 </template>
 
@@ -23,13 +17,13 @@
 export default {}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 header {
   border-bottom: 1px solid black;
 
-  .navbar {
-    .nav-item {
-      padding: 10px 15px;
+  .navbar-nav {
+    a {
+      margin: 10px;
     }
   }
 }
