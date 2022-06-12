@@ -10,7 +10,7 @@ export const mutations = {
 
 export const actions = {
   async getSwiperCards({ commit }) {
-    const response = await axios.get('http://localhost:3000/books.json')
+    const response = await axios.get('/books.json')
     commit('setSwiperCards', response.data)
   },
 }

@@ -12,12 +12,12 @@ export const mutations = {
 
 export const actions = {
   async getBooks({ commit }) {
-    const response = await axios.get('http://localhost:3000/books.json')
+    const response = await axios.get('/books.json')
     commit('setBooks', response.data)
   },
 
   async getBookById({ commit }, id) {
-    const response = await axios.get('http://localhost:3000/books.json')
+    const response = await axios.get('/books.json')
     commit('setBook', response.data[id - 1])
   },
 }
