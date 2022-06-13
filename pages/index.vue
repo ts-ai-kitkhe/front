@@ -1,7 +1,10 @@
 <template>
   <div class="landing-wrapper">
-    <h1>წაიკითხე</h1>
-    <NuxtLink to="/feed" class="landing-btn">მთავარი გვერდი</NuxtLink>
+    <section id="landing" class="landing-slide">
+      <h1>წაიკითხე</h1>
+      <a href="#feed" class="scroll-down"></a>
+    </section>
+    <section id="feed" class="feed-slide">Coming Soon...</section>
   </div>
 </template>
 
@@ -11,39 +14,75 @@ export default {}
 
 <style lang="scss" scoped>
 .landing-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  height: 100vh;
+  section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+  }
 
-  h1 {
-    font-size: 15vw;
-    margin-bottom: 10vh;
+  .landing-slide {
+    background-color: black;
 
-    @include md {
-      font-size: 18vw;
+    h1 {
+      font-size: 15vw;
+      color: white;
+
+      @include md {
+        font-size: 18vw;
+      }
+    }
+
+    .scroll-down {
+      height: 50px;
+      width: 50px;
+      border: 2px solid white;
+      position: absolute;
+      bottom: 5vh;
+      border-radius: 50px;
+      cursor: pointer;
+
+      &:before,
+      &:after {
+        content: '';
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        height: 13px;
+        width: 13px;
+        transform: translate(-50%, -100%) rotate(45deg);
+        border: 2px solid white;
+        border-top: transparent;
+        border-left: transparent;
+        animation: scroll-down 1s ease-in-out infinite;
+      }
+
+      &:before {
+        top: 20%;
+        animation-delay: 0.2s;
+      }
+
+      @keyframes scroll-down {
+        0% {
+          opacity: 0;
+        }
+        30% {
+          opacity: 1;
+        }
+        60% {
+          opacity: 1;
+        }
+        100% {
+          top: 90%;
+          opacity: 0;
+        }
+      }
     }
   }
 
-  .landing-btn {
-    position: absolute;
-    top: 80%;
-    color: black;
-    background-color: white;
-    padding: 10px 20px;
-    border: 2px solid black;
-    border-radius: 30px;
-    font-size: 1.5rem;
-
-    @include sm {
-      padding: 6px 12px;
-      font-size: 1.1rem;
-    }
-
-    &:hover {
-      text-decoration: none;
-    }
+  .feed-slide {
+    background-color: seashell;
   }
 }
 </style>
