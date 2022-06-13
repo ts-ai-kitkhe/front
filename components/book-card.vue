@@ -31,6 +31,10 @@ export default {
   .card {
     border: none;
 
+    img {
+      width: 100%;
+    }
+
     .card-body {
       text-align: center;
 
