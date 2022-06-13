@@ -1,45 +1,48 @@
 <template>
-  <div class="landing-wrapper">
-    <section id="landing" class="landing-slide">
-      <h1>წაიკითხე</h1>
-      <a class="scroll-down" @click="scrollDown"></a>
-    </section>
-    <section id="feed" ref="feedSlide" class="feed-slide">
-      <the-header />
-      <div class="feed-container">
-        <div class="container-fluid cover-img-container p-0">
-          <div class="row-fluid">
-            <img
-              src="~/assets/images/no_img.png"
-              alt="Main Feed Cover"
-              class="cover-img mb-5"
-            />
-          </div>
-        </div>
-        <div v-if="initialized" class="container-xl books-swiper">
-          <div class="details mb-5">
-            <h2>ბოლოს დამატებული</h2>
-            <NuxtLink to="/books" class="link-btn">ნახე მეტი</NuxtLink>
-          </div>
-          <div class="swiper mb-2">
-            <div class="swiper-wrapper">
-              <div
-                v-for="card in allSwiperCards"
-                :key="card.id"
-                class="swiper-slide"
-              >
-                <swiper-card :card-info="card" />
-              </div>
+  <div class="page-container">
+    <div class="landing-wrapper">
+      <section id="landing" class="landing-slide">
+        <h1>წაიკითხე</h1>
+        <a class="scroll-down" @click="scrollDown"></a>
+      </section>
+      <section id="feed" ref="feedSlide" class="feed-slide">
+        <the-header />
+        <div class="feed-container content-wrap">
+          <div class="container-fluid cover-img-container p-0">
+            <div class="row-fluid">
+              <img
+                src="~/assets/images/no_img.png"
+                alt="Main Feed Cover"
+                class="cover-img mb-5"
+              />
             </div>
           </div>
-          <div class="swiper-btn swiper-button-prev"></div>
-          <div class="swiper-btn swiper-button-next"></div>
+          <div v-if="initialized" class="container-xl books-swiper">
+            <div class="details mb-5">
+              <h2>ბოლოს დამატებული</h2>
+              <NuxtLink to="/books" class="link-btn">ნახე მეტი</NuxtLink>
+            </div>
+            <div class="swiper mb-2">
+              <div class="swiper-wrapper">
+                <div
+                  v-for="card in allSwiperCards"
+                  :key="card.id"
+                  class="swiper-slide"
+                >
+                  <swiper-card :card-info="card" />
+                </div>
+              </div>
+            </div>
+            <div class="swiper-btn swiper-button-prev"></div>
+            <div class="swiper-btn swiper-button-next"></div>
+          </div>
+          <div v-else class="text-center">
+            <b-spinner></b-spinner>
+          </div>
         </div>
-        <div v-else class="text-center">
-          <b-spinner></b-spinner>
-        </div>
-      </div>
-    </section>
+        <the-footer />
+      </section>
+    </div>
   </div>
 </template>
 
@@ -111,6 +114,7 @@ export default {
     justify-content: center;
     width: 100%;
     background-color: black;
+    position: relative;
 
     h1 {
       font-size: 15vw;
