@@ -4,7 +4,7 @@
       <h1>წაიკითხე</h1>
       <a class="scroll-down" @click="scrollDown"></a>
     </section>
-    <section ref="feedSlide" class="feed-slide">
+    <section id="feed" ref="feedSlide" class="feed-slide">
       <the-header />
       <div class="feed-container">
         <div class="container-fluid cover-img-container p-0">

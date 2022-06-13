@@ -1,7 +1,7 @@
 <template>
   <header>
     <b-navbar toggleable="sm">
-      <NuxtLink to="/feed" class="navbar-brand">LOGO</NuxtLink>
+      <NuxtLink to="/#feed" class="navbar-brand">LOGO</NuxtLink>
       <b-navbar-toggle target="header-collapse"></b-navbar-toggle>
       <b-collapse id="header-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
