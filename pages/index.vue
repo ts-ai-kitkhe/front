@@ -169,6 +169,10 @@ export default {
           opacity: 0;
         }
       }
+
+      @include md {
+        bottom: 15vh;
+      }
     }
   }
 
