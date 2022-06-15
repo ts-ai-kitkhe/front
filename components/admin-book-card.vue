@@ -4,6 +4,9 @@
       <div class="card px-4 px-sm-0">
         <div class="img-wrapper">
           <img :src="adminBook.image" alt="Book Card Image" />
+          <div class="trash-icon">
+            <button><b-icon icon="trash"></b-icon></button>
+          </div>
           <div class="card-buttons">
             <button>Button 1</button>
             <button>Button 2</button>
@@ -43,6 +46,28 @@ export default {
         transition: 0.15s ease-out;
       }
 
+      .trash-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        visibility: hidden;
+        background-color: white;
+        border: 1px solid black;
+        padding-top: 5px;
+        opacity: 0;
+        transition: 0.15s ease-out;
+
+        button {
+          background: none;
+          border: none;
+
+          svg {
+            width: 20px;
+            height: 20px;
+          }
+        }
+      }
+
       .card-buttons {
         position: absolute;
         display: flex;
@@ -60,6 +85,7 @@ export default {
           margin: 10px;
           border: none;
           background-color: white;
+          color: black;
           border-radius: 5px;
           width: 40%;
           padding: 5px 10px;
@@ -73,7 +99,12 @@ export default {
 
       &:hover {
         img {
-          filter: brightness(30%);
+          filter: brightness(50%) blur(1px);
+        }
+
+        .trash-icon {
+          visibility: visible;
+          opacity: 1;
         }
 
         .card-buttons {
