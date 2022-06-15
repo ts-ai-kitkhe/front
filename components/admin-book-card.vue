@@ -5,10 +5,30 @@
         <div class="img-wrapper">
           <img :src="adminBook.image" alt="Book Card Image" />
           <div class="trash-icon">
-            <button><b-icon icon="trash"></b-icon></button>
+            <b-btn v-b-modal="modalId() + '-top'">
+              <b-icon icon="trash"> </b-icon>
+            </b-btn>
+            <b-modal :id="modalId() + '-top'" centered title="Are you sure?">
+              <p>Some text</p>
+            </b-modal>
           </div>
           <div class="card-buttons">
-            <button>Button 1</button>
+            <b-btn v-b-modal="modalId() + '-bottom'">Button 1</b-btn>
+            <b-modal :id="modalId() + '-bottom'" centered title="Edit">
+              <b-form action="" method="">
+                <b-form-group label="სათაური" label-for="title">
+                  <b-form-input id="title" :value="adminBook.title" />
+                </b-form-group>
+                <b-form-group label="ავტორი" label-for="author">
+                  <b-form-input id="author" :value="adminBook.author" />
+                </b-form-group>
+                <div class="visibility-switch d-flex">
+                  <span class="mr-2">Private</span>
+                  <b-form-checkbox v-model="checked" switch></b-form-checkbox>
+                  <span class="mr-2">Public</span>
+                </div>
+              </b-form>
+            </b-modal>
             <button>Button 2</button>
           </div>
         </div>
@@ -29,10 +49,16 @@ export default {
       default: null,
     },
   },
+
+  methods: {
+    modalId() {
+      return 'modal-' + this.adminBook.id
+    },
+  },
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .admin-book-card-container {
   .card {
     border: none;
@@ -53,7 +79,7 @@ export default {
         visibility: hidden;
         background-color: white;
         border: 1px solid black;
-        padding-top: 5px;
+        padding-top: 3px;
         opacity: 0;
         transition: 0.15s ease-out;
 
@@ -61,9 +87,14 @@ export default {
           background: none;
           border: none;
 
+          .btn {
+            padding: 0;
+          }
+
           svg {
             width: 20px;
             height: 20px;
+            color: black;
           }
         }
       }
