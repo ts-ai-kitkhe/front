@@ -10,13 +10,13 @@
       </div>
       <div class="row">
         <div class="col-lg-3 px-lg-5">
-          <filter-bar />
+          <FilterBar />
         </div>
         <div class="col-lg-9 px-lg-5">
-          <search-bar />
+          <SearchBar />
           <div class="books-row">
             <div class="row">
-              <book-card
+              <BookCard
                 v-for="book in allBooks"
                 :key="book.id"
                 :book-info="book"

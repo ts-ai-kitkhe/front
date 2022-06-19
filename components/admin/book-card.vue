@@ -6,7 +6,7 @@
           <img :src="adminBook.image" alt="Book Card Image" />
           <div class="trash-icon">
             <b-btn v-b-modal="modalId() + '-top'">
-              <b-icon icon="trash"> </b-icon>
+              <b-icon icon="trash"></b-icon>
             </b-btn>
             <b-modal :id="modalId() + '-top'" centered title="Are you sure?">
               <p>Some text</p>
@@ -29,7 +29,9 @@
                 </div>
               </b-form>
             </b-modal>
-            <button>Button 2</button>
+            <NuxtLink :to="`books/${adminBook.id}`" class="second-btn"
+              >Button 2</NuxtLink
+            >
           </div>
         </div>
         <div class="card-body">
@@ -76,14 +78,12 @@ export default {
         position: absolute;
         top: 0;
         right: 0;
-        visibility: hidden;
         background-color: white;
         border: 1px solid black;
         padding-top: 3px;
+        visibility: hidden;
         opacity: 0;
         transition: 0.15s ease-out;
-        width: 30px;
-        height: 30px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -91,6 +91,7 @@ export default {
         button {
           background: none;
           border: none;
+          color: black;
 
           .btn {
             padding: 0;
@@ -102,7 +103,7 @@ export default {
         }
 
         .btn-secondary {
-          padding: 2px;
+          padding: 2px 5px;
         }
       }
 
@@ -118,8 +119,10 @@ export default {
         visibility: hidden;
         opacity: 0;
         transition: 0.15s ease-out;
+        color: black;
 
-        button {
+        button,
+        .second-btn {
           margin: 10px;
           border: none;
           background-color: white;
@@ -127,6 +130,7 @@ export default {
           border-radius: 5px;
           width: 40%;
           padding: 5px 10px;
+          text-decoration: none;
 
           @include md {
             width: 70%;

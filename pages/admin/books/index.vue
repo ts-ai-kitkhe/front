@@ -3,10 +3,10 @@
     <div class="container">
       <h1 class="my-5">ჩემი წიგნები</h1>
       <div class="search-bar-wrapper">
-        <search-bar />
+        <SearchBar />
       </div>
       <div class="row row-3 mt-4">
-        <admin-book-card
+        <AdminBookCard
           v-for="book in allAdminBooks"
           :key="book.id"
           :admin-book="book"

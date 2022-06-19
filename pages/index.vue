@@ -6,7 +6,7 @@
         <a class="scroll-down" @click="scrollDown"></a>
       </section>
       <section id="feed" ref="feedSlide" class="feed-slide">
-        <the-header />
+        <TheHeader />
         <div class="feed-container content-wrap">
           <div class="container-fluid cover-img-container p-0">
             <div class="row-fluid">
@@ -29,7 +29,7 @@
                   :key="card.id"
                   class="swiper-slide"
                 >
-                  <swiper-card :card-info="card" />
+                  <SwiperCard :card-info="card" />
                 </div>
               </div>
             </div>
@@ -40,7 +40,7 @@
             <b-spinner></b-spinner>
           </div>
         </div>
-        <the-footer />
+        <TheFooter />
       </section>
     </div>
   </div>
