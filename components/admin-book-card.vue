@@ -1,6 +1,6 @@
 <template>
-  <div class="col-md-4 col-sm-6">
-    <div class="admin-book-card-container m-3">
+  <div class="col-lg-3 col-md-4 col-sm-6">
+    <div class="admin-book-card-container mx-4 my-2">
       <div class="card px-4 px-sm-0">
         <div class="img-wrapper">
           <img :src="adminBook.image" alt="Book Card Image" />
@@ -82,6 +82,11 @@ export default {
         padding-top: 3px;
         opacity: 0;
         transition: 0.15s ease-out;
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         button {
           background: none;
@@ -92,10 +97,12 @@ export default {
           }
 
           svg {
-            width: 20px;
-            height: 20px;
             color: black;
           }
+        }
+
+        .btn-secondary {
+          padding: 2px;
         }
       }
 

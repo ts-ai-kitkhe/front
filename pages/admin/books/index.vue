@@ -2,7 +2,10 @@
   <div class="admin-books-container">
     <div class="container">
       <h1 class="my-5">ჩემი წიგნები</h1>
-      <div class="row">
+      <div class="search-bar-wrapper">
+        <search-bar />
+      </div>
+      <div class="row row-3 mt-4">
         <admin-book-card
           v-for="book in allAdminBooks"
           :key="book.id"
@@ -32,6 +35,10 @@ export default {
 .admin-books-container {
   h1 {
     text-align: center;
+  }
+
+  .search-bar-wrapper {
+    margin: 0 20px;
   }
 
   .row {
