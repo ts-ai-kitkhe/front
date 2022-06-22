@@ -1,7 +1,8 @@
 <template>
   <div>
-    <AdminTheHeader />
-    <div>Coming Soon...</div>
+    <AdminPagesHeader />
+    <div class="container-fluid"></div>
+    <TheFooter />
   </div>
 </template>
 
