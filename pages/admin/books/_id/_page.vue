@@ -1,10 +1,6 @@
 <template>
   <div class="operator-container">
     <div class="upper-panel">
-      <div class="description">
-        <h1 class="title">Book title goes here</h1>
-        <h2 class="author">Author goes here</h2>
-      </div>
       <div class="nav-panel">
         <div
           class="arrow-container right"
@@ -147,22 +143,12 @@ export default {
 
 .operator-container {
   .upper-panel {
-    height: 15vh;
+    height: 8vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-
-    .description {
-      .title {
-        font-size: 2rem;
-      }
-
-      .author {
-        font-size: 1rem;
-      }
-    }
 
     .nav-panel {
       margin: 10px 0;
@@ -256,7 +242,7 @@ export default {
     border: 1px solid black;
     overflow: scroll;
     position: relative;
-    height: 70vh;
+    height: 77vh;
     user-select: none;
 
     img {

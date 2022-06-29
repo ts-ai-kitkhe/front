@@ -24,12 +24,12 @@
                 </b-form-group>
                 <div class="visibility-switch d-flex">
                   <span class="mr-2">Private</span>
-                  <b-form-checkbox v-model="checked" switch></b-form-checkbox>
+                  <b-form-checkbox switch></b-form-checkbox>
                   <span class="mr-2">Public</span>
                 </div>
               </b-form>
             </b-modal>
-            <NuxtLink :to="`books/${adminBook.id}`" class="second-btn"
+            <NuxtLink :to="`${adminBook.id}`" append class="second-btn"
               >Button 2</NuxtLink
             >
           </div>
@@ -120,6 +120,7 @@ export default {
         opacity: 0;
         transition: 0.15s ease-out;
         color: black;
+        text-align: center;
 
         button,
         .second-btn {
@@ -133,7 +134,7 @@ export default {
           text-decoration: none;
 
           @include md {
-            width: 70%;
+            width: 50%;
             padding: 2px 5px;
           }
         }

@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import { Swiper, Navigation } from 'swiper'
+import { Swiper, Navigation, Autoplay } from 'swiper'
 import 'swiper/swiper-bundle.min.css'
 import { mapActions, mapGetters } from 'vuex'
 
@@ -62,12 +62,13 @@ export default {
 
   mounted() {
     this.getSwiperCards().then(() => {
-      Swiper.use([Navigation])
+      Swiper.use([Navigation, Autoplay])
       /* eslint-disable no-unused-vars */
       const swiper = new Swiper('.swiper', {
         direction: 'horizontal',
         loop: true,
         slidesPerView: 1,
+        threshold: 20,
         modules: [Navigation],
         breakpoints: {
           480: {
@@ -86,6 +87,9 @@ export default {
         navigation: {
           nextEl: '.swiper-button-next',
           prevEl: '.swiper-button-prev',
+        },
+        autoplay: {
+          delay: 2000,
         },
       })
     })

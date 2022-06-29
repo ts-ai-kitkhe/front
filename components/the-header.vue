@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <header class="header-container">
     <b-navbar toggleable="sm">
       <NuxtLink to="/#feed" class="navbar-brand">LOGO</NuxtLink>
       <b-navbar-toggle target="header-collapse"></b-navbar-toggle>
@@ -18,7 +18,7 @@ export default {}
 </script>
 
 <style lang="scss">
-header {
+.header-container {
   border-bottom: 1px solid black;
 
   .navbar-nav {
