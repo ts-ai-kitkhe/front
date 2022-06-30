@@ -1,10 +1,10 @@
 <template>
   <div class="page-card-container">
-    <NuxtLink :to="`${pageInfo}`" append>
+    <NuxtLink :to="`${pageInfo.order}`" append>
       <div class="card-details">
         <h6 class="page-name">{{ strippedName }}</h6>
         <img src="~/assets/images/test.jpg" alt="Page" class="page-img" />
-        <p class="page-num">{{ pageInfo }}</p>
+        <p class="page-num">{{ pageInfo.order }}</p>
       </div>
     </NuxtLink>
   </div>
@@ -14,14 +14,14 @@
 export default {
   props: {
     pageInfo: {
-      type: Number,
-      default: 0,
+      type: Object,
+      default: null,
     },
   },
 
   data() {
     return {
-      pageName: '0001.jpg',
+      pageName: this.pageInfo.name + '.jpg',
     }
   },
 

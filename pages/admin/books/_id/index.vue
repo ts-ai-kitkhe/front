@@ -9,14 +9,14 @@
             <h2 class="author">{{ adminBookById.author }}</h2>
           </div>
         </div>
-        <div class="row pages-row">
+        <VueDraggable :list="pages" class="row pages-row" ghost-class="ghost">
           <AdminPageCard
-            v-for="n in pagesCount"
-            :key="n"
+            v-for="page in pages"
+            :key="page.order"
             class="col-lg-2 col-md-3 col-sm-4"
-            :page-info="n"
+            :page-info="page"
           />
-        </div>
+        </VueDraggable>
       </div>
     </div>
     <TheFooter />
@@ -28,7 +28,48 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   data() {
     return {
-      pagesCount: 25,
+      pages: [
+        {
+          name: 'images/test1',
+          order: 1,
+        },
+        {
+          name: 'images/test2',
+          order: 2,
+        },
+        {
+          name: 'images/test3',
+          order: 3,
+        },
+        {
+          name: 'images/test4',
+          order: 4,
+        },
+        {
+          name: 'images/test5',
+          order: 5,
+        },
+        {
+          name: 'images/test6',
+          order: 6,
+        },
+        {
+          name: 'images/test7',
+          order: 7,
+        },
+        {
+          name: 'images/test8',
+          order: 8,
+        },
+        {
+          name: 'images/test9',
+          order: 9,
+        },
+        {
+          name: 'images/test10',
+          order: 10,
+        },
+      ],
       adminBookId: this.$route.params.id,
     }
   },
@@ -57,6 +98,10 @@ export default {
 
     .pages-row {
       padding: 30px 0 100px;
+    }
+
+    .ghost {
+      opacity: 0.5;
     }
   }
 }
