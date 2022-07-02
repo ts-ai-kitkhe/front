@@ -5,10 +5,10 @@
       <h4 class="modal-title">ავტორიზაცია</h4>
       <b-form-group>
         <b-form-input
-          v-model="form.username"
-          type="text"
+          v-model="form.email"
+          type="email"
           class="form-control"
-          placeholder="Username"
+          placeholder="Email"
           required="required"
         />
       </b-form-group>
@@ -31,7 +31,7 @@ export default {
   data() {
     return {
       form: {
-        username: '',
+        email: '',
         password: '',
       },
     }
