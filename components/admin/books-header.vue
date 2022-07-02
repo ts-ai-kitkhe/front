@@ -33,7 +33,12 @@
               </form>
             </b-modal>
           </div>
-          <button>lorem@ipsum.com</button>
+          <b-nav-item-dropdown text="lorem@ipsum.com">
+            <b-dropdown-item v-b-modal.logout-modal>გამოსვლა</b-dropdown-item>
+            <b-modal id="logout-modal" centered title="Are you sure?">
+              <p>Some text</p>
+            </b-modal>
+          </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
