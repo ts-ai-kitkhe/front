@@ -1,6 +1,7 @@
 <template>
-  <header class="pages-header-container">
+  <header class="admin-header-container">
     <b-navbar toggleable="sm" fixed="top">
+      <NuxtLink to="/#feed" class="navbar-brand">LOGO</NuxtLink>
       <b-navbar-toggle target="header-collapse"></b-navbar-toggle>
       <b-collapse id="header-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
@@ -17,19 +18,4 @@
 export default {}
 </script>
 
-<style lang="scss">
-.pages-header-container {
-  nav {
-    border-bottom: 1px solid black;
-    background-color: white;
-
-    .navbar-nav {
-      button {
-        margin: 5px 10px;
-        border: none;
-        background-color: transparent;
-      }
-    }
-  }
-}
-</style>
+<style lang="scss"></style>

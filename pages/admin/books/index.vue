@@ -1,18 +1,22 @@
 <template>
-  <div class="admin-books-container">
-    <div class="container">
-      <h1 class="my-5">ჩემი წიგნები</h1>
-      <div class="search-bar-wrapper">
-        <SearchBar />
-      </div>
-      <div class="row row-3 mt-4">
-        <AdminBookCard
-          v-for="book in allAdminBooks"
-          :key="book.id"
-          :admin-book="book"
-        />
+  <div class="admin-books-container page-container">
+    <AdminBooksHeader />
+    <div class="main-content content-wrap">
+      <div class="container">
+        <h1 class="my-5">ჩემი წიგნები</h1>
+        <div class="search-bar-wrapper">
+          <SearchBar />
+        </div>
+        <div class="row row-3 mt-4">
+          <AdminBookCard
+            v-for="book in allAdminBooks"
+            :key="book.id"
+            :admin-book="book"
+          />
+        </div>
       </div>
     </div>
+    <TheFooter />
   </div>
 </template>
 
@@ -33,16 +37,20 @@ export default {
 
 <style lang="scss" scoped>
 .admin-books-container {
-  h1 {
-    text-align: center;
-  }
+  .main-content {
+    margin-top: 80px;
 
-  .search-bar-wrapper {
-    margin: 0 20px;
-  }
+    h1 {
+      text-align: center;
+    }
 
-  .row {
-    align-items: center;
+    .search-bar-wrapper {
+      margin: 0 20px;
+    }
+
+    .row {
+      align-items: center;
+    }
   }
 }
 </style>
