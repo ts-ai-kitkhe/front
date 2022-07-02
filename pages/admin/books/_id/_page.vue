@@ -37,7 +37,7 @@
             :y="rect.y"
             :z="99"
           >
-            <div class="word">{{ rect.word }}</div>
+            <input class="word" :value="rect.word" />
           </VueDraggableResizable>
         </div>
       </div>
@@ -127,7 +127,7 @@ export default {
         y: this.topY + margin,
         h: initRectDim,
         w: initRectDim,
-        word: 'ჯ',
+        word: '',
       })
     },
 
