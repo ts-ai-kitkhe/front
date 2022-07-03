@@ -72,7 +72,7 @@ $handle-size: 10px;
     }
   }
 
-  .word {
+  .letter {
     background-color: transparent;
     color: transparent;
     border: none;
@@ -94,19 +94,19 @@ $handle-size: 10px;
     color: black;
     user-select: none;
 
-    .word {
+    .letter {
       color: black;
     }
 
     &:hover {
-      .word {
+      .letter {
         color: black;
       }
     }
   }
 
   &:hover {
-    .word {
+    .letter {
       color: white;
     }
   }

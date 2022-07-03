@@ -36,14 +36,23 @@
             :x="rect.x"
             :y="rect.y"
             :z="99"
+            :active="rect.active"
+            @activated="handleRectActivation(rect)"
+            @deactivated="handleRectDeactivation(rect)"
           >
-            <input class="word" :value="rect.word" />
+            <input
+              class="letter"
+              :value="rect.letter"
+              maxlength="1"
+              @keydown="changeLetter($event, rect)"
+              @keyup.backspace="deleteRect"
+            />
           </VueDraggableResizable>
         </div>
       </div>
     </div>
     <div class="bottom-panel">
-      <div v-show="!addRectMode" class="word-input">
+      <div v-show="!addRectMode" class="letter-input">
         <input type="text" />
         <button>დადასტურება</button>
       </div>
@@ -64,6 +73,7 @@ export default {
       currPage: 1,
       numPages: 13,
       topY: 0,
+      selectedRect: null,
     }
   },
 
@@ -92,7 +102,10 @@ export default {
   },
 
   destroyed() {
-    this.$refs.imgWrapper.removeEventListener('scroll', this.updateCooordinates)
+    this.$refs.imgWrapper?.removeEventListener(
+      'scroll',
+      this.updateCooordinates
+    )
   },
 
   methods: {
@@ -112,7 +125,8 @@ export default {
             y: rescaleH(coords[0][1]),
             h: rescaleH(coords[2][1] - coords[0][1]),
             w: rescaleW(coords[2][0] - coords[0][0]),
-            word: 'ჯ',
+            active: false,
+            letter: 'ჯ',
           }))
         })
     },
@@ -127,12 +141,47 @@ export default {
         y: this.topY + margin,
         h: initRectDim,
         w: initRectDim,
-        word: '',
+        active: false,
+        letter: '',
       })
     },
 
     updateCooordinates(e) {
       this.topY = e.target.scrollTop
+    },
+
+    handleRectActivation(rect) {
+      this.selectedRect = rect
+      this.selectedRect.active = true
+    },
+
+    handleRectDeactivation(rect) {
+      if (this.selectedRect?.id === rect.id) {
+        this.selectedRect = null
+      }
+    },
+
+    changeLetter(event, rect) {
+      if (event.key.length === 1) {
+        event.target.value = event.key
+        rect.letter = event.key
+      }
+      if (event.key === 'Backspace') {
+        event.preventDefault()
+      }
+    },
+
+    deleteRect() {
+      if (this.selectedRect) {
+        this.rectCoords = this.rectCoords.filter((rect) => {
+          rect.active = false
+          if (rect.id === this.selectedRect?.id) {
+            this.handleRectDeactivation(rect)
+            return false
+          }
+          return true
+        })
+      }
     },
   },
 }
@@ -263,7 +312,7 @@ export default {
     margin-top: 40px;
     gap: 20px;
 
-    .word-input {
+    .letter-input {
       display: flex;
       flex-direction: row;
       justify-content: center;
