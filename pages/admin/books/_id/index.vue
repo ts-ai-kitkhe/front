@@ -20,6 +20,18 @@
                 {{ src.length > 13 ? '...' + src.slice(-10) : src }}
               </NuxtLink>
               <div class="page-wrapper">
+                <div class="trash-icon">
+                  <b-btn v-b-modal="i + 1 + '-delete'">
+                    <b-icon icon="trash"></b-icon>
+                  </b-btn>
+                  <b-modal
+                    :id="i + 1 + '-delete'"
+                    centered
+                    title="Are you sure?"
+                  >
+                    <p>Some text</p>
+                  </b-modal>
+                </div>
                 <img
                   :src="src"
                   alt="Page"
@@ -122,6 +134,43 @@ export default {
         width: 90%;
         margin: 10px auto;
 
+        .trash-icon {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background-color: white;
+          padding-top: 3px;
+          visibility: hidden;
+          opacity: 0;
+          transition: 0.15s ease-out;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          button {
+            background: none;
+            border: none;
+            color: black;
+
+            .btn {
+              padding: 0;
+            }
+
+            svg {
+              color: black;
+            }
+          }
+
+          .btn-secondary {
+            padding: 3px 6px;
+
+            &:active,
+            &:focus {
+              box-shadow: none;
+            }
+          }
+        }
+
         .page-img {
           padding: 30px 15px;
           width: 100%;
@@ -138,6 +187,13 @@ export default {
           line-height: 18px;
           font-size: 18px;
           bottom: 10px;
+        }
+
+        &:hover {
+          .trash-icon {
+            visibility: visible;
+            opacity: 1;
+          }
         }
       }
     }
