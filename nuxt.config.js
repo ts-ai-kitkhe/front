@@ -23,7 +23,11 @@ export default {
   css: ['~/assets/scss/main.scss'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~plugins/draggable.js', '~plugins/draggable-resizable.js'],
+  plugins: [
+    '~plugins/draggable.js',
+    '~plugins/draggable-resizable.js',
+    '~plugins/easy-lightbox.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,

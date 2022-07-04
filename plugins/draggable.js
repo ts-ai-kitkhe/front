@@ -1,4 +1,4 @@
-import Draggable from 'vuedraggable'
 import Vue from 'vue'
+import Draggable from 'vuedraggable'
 
 Vue.component('VueDraggable', Draggable)

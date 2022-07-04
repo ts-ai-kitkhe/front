@@ -23,7 +23,7 @@
       <img
         id="main-img"
         ref="mainImg"
-        src="~/assets/images/test.jpg"
+        src="~/assets/images/test1.jpg"
         alt="Scanned Page"
         @load="fetchData"
       />
