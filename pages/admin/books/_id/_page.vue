@@ -1,6 +1,6 @@
 <template>
   <div class="operator-container">
-    <div class="upper-panel">
+    <div ref="upperPanel" class="upper-panel">
       <div class="nav-panel">
         <div
           class="arrow-container right"
@@ -25,7 +25,9 @@
         ref="mainImg"
         src="~/assets/images/test1.jpg"
         alt="Scanned Page"
+        :style="[addRectMode ? { cursor: 'cell' } : {}]"
         @load="fetchData"
+        @click="checkAndAddRect"
       />
       <div class="canvas">
         <div v-for="(rect, index) in rectCoords" :key="index">
@@ -52,12 +54,11 @@
       </div>
     </div>
     <div class="bottom-panel">
-      <div v-show="!addRectMode" class="letter-input">
-        <input type="text" />
-        <button>დადასტურება</button>
-      </div>
-      <button v-show="addRectMode" @click="addNewRect">
+      <button v-show="!addRectMode" @click="addRectMode = true">
         მართკუთხედის დამატება
+      </button>
+      <button v-show="addRectMode" @click="addRectMode = false">
+        გაუქმება
       </button>
       <button>რედაქტირების დასრულება</button>
     </div>
@@ -69,11 +70,11 @@ export default {
   data() {
     return {
       rectCoords: [],
-      activatedCounter: 0,
       currPage: 1,
       numPages: 13,
       topY: 0,
       selectedRect: null,
+      addRectMode: false,
     }
   },
 
@@ -90,10 +91,6 @@ export default {
 
     imageWidth() {
       return this.$refs.mainImg.clientWidth
-    },
-
-    addRectMode() {
-      return this.activatedCounter === 0
     },
   },
 
@@ -131,19 +128,23 @@ export default {
         })
     },
 
-    addNewRect() {
-      const initRectDim = 50
-      const margin = 10
+    checkAndAddRect(event) {
+      if (this.addRectMode) {
+        const initRectDim = 40
+        const topOffset = this.$refs.upperPanel.clientHeight - this.topY
 
-      this.rectCoords.push({
-        id: 131313,
-        x: margin,
-        y: this.topY + margin,
-        h: initRectDim,
-        w: initRectDim,
-        active: false,
-        letter: '',
-      })
+        this.rectCoords.push({
+          id: Math.random() * 999999,
+          x: event.clientX - initRectDim / 2,
+          y: event.clientY - topOffset - initRectDim / 2,
+          h: initRectDim,
+          w: initRectDim,
+          active: false,
+          letter: '',
+        })
+
+        this.addRectMode = false
+      }
     },
 
     updateCooordinates(e) {
@@ -166,6 +167,7 @@ export default {
         event.target.value = event.key
         rect.letter = event.key
       }
+
       if (event.key === 'Backspace') {
         event.preventDefault()
       }
