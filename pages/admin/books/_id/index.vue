@@ -9,7 +9,7 @@
             <h2 class="author">{{ adminBookById.author }}</h2>
           </div>
         </div>
-        <VueDraggable :list="pages" class="row pages-row" ghost-class="ghost">
+        <VueDraggable :list="imgs" class="row pages-row" ghost-class="ghost">
           <div
             v-for="(src, i) in imgs"
             :key="i"
@@ -86,7 +86,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .admin-pages-container {
   .main-content {
     margin-top: 80px;
@@ -141,6 +141,10 @@ export default {
         }
       }
     }
+  }
+
+  .vel-img-wrapper {
+    transition: 0.1s linear !important;
   }
 }
 </style>
