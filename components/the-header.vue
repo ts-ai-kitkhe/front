@@ -6,7 +6,7 @@
       <b-collapse id="header-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <NuxtLink to="/books" class="header-btn">წიგნები</NuxtLink>
-          <NuxtLink to="/about" class="header-btn">ჩვენ შესახებ</NuxtLink>
+          <NuxtLink to="/contact" class="header-btn">კონტაქტი</NuxtLink>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
