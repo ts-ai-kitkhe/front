@@ -10,25 +10,13 @@
             <b-modal id="upload-modal" centered title="წიგნის ატვირთვა">
               <form>
                 <b-form-group label="სათაური" label-for="title-input">
-                  <b-form-input
-                    id="title-input"
-                    v-model="title"
-                    required
-                  ></b-form-input>
+                  <b-form-input id="title-input" required></b-form-input>
                 </b-form-group>
                 <b-form-group label="ავტორი" label-for="author-input">
-                  <b-form-input
-                    id="author-input"
-                    v-model="author"
-                    required
-                  ></b-form-input>
+                  <b-form-input id="author-input" required></b-form-input>
                 </b-form-group>
                 <b-form-group label="მთავარი სურათი" label-for="cover-image">
-                  <b-form-file
-                    id="cover-image"
-                    v-model="coverImage"
-                    required
-                  ></b-form-file>
+                  <b-form-file id="cover-image" required></b-form-file>
                 </b-form-group>
               </form>
             </b-modal>

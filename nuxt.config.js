@@ -50,7 +50,30 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next',
   ],
+
+  auth: {
+    redirect: {
+      login: '/admin/login',
+      logout: '/admin/login',
+      callback: '/callback',
+      home: '/admin/books',
+    },
+    strategies: {
+      cognito: {
+        scheme: '@a1ter/nuxt-auth-aws-cognito-scheme/scheme/scheme',
+        credentials: {
+          userPoolId: process.env.COGNITO_USERPOOL_ID,
+          userPoolWebClientId: process.env.COGNITO_CLIENT_ID,
+          region: process.env.COGNITO_REGION,
+        },
+        endpoints: {
+          user: false,
+        },
+      },
+    },
+  },
 
   bootstrapVue: {
     icons: true,
@@ -64,6 +87,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    transpile: ['@nuxtjs/auth-next'],
     babel: {
       compact: true,
     },

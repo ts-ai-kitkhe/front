@@ -1,27 +1,28 @@
 <template>
   <div class="login-form-container">
-    <b-form action="/admin/books" method="POST" @submit="onSubmit">
+    <b-form>
       <b-icon icon="person"></b-icon>
       <h4 class="modal-title">ავტორიზაცია</h4>
       <b-form-group>
         <b-form-input
-          v-model="form.email"
+          v-model="credentials.email"
           type="email"
           class="form-control"
           placeholder="Email"
           required="required"
+          autofocus
         />
       </b-form-group>
       <b-form-group>
         <b-form-input
-          v-model="form.password"
+          v-model="credentials.password"
           type="password"
           class="form-control"
           placeholder="Password"
           required="required"
         />
       </b-form-group>
-      <b-button type="submit">შესვლა</b-button>
+      <b-button type="submit" @click.prevent="login()">შესვლა</b-button>
     </b-form>
   </div>
 </template>
@@ -30,15 +31,25 @@
 export default {
   data() {
     return {
-      form: {
+      credentials: {
         email: '',
         password: '',
       },
     }
   },
   methods: {
-    onSubmit(event) {
-      // Some Auth Logic Here
+    async login() {
+      try {
+        await this.$auth.loginWith('cognito', {
+          data: {
+            username: this.credentials.email,
+            password: this.credentials.password,
+          },
+        })
+      } catch (error) {
+        /* eslint-disable no-console */
+        console.error(error)
+      }
     },
   },
 }
