@@ -6,6 +6,7 @@
       <b-form-group>
         <b-form-input
           v-model="credentials.email"
+          :state="validation"
           type="email"
           class="form-control"
           placeholder="Email"
@@ -16,12 +17,16 @@
       <b-form-group>
         <b-form-input
           v-model="credentials.password"
+          :state="validation"
           type="password"
           class="form-control"
           placeholder="Password"
           required="required"
         />
       </b-form-group>
+      <b-form-invalid-feedback :state="validation">
+        მომხმარებელი ან პაროლი არასწორია
+      </b-form-invalid-feedback>
       <b-button type="submit" @click.prevent="login()">შესვლა</b-button>
     </b-form>
   </div>
@@ -35,8 +40,16 @@ export default {
         email: '',
         password: '',
       },
+      correctCredentials: null,
     }
   },
+
+  computed: {
+    validation() {
+      return this.correctCredentials
+    },
+  },
+
   methods: {
     async login() {
       try {
@@ -46,9 +59,11 @@ export default {
             password: this.credentials.password,
           },
         })
+        // this.$router.push({ path: '/admin/books' })
       } catch (error) {
         /* eslint-disable no-console */
         console.error(error)
+        this.correctCredentials = false
       }
     },
   },
@@ -71,6 +86,7 @@ export default {
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     background-color: white;
     width: 320px;
+    border-radius: 8px;
 
     svg {
       display: block !important;
@@ -99,6 +115,11 @@ export default {
           border-color: black;
         }
       }
+    }
+
+    .invalid-feedback {
+      margin-bottom: 1rem;
+      text-align: center;
     }
 
     button {
