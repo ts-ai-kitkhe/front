@@ -49,6 +49,10 @@ jobs:
         run: yarn
 
       - name: Generate 🚀
+        env:
+          COGNITO_REGION: ${{ secrets.COGNITO_REGION }}
+          COGNITO_USERPOOL_ID: ${{ secrets.COGNITO_USERPOOL_ID }}
+          COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
         run: yarn generate
 
       - name: Deploy 🪚
