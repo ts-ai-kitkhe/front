@@ -1,6 +1,6 @@
 <template>
   <div class="login-form-container">
-    <b-form>
+    <b-form @submit.prevent>
       <b-icon icon="person"></b-icon>
       <h4 class="modal-title">ავტორიზაცია</h4>
       <b-form-group>
@@ -10,7 +10,7 @@
           type="email"
           class="form-control"
           placeholder="Email"
-          required="required"
+          required
           autofocus
         />
       </b-form-group>
@@ -21,13 +21,13 @@
           type="password"
           class="form-control"
           placeholder="Password"
-          required="required"
+          required
         />
       </b-form-group>
       <b-form-invalid-feedback :state="validation">
         მომხმარებელი ან პაროლი არასწორია
       </b-form-invalid-feedback>
-      <b-button type="submit" @click.prevent="login()">შესვლა</b-button>
+      <b-button type="submit" @click="login()">შესვლა</b-button>
     </b-form>
   </div>
 </template>
@@ -63,6 +63,7 @@ export default {
       } catch (error) {
         /* eslint-disable no-console */
         console.error(error)
+        this.credentials.password = ''
         this.correctCredentials = false
       }
     },
