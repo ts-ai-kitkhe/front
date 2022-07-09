@@ -1,6 +1,6 @@
 <template>
   <div class="login-form-container">
-    <b-form @submit.prevent>
+    <b-form @submit.prevent="login()">
       <b-icon icon="person"></b-icon>
       <h4 class="modal-title">ავტორიზაცია</h4>
       <b-form-group>
@@ -27,7 +27,7 @@
       <b-form-invalid-feedback :state="validation">
         მომხმარებელი ან პაროლი არასწორია
       </b-form-invalid-feedback>
-      <b-button type="submit" @click="login()">შესვლა</b-button>
+      <b-button type="submit" :disabled="isDisabled">შესვლა</b-button>
     </b-form>
   </div>
 </template>
@@ -41,6 +41,7 @@ export default {
         password: '',
       },
       correctCredentials: null,
+      isDisabled: false,
     }
   },
 
@@ -53,6 +54,8 @@ export default {
   methods: {
     async login() {
       try {
+        this.isDisabled = true
+        this.correctCredentials = null
         await this.$auth.loginWith('cognito', {
           data: {
             username: this.credentials.email,
@@ -65,6 +68,8 @@ export default {
         console.error(error)
         this.credentials.password = ''
         this.correctCredentials = false
+      } finally {
+        this.isDisabled = false
       }
     },
   },
