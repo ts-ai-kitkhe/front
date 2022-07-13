@@ -31,7 +31,7 @@
     "swiper": "^6.8.4",
     "vue": "^2.6.14",
     "vue-draggable-resizable": "^2.3.0",
-    "vue-easy-lightbox": "^0.17.0",
+    "vue-easy-lightbox": "^0.18.0",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
     "vuedraggable": "^2.24.3",
