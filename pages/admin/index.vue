@@ -5,10 +5,10 @@
 <script>
 export default {
   layout: 'operator',
-  middleware: 'auth',
-
-  mounted() {
-    this.$router.push('/admin/books')
-  },
+  middleware: [
+    function ({ redirect }) {
+      redirect('/admin/books')
+    },
+  ],
 }
 </script>

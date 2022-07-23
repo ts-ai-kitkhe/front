@@ -34,6 +34,8 @@
 
 <script>
 export default {
+  layout: 'operator',
+
   data() {
     return {
       credentials: {
