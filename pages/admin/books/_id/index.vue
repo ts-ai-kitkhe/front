@@ -58,6 +58,8 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
+  layout: 'operator',
+
   data() {
     return {
       visible: false,

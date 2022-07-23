@@ -5,7 +5,6 @@
       <b-navbar-toggle target="header-collapse"></b-navbar-toggle>
       <b-collapse id="header-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
-          <button>რედაქტირება</button>
           <button>გვერდების ატვირთვა</button>
           <button>ცვლილებების შენახვა</button>
         </b-navbar-nav>

@@ -23,6 +23,7 @@
 <script>
 import { mapActions, mapGetters } from 'vuex'
 export default {
+  layout: 'operator',
   computed: mapGetters('admin', ['allAdminBooks']),
 
   created() {

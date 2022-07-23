@@ -4,6 +4,7 @@
 
 <script>
 export default {
+  layout: 'operator',
   middleware: 'auth',
 
   mounted() {
