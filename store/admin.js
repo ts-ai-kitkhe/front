@@ -7,7 +7,12 @@ export const state = () => ({
 })
 
 export const mutations = {
-  setAdminEmail: (state, adminEmail) => (state.adminEmail = adminEmail),
+  setAdminEmail: (state, adminEmail) => {
+    state.adminEmail = adminEmail
+    if (process.client) {
+      localStorage.setItem('adminEmail', adminEmail)
+    }
+  },
   setAdminBooks: (state, adminBooks) => (state.adminBooks = adminBooks),
   setAdminBook: (state, adminBook) => (state.adminBook = adminBook),
   setAdminBookPages: (state, adminBookPages) =>
@@ -29,7 +34,7 @@ export const actions = {
 }
 
 export const getters = {
-  adminEmail: (state) => state.adminEmail,
+  adminEmail: (state) => state.adminEmail ?? localStorage.getItem('adminEmail'),
   allAdminBooks: (state) => state.adminBooks,
   adminBookById: (state) => state.adminBook,
 }
