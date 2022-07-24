@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   layout: 'operator',
 
@@ -54,6 +56,8 @@ export default {
   },
 
   methods: {
+    ...mapMutations('admin', ['setAdminEmail']),
+
     async login() {
       try {
         this.isDisabled = true
@@ -64,7 +68,7 @@ export default {
             password: this.credentials.password,
           },
         })
-        // this.$router.push({ path: '/admin/books' })
+        this.setAdminEmail(this.credentials.email)
       } catch (error) {
         /* eslint-disable no-console */
         console.error(error)

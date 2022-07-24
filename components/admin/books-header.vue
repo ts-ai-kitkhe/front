@@ -21,7 +21,7 @@
               </form>
             </b-modal>
           </div>
-          <b-nav-item-dropdown text="lorem@ipsum.com">
+          <b-nav-item-dropdown :text="adminEmail">
             <b-dropdown-item v-b-modal.logout-modal>გამოსვლა</b-dropdown-item>
             <b-modal
               id="logout-modal"
@@ -41,7 +41,11 @@
 </template>
 
 <script>
-export default {}
+import { mapGetters } from 'vuex'
+
+export default {
+  computed: mapGetters('admin', ['adminEmail']),
+}
 </script>
 
 <style lang="scss"></style>

@@ -1,11 +1,13 @@
 import axios from 'axios'
 
 export const state = () => ({
+  adminEmail: null,
   adminBooks: [],
   adminBook: null,
 })
 
 export const mutations = {
+  setAdminEmail: (state, adminEmail) => (state.adminEmail = adminEmail),
   setAdminBooks: (state, adminBooks) => (state.adminBooks = adminBooks),
   setAdminBook: (state, adminBook) => (state.adminBook = adminBook),
   setAdminBookPages: (state, adminBookPages) =>
@@ -27,6 +29,7 @@ export const actions = {
 }
 
 export const getters = {
+  adminEmail: (state) => state.adminEmail,
   allAdminBooks: (state) => state.adminBooks,
   adminBookById: (state) => state.adminBook,
 }
