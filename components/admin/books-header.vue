@@ -23,8 +23,15 @@
           </div>
           <b-nav-item-dropdown text="lorem@ipsum.com">
             <b-dropdown-item v-b-modal.logout-modal>გამოსვლა</b-dropdown-item>
-            <b-modal id="logout-modal" centered title="Are you sure?">
-              <p>Some text</p>
+            <b-modal
+              id="logout-modal"
+              centered
+              title="გამოსვლა"
+              cancel-title="გაუქმება"
+              ok-title="დიახ"
+              @ok="$auth.logout()"
+            >
+              <p>დარწმუნებული ხართ, რომ გსურთ პროფილიდან გამოსვლა?</p>
             </b-modal>
           </b-nav-item-dropdown>
         </b-navbar-nav>
