@@ -2,7 +2,13 @@
   <div class="page-container">
     <div class="landing-wrapper">
       <section id="landing" class="landing-slide">
-        <h1>წაიკითხე</h1>
+        <div class="landing-texts">
+          <h1 class="title-en">
+            <span>ts</span>
+            <span class="blink-ai">ai</span>
+            <span>kitkhe</span>
+          </h1>
+        </div>
         <a class="scroll-down" @click="scrollDown"></a>
       </section>
       <section id="feed" ref="feedSlide" class="feed-slide">
@@ -120,12 +126,59 @@ export default {
     background-color: black;
     position: relative;
 
-    h1 {
-      font-size: 15vw;
+    .landing-texts {
       color: white;
+      display: flex;
+      width: 80%;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
 
-      @include md {
-        font-size: 18vw;
+      .title-en {
+        display: flex;
+        letter-spacing: 5px;
+        color: white;
+        font-size: 15vw;
+
+        .blink-ai {
+          position: relative;
+          animation: blink 1.5s infinite alternate;
+
+          &:after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            filter: blur(5px);
+            content: 'ai';
+            animation: blink 1.5s infinite alternate;
+          }
+        }
+
+        @include md {
+          font-size: 18vw;
+        }
+      }
+
+      @keyframes blink {
+        $dark-gray-color: #353535;
+        $yellow-color: #efc137;
+
+        0% {
+          color: $dark-gray-color;
+        }
+        45% {
+          color: $yellow-color;
+        }
+        50% {
+          color: $dark-gray-color;
+        }
+        65% {
+          color: $yellow-color;
+        }
+        100% {
+          color: $dark-gray-color;
+        }
       }
     }
 
