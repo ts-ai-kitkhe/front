@@ -4,9 +4,9 @@
       <section id="landing" class="landing-slide">
         <div class="landing-texts">
           <h1 class="title-en">
-            <span>ts</span>
+            <span class="no-blink">ts</span>
             <span class="blink-ai">ai</span>
-            <span>kitkhe</span>
+            <span class="no-blink">kitkhe</span>
           </h1>
         </div>
         <a class="scroll-down" @click="scrollDown"></a>
@@ -140,10 +140,20 @@ export default {
         letter-spacing: 5px;
         color: white;
         font-size: 15vw;
+        transform: scale(0.92);
+        animation: scale-title 2s forwards cubic-bezier(0.5, 1, 0.89, 1);
+
+        .no-blink {
+          opacity: 0;
+          filter: blur(4px);
+        }
 
         .blink-ai {
           position: relative;
-          animation: blink 1.5s infinite alternate;
+          opacity: 0;
+          animation: blink 1.5s infinite alternate,
+            fade-in 0.8s 0.2s forwards cubic-bezier(0.11, 0, 0.5, 0);
+          color: #353535;
 
           &:after {
             position: absolute;
@@ -152,6 +162,29 @@ export default {
             filter: blur(5px);
             content: 'ai';
             animation: blink 1.5s infinite alternate;
+          }
+        }
+
+        span {
+          &:nth-child(1) {
+            animation: fade-in 0.8s 0.1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+          }
+
+          &:nth-child(3) {
+            animation: fade-in 0.8s 0.3s forwards cubic-bezier(0.11, 0, 0.5, 0);
+          }
+        }
+
+        @keyframes scale-title {
+          100% {
+            transform: scale(1);
+          }
+        }
+
+        @keyframes fade-in {
+          100% {
+            opacity: 1;
+            filter: blur(0);
           }
         }
 
@@ -164,9 +197,6 @@ export default {
         $dark-gray-color: #353535;
         $yellow-color: #efc137;
 
-        0% {
-          color: $dark-gray-color;
-        }
         45% {
           color: $yellow-color;
         }
@@ -190,6 +220,9 @@ export default {
       bottom: 5vh;
       border-radius: 50px;
       cursor: pointer;
+      animation: fade-in-btn 0.8s 1s forwards cubic-bezier(0.11, 0, 0.5, 0);
+      opacity: 0;
+      filter: blur(4px);
 
       &:before,
       &:after {
@@ -224,6 +257,13 @@ export default {
         100% {
           top: 90%;
           opacity: 0;
+        }
+      }
+
+      @keyframes fade-in-btn {
+        100% {
+          opacity: 1;
+          filter: blur(0);
         }
       }
 
