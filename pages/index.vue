@@ -135,6 +135,9 @@ export default {
       align-items: center;
       margin: 0 auto;
 
+      $dark-gray-color: #353535;
+      $yellow-color: #efc137;
+
       .title-en {
         display: flex;
         letter-spacing: 5px;
@@ -153,7 +156,7 @@ export default {
           opacity: 0;
           animation: blink 1.5s infinite alternate,
             fade-in 0.8s 0.2s forwards cubic-bezier(0.11, 0, 0.5, 0);
-          color: #353535;
+          color: $dark-gray-color;
 
           &:after {
             position: absolute;
@@ -162,6 +165,10 @@ export default {
             filter: blur(5px);
             content: 'ai';
             animation: blink 1.5s infinite alternate;
+
+            @include md {
+              filter: blur(1px);
+            }
           }
         }
 
@@ -194,9 +201,6 @@ export default {
       }
 
       @keyframes blink {
-        $dark-gray-color: #353535;
-        $yellow-color: #efc137;
-
         45% {
           color: $yellow-color;
         }
