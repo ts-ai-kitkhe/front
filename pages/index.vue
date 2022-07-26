@@ -219,7 +219,7 @@ export default {
     .scroll-down {
       height: 50px;
       width: 50px;
-      border: 2px solid white;
+      border: 2px solid #a0a0a0;
       position: absolute;
       bottom: 5vh;
       border-radius: 50px;
@@ -227,6 +227,11 @@ export default {
       animation: fade-in-btn 0.8s 1s forwards cubic-bezier(0.11, 0, 0.5, 0);
       opacity: 0;
       filter: blur(4px);
+      transition: all 0.2s ease-out;
+
+      &:hover {
+        border-color: white;
+      }
 
       &:before,
       &:after {
