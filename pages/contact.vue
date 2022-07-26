@@ -93,7 +93,7 @@ export default {
       }
 
       h2 {
-        color: #5e5e5e;
+        color: $txt-color-main;
         font-weight: bold;
         letter-spacing: 2px;
         font-size: 18px;
@@ -108,7 +108,7 @@ export default {
       }
 
       a {
-        color: darkblue;
+        color: lightblue;
         font-weight: 200;
         letter-spacing: 1px;
       }

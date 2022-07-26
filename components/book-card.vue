@@ -25,11 +25,12 @@ export default {
 
 <style lang="scss" scoped>
 .book-card-container {
-  color: black;
+  color: $txt-color-main;
   text-decoration: none;
 
   .card {
     border: none;
+    background-color: transparent;
 
     img {
       width: 100%;

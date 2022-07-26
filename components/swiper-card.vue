@@ -23,12 +23,13 @@ export default {
 
 <style lang="scss" scoped>
 .swiper-card-container {
-  color: black;
+  color: $txt-color-main;
   text-decoration: none;
 
   .card {
     width: 10rem;
     border: none;
+    background-color: transparent;
 
     .card-body {
       text-align: center;

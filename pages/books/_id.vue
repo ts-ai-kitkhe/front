@@ -44,7 +44,7 @@ export default {
 
 <style lang="scss" scoped>
 .book-single-container {
-  margin-top: 70px;
+  padding-top: 70px;
 
   .book-img-container {
     display: flex;

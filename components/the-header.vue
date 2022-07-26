@@ -19,10 +19,15 @@ export default {}
 
 <style lang="scss">
 .header-container {
-  border-bottom: 1px solid black;
+  background-color: transparent;
+
+  .navbar-brand {
+    color: $txt-color-main;
+  }
 
   .navbar-nav {
     a {
+      color: $txt-color-main;
       margin: 10px;
     }
   }

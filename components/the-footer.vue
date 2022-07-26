@@ -1,5 +1,5 @@
 <template>
-  <footer class="bg-dark text-white">
+  <footer>
     <div class="copyright">© ts-ai-kitkhe, 2022</div>
   </footer>
 </template>
@@ -17,5 +17,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: $bg-color-main;
+  color: $txt-color-main;
 }
 </style>

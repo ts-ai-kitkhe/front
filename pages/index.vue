@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <div class="page-container pc-color">
     <div class="landing-wrapper">
       <section id="landing" class="landing-slide">
         <div class="landing-texts">
@@ -15,7 +15,7 @@
         <TheHeader />
         <div class="feed-container content-wrap">
           <div class="container-fluid cover-img-container p-0">
-            <div class="row-fluid">
+            <div class="row-fluid mb-5">
               <img
                 src="~/assets/images/no_img.png"
                 alt="Main Feed Cover"
@@ -24,7 +24,7 @@
             </div>
           </div>
           <div v-if="initialized" class="container-xl books-swiper">
-            <div class="details mb-5">
+            <div class="details mb-4">
               <h2>ბოლოს დამატებული</h2>
               <NuxtLink to="/books" class="link-btn">ნახე მეტი</NuxtLink>
             </div>
@@ -123,7 +123,6 @@ export default {
     align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: black;
     position: relative;
 
     .landing-texts {
@@ -301,6 +300,10 @@ export default {
           h2 {
             font-size: 18px;
           }
+
+          .link-btn {
+            color: $txt-color-main;
+          }
         }
 
         .swiper {
@@ -320,7 +323,7 @@ export default {
 
         .swiper-btn {
           position: absolute;
-          color: black;
+          color: $txt-color-main;
           top: 50%;
 
           &.swiper-button-prev {
