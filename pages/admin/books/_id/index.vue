@@ -1,7 +1,7 @@
 <template>
-  <div class="admin-pages-container page-container">
+  <div class="admin-pages-container">
     <AdminPagesHeader />
-    <div v-if="adminBookById" class="main-content content-wrap">
+    <div v-if="adminBookById" class="main-content">
       <div class="container-fluid pages-fluid">
         <div class="book-info">
           <div class="description">
@@ -51,7 +51,6 @@
         ></VueEasyLightbox>
       </div>
     </div>
-    <TheFooter />
   </div>
 </template>
 

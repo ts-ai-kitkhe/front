@@ -1,7 +1,7 @@
 <template>
-  <div class="admin-books-container page-container">
+  <div class="admin-books-container">
     <AdminBooksHeader />
-    <div class="main-content content-wrap">
+    <div class="main-content">
       <div class="container">
         <h1 class="my-5">ჩემი წიგნები</h1>
         <div class="search-bar-wrapper">
@@ -16,7 +16,6 @@
         </div>
       </div>
     </div>
-    <TheFooter />
   </div>
 </template>
 
