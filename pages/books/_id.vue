@@ -13,6 +13,16 @@
               <h1>{{ bookById.title }}</h1>
               <h2>{{ bookById.author }}</h2>
             </div>
+            <div class="progress-circle">
+              <VueProgress
+                stroke-color="green"
+                :transition-duration="2000"
+                :radius="55"
+                :stroke-width="10"
+                value="83.13"
+              >
+              </VueProgress>
+            </div>
             <div class="download-panel">
               <button>
                 <b-icon icon="download"></b-icon>
@@ -77,6 +87,15 @@ export default {
     h2 {
       font-size: 28px;
       font-weight: 200;
+    }
+  }
+
+  .progress-circle {
+    margin: 30px 0 20px;
+    display: flex;
+
+    @include sm {
+      justify-content: center;
     }
   }
 
