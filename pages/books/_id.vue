@@ -8,9 +8,21 @@
           </div>
         </div>
         <div class="col-md-6 px-md-0 my-md-0 my-5 px-5">
-          <div class="book-info">
-            <h1>{{ bookById.title }}</h1>
-            <h2>{{ bookById.author }}</h2>
+          <div class="text-center text-md-left">
+            <div class="book-info">
+              <h1>{{ bookById.title }}</h1>
+              <h2>{{ bookById.author }}</h2>
+            </div>
+            <div class="download-panel">
+              <button>
+                <b-icon icon="download"></b-icon>
+                <span>Download 1</span>
+              </button>
+              <button>
+                <b-icon icon="download"></b-icon>
+                <span>Download 2</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -56,6 +68,8 @@ export default {
   }
 
   .book-info {
+    margin-bottom: 20px;
+
     h1 {
       font-size: 36px;
     }
@@ -63,6 +77,29 @@ export default {
     h2 {
       font-size: 28px;
       font-weight: 200;
+    }
+  }
+
+  .download-panel {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      width: 250px;
+      margin: 10px 0;
+      padding: 10px;
+      color: white;
+      background-color: transparent;
+      border: 2px solid white;
+      border-radius: 25px;
+
+      svg {
+        margin-right: 3px;
+      }
+    }
+
+    @include sm {
+      align-items: center;
     }
   }
 }
