@@ -31,6 +31,8 @@ export default {
   .card {
     border: none;
     background-color: transparent;
+    transform: scale(0.95);
+    transition: all 0.15s ease-out;
 
     img {
       width: 100%;
@@ -47,6 +49,10 @@ export default {
         font-size: 16px;
         font-weight: 200;
       }
+    }
+
+    &:hover {
+      transform: scale(1);
     }
   }
 }

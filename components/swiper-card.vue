@@ -30,6 +30,8 @@ export default {
     width: 10rem;
     border: none;
     background-color: transparent;
+    transform: scale(0.95);
+    transition: all 0.15s ease-out;
 
     .card-body {
       text-align: center;
@@ -42,6 +44,10 @@ export default {
         font-size: 16px;
         font-weight: 200;
       }
+    }
+
+    &:hover {
+      transform: scale(1);
     }
   }
 }
