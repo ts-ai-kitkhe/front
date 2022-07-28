@@ -303,6 +303,7 @@ export default {
 
           .link-btn {
             color: $txt-color-main;
+            text-decoration: none;
           }
         }
 

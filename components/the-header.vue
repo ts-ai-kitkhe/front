@@ -29,6 +29,7 @@ export default {}
     a {
       color: $txt-color-main;
       margin: 10px;
+      text-decoration: none;
     }
   }
 }

@@ -111,6 +111,7 @@ export default {
         color: lightblue;
         font-weight: 200;
         letter-spacing: 1px;
+        text-decoration: none;
       }
 
       .github-col {
