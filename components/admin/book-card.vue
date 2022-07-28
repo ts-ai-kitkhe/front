@@ -4,17 +4,11 @@
       <div class="card px-4 px-sm-0">
         <div class="img-wrapper">
           <img :src="adminBook.image" alt="Book Card Image" />
-          <div class="trash-icon">
-            <b-btn v-b-modal="modalId() + '-top'">
-              <b-icon icon="trash"></b-icon>
+          <div class="pencil-icon">
+            <b-btn v-b-modal="modalId() + '-r'">
+              <b-icon icon="pencil-square"></b-icon>
             </b-btn>
-            <b-modal :id="modalId() + '-top'" centered title="Are you sure?">
-              <p>Some text</p>
-            </b-modal>
-          </div>
-          <div class="card-buttons">
-            <b-btn v-b-modal="modalId() + '-bottom'">Button 1</b-btn>
-            <b-modal :id="modalId() + '-bottom'" centered title="Edit">
+            <b-modal :id="modalId() + '-r'" centered title="Edit">
               <b-form action="" method="">
                 <b-form-group label="სათაური" label-for="title">
                   <b-form-input id="title" :value="adminBook.title" />
@@ -29,14 +23,21 @@
                 </div>
               </b-form>
             </b-modal>
-            <NuxtLink :to="`${adminBook.id}`" append class="second-btn"
-              >Button 2</NuxtLink
-            >
+          </div>
+          <div class="trash-icon">
+            <b-btn v-b-modal="modalId() + '-l'">
+              <b-icon icon="trash"></b-icon>
+            </b-btn>
+            <b-modal :id="modalId() + '-l'" centered title="Are you sure?">
+              <p>Some text</p>
+            </b-modal>
           </div>
         </div>
         <div class="card-body">
-          <h5>{{ adminBook.title }}</h5>
-          <h6>{{ adminBook.author }}</h6>
+          <NuxtLink :to="`${adminBook.id}`" append class="admin-book-link">
+            <h5>{{ adminBook.title }}</h5>
+            <h6>{{ adminBook.author }}</h6>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -70,23 +71,22 @@ export default {
 
       img {
         width: 100%;
-        filter: brightness(100%);
-        transition: 0.15s ease-out;
+        transition: 0.1s ease-out;
       }
 
+      $svg-dimension: 20px;
+      $btn-padding: 3px;
+
+      .pencil-icon,
       .trash-icon {
         position: absolute;
-        top: 0;
         right: 0;
         background-color: white;
+        padding: $btn-padding;
         border: 1px solid black;
-        padding-top: 3px;
         visibility: hidden;
         opacity: 0;
-        transition: 0.15s ease-out;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        transition: 0.1s ease-out;
 
         button {
           background: none;
@@ -99,6 +99,8 @@ export default {
 
           svg {
             color: black;
+            width: $svg-dimension;
+            height: $svg-dimension;
           }
         }
 
@@ -107,50 +109,22 @@ export default {
         }
       }
 
-      .card-buttons {
-        position: absolute;
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        visibility: hidden;
-        opacity: 0;
-        transition: 0.15s ease-out;
-        color: black;
-        text-align: center;
+      .pencil-icon {
+        top: 0;
+        border-bottom: none;
+      }
 
-        button,
-        .second-btn {
-          margin: 10px;
-          border: none;
-          background-color: white;
-          color: black;
-          border-radius: 5px;
-          width: 40%;
-          padding: 5px 10px;
-          text-decoration: none;
-
-          @include md {
-            width: 50%;
-            padding: 2px 5px;
-          }
-        }
+      .trash-icon {
+        top: $svg-dimension + 2 * $btn-padding + 9px;
       }
 
       &:hover {
         img {
-          filter: brightness(50%) blur(1px);
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
         }
 
+        .pencil-icon,
         .trash-icon {
-          visibility: visible;
-          opacity: 1;
-        }
-
-        .card-buttons {
           visibility: visible;
           opacity: 1;
         }
@@ -160,13 +134,23 @@ export default {
     .card-body {
       text-align: center;
 
-      h5 {
-        font-size: 18px;
-      }
+      .admin-book-link {
+        text-decoration: none;
+        color: black;
+        transition: 0.1s ease-out;
 
-      h6 {
-        font-size: 16px;
-        font-weight: 200;
+        h5 {
+          font-size: 18px;
+        }
+
+        h6 {
+          font-size: 16px;
+          font-weight: 200;
+        }
+
+        &:hover {
+          color: #0000ee;
+        }
       }
     }
   }
