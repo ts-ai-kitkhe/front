@@ -13,7 +13,7 @@
           <div
             v-for="(src, i) in imgs"
             :key="i"
-            class="page-card-container col-lg-2 col-md-3 col-sm-4"
+            class="page-card-container col-xl-2 col-lg-3 col-md-4"
           >
             <div class="card-details">
               <NuxtLink :to="`${i + 1}`" append class="page-name">
