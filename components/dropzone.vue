@@ -1,8 +1,12 @@
 <template>
   <form class="dropzone">
     <div id="dropzone-message" style="display: none">
-      <span class="dropzone-title">Drop files here or click to select</span>
-      <span class="dropzone-info">You can upload multiple files at once</span>
+      <b-icon class="display-icon" icon="cloud-upload"></b-icon>
+      <div class="upload-txt">
+        <span>Choose a file</span>
+        <span>or</span>
+        <span>drag it here</span>
+      </div>
     </div>
   </form>
 </template>
