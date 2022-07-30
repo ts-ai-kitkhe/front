@@ -16,11 +16,14 @@
                 <b-form-group label="ავტორი" label-for="author">
                   <b-form-input id="author" :value="adminBook.author" />
                 </b-form-group>
-                <div class="visibility-switch d-flex">
-                  <span class="mr-2">Private</span>
-                  <b-form-checkbox switch></b-form-checkbox>
-                  <span class="mr-2">Public</span>
-                </div>
+                <b-form-group label="საჯაროობა">
+                  <b-form-radio v-model="visibility" value="Private">
+                    <span>Private</span>
+                  </b-form-radio>
+                  <b-form-radio v-model="visibility" value="Public">
+                    <span>Public</span>
+                  </b-form-radio>
+                </b-form-group>
               </b-form>
             </b-modal>
           </div>
@@ -51,6 +54,12 @@ export default {
       type: Object,
       default: null,
     },
+  },
+
+  data() {
+    return {
+      visibility: 'Private',
+    }
   },
 
   methods: {
