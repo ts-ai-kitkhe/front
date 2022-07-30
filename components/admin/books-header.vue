@@ -19,7 +19,7 @@
               </b-form-group>
             </form>
           </b-modal>
-          <b-nav-item-dropdown :text="adminEmail">
+          <b-nav-item-dropdown :text="adminEmail" class="admin-dropdown">
             <b-dropdown-item v-b-modal.logout-modal>გამოსვლა</b-dropdown-item>
             <b-modal
               id="logout-modal"
@@ -46,4 +46,17 @@ export default {
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.admin-dropdown {
+  a {
+    display: flex;
+    align-items: center;
+  }
+
+  .dropdown-toggle {
+    &:after {
+      margin-top: 0.1em;
+    }
+  }
+}
+</style>
