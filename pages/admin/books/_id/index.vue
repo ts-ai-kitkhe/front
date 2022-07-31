@@ -9,9 +9,17 @@
             <h2 class="author">{{ adminBookById.author }}</h2>
           </div>
         </div>
-        <VueDraggable :list="imgs" class="row pages-row" ghost-class="ghost">
+        <div v-if="pageImages.length === 0" class="dropzone-panel">
+          <VueDropzone></VueDropzone>
+        </div>
+        <VueDraggable
+          v-else
+          :list="pageImages"
+          class="row pages-row"
+          ghost-class="ghost"
+        >
           <div
-            v-for="(src, i) in imgs"
+            v-for="(src, i) in pageImages"
             :key="i"
             class="page-card-container col-xl-2 col-lg-3 col-md-4"
           >
@@ -45,7 +53,7 @@
         </VueDraggable>
         <VueEasyLightbox
           :visible="visible"
-          :imgs="imgs"
+          :page-images="pageImages"
           :index="index"
           @hide="handleHide"
         ></VueEasyLightbox>
@@ -56,15 +64,20 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import VueDropzone from '../../../../components/dropzone.vue'
 
 export default {
   layout: 'operator',
+
+  components: {
+    VueDropzone,
+  },
 
   data() {
     return {
       visible: false,
       index: 0,
-      imgs: [
+      pageImages: [
         require('~/assets/images/test1.jpg'),
         require('~/assets/images/test2.jpg'),
         require('~/assets/images/test3.jpg'),
@@ -108,6 +121,20 @@ export default {
 
     .book-info {
       text-align: center;
+    }
+
+    .dropzone-panel {
+      margin: 10px auto;
+      display: flex;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+
+      .dropzone {
+        border: none;
+        width: 100%;
+        height: 100%;
+      }
     }
 
     .pages-row {

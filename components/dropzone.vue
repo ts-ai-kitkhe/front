@@ -68,3 +68,33 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.dropzone {
+  padding: 20px;
+  border: 2px dashed rgb(190, 190, 190);
+  transition: all 0.1s ease;
+  text-align: center;
+
+  .dz-message {
+    margin: 2em 0;
+
+    svg {
+      width: 70px;
+      height: 70px;
+    }
+
+    .upload-txt {
+      margin-top: 10px;
+      font-size: 18px;
+
+      span {
+        &:nth-child(1) {
+          font-weight: bold;
+          color: blueviolet;
+        }
+      }
+    }
+  }
+}
+</style>
