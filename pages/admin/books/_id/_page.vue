@@ -317,25 +317,33 @@ export default {
     gap: 20px;
 
     button {
-      color: black;
-      background-color: white;
-      border: 2px black solid;
       padding: 5px 13px;
       font-size: 16px;
       border-radius: 20px;
       transition: all 0.1s ease-out;
 
-      &:hover {
-        color: white;
+      &:nth-child(1),
+      &:nth-child(2) {
+        background-color: white;
+        color: black;
+        border: 2px solid black;
 
-        &:nth-child(1),
-        &:nth-child(2) {
-          background-color: black;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.75);
+          border: 2px solid rgba(0, 0, 0, 0.75);
+          color: white;
         }
+      }
 
-        &:nth-child(3) {
-          background-color: green;
-          border: 2px green solid;
+      &:nth-child(3) {
+        background-color: #2db22d;
+        color: white;
+        border: 2px solid #2db22d;
+
+        &:hover {
+          background-color: #57d557;
+          border: 2px solid #57d557;
+          color: black;
         }
       }
     }
