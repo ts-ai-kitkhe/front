@@ -316,16 +316,27 @@ export default {
     margin-top: 40px;
     gap: 20px;
 
-    .letter-input {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
+    button {
+      color: black;
+      background-color: white;
+      border: 2px black solid;
+      padding: 5px 13px;
+      font-size: 16px;
+      border-radius: 20px;
+      transition: all 0.1s ease-out;
 
-      input {
-        border: 1px solid black;
+      &:hover {
+        color: white;
+
+        &:nth-child(1),
+        &:nth-child(2) {
+          background-color: black;
+        }
+
+        &:nth-child(3) {
+          background-color: green;
+          border: 2px green solid;
+        }
       }
     }
   }

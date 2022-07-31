@@ -53,7 +53,7 @@
         </VueDraggable>
         <VueEasyLightbox
           :visible="visible"
-          :page-images="pageImages"
+          :imgs="pageImages"
           :index="index"
           @hide="handleHide"
         ></VueEasyLightbox>
@@ -67,11 +67,11 @@ import { mapActions, mapGetters } from 'vuex'
 import VueDropzone from '../../../../components/dropzone.vue'
 
 export default {
-  layout: 'operator',
-
   components: {
     VueDropzone,
   },
+
+  layout: 'operator',
 
   data() {
     return {
