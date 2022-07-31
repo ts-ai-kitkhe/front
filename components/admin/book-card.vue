@@ -83,8 +83,8 @@ export default {
         transition: 0.1s ease-out;
       }
 
-      $svg-dimension: 20px;
-      $btn-padding: 3px;
+      $svg-dimension: 18px;
+      $btn-padding: 2px;
 
       .pencil-icon,
       .trash-icon {
@@ -92,10 +92,14 @@ export default {
         right: 0;
         background-color: white;
         padding: $btn-padding;
-        border: 1px solid black;
         visibility: hidden;
         opacity: 0;
         transition: 0.1s ease-out;
+        width: 1.6 * $svg-dimension;
+        height: 1.6 * $svg-dimension;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         button {
           background: none;
@@ -124,7 +128,7 @@ export default {
       }
 
       .trash-icon {
-        top: $svg-dimension + 2 * $btn-padding + 9px;
+        top: $svg-dimension + 2 * $btn-padding + 5px;
       }
 
       &:hover {
