@@ -15,20 +15,23 @@
         <TheHeader />
         <div class="feed-container content-wrap">
           <div class="container-fluid cover-img-container p-0">
-            <div class="row-fluid mb-5">
-              <img
-                src="~/assets/images/no_img.png"
-                alt="Main Feed Cover"
-                class="cover-img mb-5"
-              />
-            </div>
+            <img
+              src="~/assets/images/cover.svg"
+              alt="Main Feed Cover"
+              class="cover-img"
+            />
+            <img
+              src="~/assets/images/ornament.svg"
+              alt="Main Feed Cover"
+              class="ornament"
+            />
           </div>
           <div v-if="initialized" class="container-xl books-swiper">
-            <div class="details mb-4">
+            <div class="details">
               <h2>ბოლოს დამატებული</h2>
               <NuxtLink to="/books" class="link-btn">ნახე მეტი</NuxtLink>
             </div>
-            <div class="swiper mb-2">
+            <div class="swiper">
               <div class="swiper-wrapper">
                 <div
                   v-for="card in allSwiperCards"
@@ -284,18 +287,28 @@ export default {
   .feed-slide {
     .feed-container {
       .cover-img-container {
+        margin: 100px 0;
+        text-align: center;
+
         .cover-img {
-          width: 100%;
+          width: 90%;
+        }
+
+        .ornament {
+          margin: 80px 0 20px;
+          width: 20%;
         }
       }
 
       .books-swiper {
         position: relative;
+        width: 95%;
 
         .details {
           display: flex;
           align-items: center;
           justify-content: space-between;
+          margin: 15px 20px;
 
           h2 {
             font-size: 18px;
@@ -331,7 +344,7 @@ export default {
             left: -20px;
 
             @include lg {
-              left: 10px;
+              left: 0;
             }
           }
 
@@ -339,7 +352,7 @@ export default {
             right: -20px;
 
             @include lg {
-              right: 10px;
+              right: 0;
             }
           }
         }
