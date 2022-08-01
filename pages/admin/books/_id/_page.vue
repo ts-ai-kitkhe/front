@@ -329,21 +329,24 @@ export default {
         border: 2px solid black;
 
         &:hover {
-          background-color: rgba(0, 0, 0, 0.75);
-          border: 2px solid rgba(0, 0, 0, 0.75);
+          $dark-gray: rgba(0, 0, 0, 0.75);
+          background-color: $dark-gray;
+          border: 2px solid $dark-gray;
           color: white;
         }
       }
 
       &:nth-child(3) {
-        background-color: #2db22d;
+        $dark-green: #66b032;
+        $light-green: #84bf5a;
+
+        background-color: $dark-green;
+        border: 2px solid $dark-green;
         color: white;
-        border: 2px solid #2db22d;
 
         &:hover {
-          background-color: #57d557;
-          border: 2px solid #57d557;
-          color: black;
+          background-color: $light-green;
+          border: 2px solid $light-green;
         }
       }
     }
