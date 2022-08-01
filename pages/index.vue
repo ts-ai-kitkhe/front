@@ -22,14 +22,27 @@
             />
             <img
               src="~/assets/images/ornament.svg"
-              alt="Main Feed Cover"
+              alt="Ornament"
               class="ornament"
+            />
+            <img
+              src="~/assets/images/cover1.svg"
+              alt="Main Feed Cover 1"
+              class="cover-img-sm"
+            />
+            <img
+              src="~/assets/images/cover2.svg"
+              alt="Main Feed Cover 2"
+              class="cover-img-sm"
             />
           </div>
           <div v-if="initialized" class="container-xl books-swiper">
             <div class="details">
               <h2>ბოლოს დამატებული</h2>
               <NuxtLink to="/books" class="link-btn">ნახე მეტი</NuxtLink>
+              <NuxtLink to="/books" class="link-btn-sm"
+                >ბოლოს დამატებული</NuxtLink
+              >
             </div>
             <div class="swiper">
               <div class="swiper-wrapper">
@@ -298,6 +311,24 @@ export default {
           margin: 80px 0 20px;
           width: 20%;
         }
+
+        .cover-img-sm {
+          width: 85%;
+          display: none;
+        }
+
+        @include md {
+          margin: 50px 0 80px;
+
+          .cover-img,
+          .ornament {
+            display: none;
+          }
+
+          .cover-img-sm {
+            display: inline-block;
+          }
+        }
       }
 
       .books-swiper {
@@ -308,15 +339,39 @@ export default {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin: 15px 20px;
+          margin: 15px 0;
 
           h2 {
-            font-size: 18px;
+            font-size: 20px;
+            margin: 0 20px;
           }
 
           .link-btn {
             color: $txt-color-main;
             text-decoration: none;
+            font-size: 18px;
+            margin: 0 20px;
+          }
+
+          .link-btn-sm {
+            color: $txt-color-main;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            display: none;
+          }
+
+          @include xs {
+            justify-content: center;
+
+            h2,
+            .link-btn {
+              display: none;
+            }
+
+            .link-btn-sm {
+              display: inline;
+            }
           }
         }
 
