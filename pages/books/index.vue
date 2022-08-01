@@ -13,11 +13,19 @@
           <FilterBar />
         </div>
         <div class="col-lg-9 px-lg-5">
-          <SearchBar />
+          <div class="search-bar-container">
+            <b-input-group class="mb-3">
+              <b-form-input
+                v-model="search"
+                type="search"
+                placeholder="მოძებნე..."
+              ></b-form-input>
+            </b-input-group>
+          </div>
           <div class="books-row">
             <div class="row">
               <BookCard
-                v-for="book in allBooks"
+                v-for="book in matchingBooks"
                 :key="book.id"
                 :book-info="book"
               />
@@ -35,7 +43,24 @@ import { mapActions, mapGetters } from 'vuex'
 export default {
   layout: 'catalogue',
 
-  computed: mapGetters('books', ['allBooks']),
+  data() {
+    return {
+      search: '',
+    }
+  },
+
+  computed: {
+    ...mapGetters('books', ['allBooks']),
+
+    matchingBooks: function () {
+      return this.allBooks.filter((book) => {
+        return (
+          book.title.toLowerCase().includes(this.search.toLowerCase()) ||
+          book.author.toLowerCase().includes(this.search.toLowerCase())
+        )
+      })
+    },
+  },
 
   created() {
     this.getBooks()
@@ -54,6 +79,15 @@ export default {
       width: 100%;
     }
   }
+
+  .search-bar-container {
+    input {
+      border-width: 2px;
+      border-radius: 20px;
+      padding: 15px;
+    }
+  }
+
   .books-row {
     .row {
       align-items: center;
