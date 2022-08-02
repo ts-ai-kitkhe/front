@@ -1,7 +1,11 @@
 <template>
   <div class="admin-pages-container">
     <AdminPagesHeader>
-      <button v-show="saveChangesBtn">ცვლილებების შენახვა</button>
+      <transition name="fade">
+        <button v-show="saveChangesBtn" class="save-changes-btn">
+          ცვლილებების შენახვა
+        </button>
+      </transition>
     </AdminPagesHeader>
     <div v-if="adminBookById" class="main-content">
       <div class="container-fluid pages-fluid">
@@ -19,6 +23,7 @@
           :list="pageImages"
           class="row pages-row"
           ghost-class="ghost"
+          @change="pagesReordered"
         >
           <div
             v-for="(src, i) in pageImages"
@@ -93,7 +98,7 @@ export default {
         require('~/assets/images/test3.jpg'),
       ],
       adminBookId: this.$route.params.id,
-      saveChangesBtn: true,
+      saveChangesBtn: false,
     }
   },
 
@@ -114,12 +119,40 @@ export default {
     handleHide() {
       this.visible = false
     },
+
+    pagesReordered() {
+      this.saveChangesBtn = true
+    },
   },
 }
 </script>
 
 <style lang="scss">
 .admin-pages-container {
+  .save-changes-btn {
+    $dark-blue: #0069d9;
+    $light-blue: #007bff;
+
+    color: white !important;
+    background-color: $light-blue !important;
+    padding: 5px 15px;
+    margin: 0px 10px !important;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: $dark-blue !important;
+    }
+
+    &:active {
+      background-color: #0062cc;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0.2rem rgb(38 143 255 / 50%);
+    }
+  }
+
   .main-content {
     margin-top: 80px;
     padding: 0 3vw;
@@ -244,5 +277,14 @@ export default {
   .vel-img-wrapper {
     transition: 0.1s linear !important;
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.1s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
