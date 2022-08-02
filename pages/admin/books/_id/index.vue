@@ -1,8 +1,8 @@
 <template>
   <div class="admin-pages-container">
-    <AdminPagesHeader>
+    <AdminPagesHeader :show-header-buttons="!reorderMode">
       <transition name="fade">
-        <button v-show="saveChangesBtn" class="save-changes-btn">
+        <button v-show="reorderMode" class="save-changes-btn">
           ცვლილებების შენახვა
         </button>
       </transition>
@@ -31,7 +31,12 @@
             class="page-card-container col-xl-2 col-lg-3 col-md-4"
           >
             <div class="card-details">
-              <NuxtLink :to="`${i + 1}`" append class="page-name">
+              <NuxtLink
+                :to="`${i + 1}`"
+                append
+                class="page-name"
+                :style="[reorderMode ? { 'pointer-events': 'none' } : {}]"
+              >
                 {{ src.length > 13 ? '...' + src.slice(-10) : src }}
               </NuxtLink>
               <div class="page-wrapper">
@@ -98,7 +103,7 @@ export default {
         require('~/assets/images/test3.jpg'),
       ],
       adminBookId: this.$route.params.id,
-      saveChangesBtn: false,
+      reorderMode: false,
     }
   },
 
@@ -121,7 +126,7 @@ export default {
     },
 
     pagesReordered() {
-      this.saveChangesBtn = true
+      this.reorderMode = true
     },
   },
 }
@@ -135,8 +140,8 @@ export default {
 
     color: white !important;
     background-color: $light-blue !important;
-    padding: 5px 15px;
-    margin: 0px 10px !important;
+    padding: 8px 15px !important;
+    margin: 0 5px;
     border-radius: 5px;
     transition: all 0.3s ease;
 

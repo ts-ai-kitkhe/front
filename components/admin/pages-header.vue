@@ -6,10 +6,15 @@
       <b-collapse id="header-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <slot></slot>
-          <NuxtLink to="/admin/books" class="header-link"
+          <NuxtLink
+            v-show="showHeaderButtons"
+            to="/admin/books"
+            class="header-link"
             >ჩემი წიგნები</NuxtLink
           >
-          <button v-b-modal.upload-pages-modal>გვერდების ატვირთვა</button>
+          <button v-show="showHeaderButtons" v-b-modal.upload-pages-modal>
+            გვერდების ატვირთვა
+          </button>
           <b-modal
             id="upload-pages-modal"
             class="my-modal"
@@ -35,6 +40,13 @@ import VueDropzone from '../dropzone.vue'
 export default {
   components: {
     VueDropzone,
+  },
+
+  props: {
+    showHeaderButtons: {
+      type: Boolean,
+      default: true,
+    },
   },
 }
 </script>
