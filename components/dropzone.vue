@@ -72,8 +72,8 @@ export default {
 <style lang="scss">
 .dropzone {
   padding: 20px;
-  border: 2px dashed rgb(190, 190, 190);
-  transition: all 0.1s ease;
+  border: 2px dashed rgb(150, 150, 150);
+  transition: all 0.1s ease-in-out;
   text-align: center;
 
   .dz-message {
@@ -89,12 +89,17 @@ export default {
       font-size: 18px;
 
       span {
-        &:nth-child(1) {
+        &:nth-child(1),
+        &:nth-child(3) {
           font-weight: bold;
-          color: blueviolet;
+          color: #007bff;
         }
       }
     }
+  }
+
+  &:hover {
+    border: 2px dashed black;
   }
 }
 </style>

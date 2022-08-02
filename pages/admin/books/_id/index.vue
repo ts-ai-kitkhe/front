@@ -1,6 +1,8 @@
 <template>
   <div class="admin-pages-container">
-    <AdminPagesHeader />
+    <AdminPagesHeader>
+      <button v-show="saveChangesBtn">ცვლილებების შენახვა</button>
+    </AdminPagesHeader>
     <div v-if="adminBookById" class="main-content">
       <div class="container-fluid pages-fluid">
         <div class="book-info">
@@ -35,9 +37,11 @@
                   <b-modal
                     :id="i + 1 + '-delete'"
                     centered
-                    title="Are you sure?"
+                    title="გვერდის წაშლა"
+                    cancel-title="გაუქმება"
+                    ok-title="დიახ"
                   >
-                    <p>Some text</p>
+                    <p>დარწმუნებული ხართ, რომ გსურთ გვერდის წაშლა?</p>
                   </b-modal>
                 </div>
                 <img
@@ -89,6 +93,7 @@ export default {
         require('~/assets/images/test3.jpg'),
       ],
       adminBookId: this.$route.params.id,
+      saveChangesBtn: true,
     }
   },
 
@@ -121,6 +126,12 @@ export default {
 
     .book-info {
       text-align: center;
+
+      .description {
+        .author {
+          font-weight: 300;
+        }
+      }
     }
 
     .dropzone-panel {
@@ -219,6 +230,8 @@ export default {
         }
 
         &:hover {
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
           .trash-icon {
             visibility: visible;
             opacity: 1;

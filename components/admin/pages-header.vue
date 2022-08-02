@@ -5,6 +5,7 @@
       <b-navbar-toggle target="header-collapse"></b-navbar-toggle>
       <b-collapse id="header-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
+          <slot></slot>
           <NuxtLink to="/admin/books" class="header-link"
             >ჩემი წიგნები</NuxtLink
           >
@@ -14,6 +15,7 @@
             class="my-modal"
             size="dropzone-md-lg"
             title="გვერდების ატვირთვა"
+            :hide-footer="true"
             centered
             scrollable
           >
@@ -21,7 +23,6 @@
               <VueDropzone></VueDropzone>
             </div>
           </b-modal>
-          <button>ცვლილებების შენახვა</button>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>

@@ -6,7 +6,13 @@
       <b-collapse id="header-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
           <button v-b-modal.upload-book-modal>წიგნის ატვირთვა</button>
-          <b-modal id="upload-book-modal" centered title="წიგნის ატვირთვა">
+          <b-modal
+            id="upload-book-modal"
+            centered
+            title="წიგნის ატვირთვა"
+            cancel-title="გაუქმება"
+            ok-title="დადასტურება"
+          >
             <form>
               <b-form-group label="სათაური" label-for="title-input">
                 <b-form-input id="title-input" required></b-form-input>
@@ -48,14 +54,26 @@ export default {
 
 <style lang="scss">
 .admin-dropdown {
-  a {
+  .dropdown-toggle {
     display: flex;
     align-items: center;
-  }
 
-  .dropdown-toggle {
+    span {
+      color: black;
+      transition: all 0.1s ease-out;
+    }
+
     &:after {
       margin-top: 0.1em;
+      color: black;
+      transition: all 0.1s ease-out;
+    }
+
+    &:hover {
+      span,
+      &:after {
+        color: #007bff;
+      }
     }
   }
 }

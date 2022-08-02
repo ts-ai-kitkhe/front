@@ -8,7 +8,13 @@
             <b-btn v-b-modal="modalId() + '-r'">
               <b-icon icon="pencil-square"></b-icon>
             </b-btn>
-            <b-modal :id="modalId() + '-r'" centered title="Edit">
+            <b-modal
+              :id="modalId() + '-r'"
+              centered
+              title="მონაცემების შეცვლა"
+              cancel-title="გაუქმება"
+              ok-title="დადასტურება"
+            >
               <b-form action="" method="">
                 <b-form-group label="სათაური" label-for="title">
                   <b-form-input id="title" :value="adminBook.title" />
@@ -31,8 +37,14 @@
             <b-btn v-b-modal="modalId() + '-l'">
               <b-icon icon="trash"></b-icon>
             </b-btn>
-            <b-modal :id="modalId() + '-l'" centered title="Are you sure?">
-              <p>Some text</p>
+            <b-modal
+              :id="modalId() + '-l'"
+              centered
+              title="წიგნის წაშლა"
+              cancel-title="გაუქმება"
+              ok-title="დიახ"
+            >
+              <p>დარწმუნებული ხართ, რომ გსურთ წიგნის წაშლა?</p>
             </b-modal>
           </div>
         </div>
@@ -133,7 +145,7 @@ export default {
 
       &:hover {
         img {
-          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 20px;
         }
 
         .pencil-icon,
@@ -150,19 +162,26 @@ export default {
       .admin-book-link {
         text-decoration: none;
         color: black;
-        transition: 0.1s ease-out;
 
         h5 {
+          transition: 0.1s ease-out;
           font-size: 18px;
         }
 
         h6 {
+          transition: 0.1s ease-out;
           font-size: 16px;
           font-weight: 200;
         }
 
         &:hover {
-          color: #0000ee;
+          h5 {
+            color: #007bff;
+          }
+
+          h6 {
+            color: rgb(100, 100, 100);
+          }
         }
       }
     }
