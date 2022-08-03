@@ -351,10 +351,15 @@ export default {
             text-decoration: none;
             font-size: 18px;
             margin: 0 20px;
+            transition: all 0.1s ease-out;
+
+            &:hover {
+              color: $txt-color-main-hover;
+            }
           }
 
           .link-btn-sm {
-            color: $txt-color-main;
+            color: white;
             text-decoration: none;
             font-size: 20px;
             font-weight: bold;
@@ -392,8 +397,9 @@ export default {
 
         .swiper-btn {
           position: absolute;
-          color: $txt-color-main;
+          color: white;
           top: 50%;
+          transition: all 0.1s ease;
 
           &.swiper-button-prev {
             left: -20px;
@@ -409,6 +415,10 @@ export default {
             @include lg {
               right: 0;
             }
+          }
+
+          &:hover {
+            color: $txt-color-main;
           }
         }
       }

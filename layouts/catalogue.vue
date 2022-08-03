@@ -13,6 +13,6 @@ export default {}
 <style lang="scss">
 .page-container {
   background-color: $bg-color-main;
-  color: $txt-color-main;
+  color: white;
 }
 </style>

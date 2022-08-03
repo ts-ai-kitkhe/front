@@ -28,8 +28,14 @@ export default {}
   .navbar-nav {
     a {
       color: $txt-color-main;
-      margin: 10px;
+      margin: 10px 15px;
       text-decoration: none;
+      transition: all 0.1s ease-out;
+      font-size: 18px;
+
+      &:hover {
+        color: $txt-color-main-hover;
+      }
     }
   }
 }

@@ -23,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 .swiper-card-container {
-  color: $txt-color-main;
+  color: white;
   text-decoration: none;
 
   .card {

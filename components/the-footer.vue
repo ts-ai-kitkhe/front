@@ -18,6 +18,6 @@ footer {
   align-items: center;
   justify-content: center;
   background-color: $bg-color-main;
-  color: $txt-color-main;
+  color: white;
 }
 </style>

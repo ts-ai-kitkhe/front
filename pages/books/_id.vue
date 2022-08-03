@@ -111,6 +111,13 @@ export default {
       background-color: transparent;
       border: 2px solid white;
       border-radius: 25px;
+      transition: 0.1s ease-out;
+
+      &:hover {
+        color: black;
+        background-color: white;
+        font-weight: 500;
+      }
 
       svg {
         margin-right: 3px;
