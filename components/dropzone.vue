@@ -26,6 +26,7 @@ export default {
     const options = {
       url: '/',
       method: 'put',
+      acceptedFiles: '.jpeg,.jpg,.png',
 
       sending(file, xhr) {
         const _send = xhr.send
@@ -42,7 +43,7 @@ export default {
 
       async accept(file, done) {
         const endpoint =
-          'https://lpqpsnmep6gcc22gwtycn5sjwu0kopqd.lambda-url.eu-central-1.on.aws'
+          'https://q0pl6fpjwf.execute-api.eu-central-1.amazonaws.com/test'
         const payload = {
           filePath: file.name,
           contentType: file.type,

@@ -21,7 +21,11 @@
                 <b-form-input id="author-input" required></b-form-input>
               </b-form-group>
               <b-form-group label="მთავარი სურათი" label-for="cover-image">
-                <b-form-file id="cover-image" required></b-form-file>
+                <b-form-file
+                  id="cover-image"
+                  required
+                  accept=".png, .jpg, .jpeg"
+                ></b-form-file>
               </b-form-group>
             </form>
           </b-modal>
