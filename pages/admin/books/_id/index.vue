@@ -140,7 +140,7 @@ export default {
 
     color: white !important;
     background-color: $light-blue !important;
-    padding: 8px 15px !important;
+    padding: 6px 10px !important;
     margin: 0 5px;
     border-radius: 5px;
     transition: all 0.3s ease;
