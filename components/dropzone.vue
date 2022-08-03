@@ -35,8 +35,8 @@ export default {
         }
       },
 
-      parallelUploads: 10,
-      uploadMultiple: false,
+      parallelUploads: 10000,
+      uploadMultiple: true,
       header: '',
       dictDefaultMessage: document.querySelector('#dropzone-message').innerHTML,
       autoProcessQueue: false,
