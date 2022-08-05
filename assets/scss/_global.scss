@@ -10,3 +10,23 @@
 .content-wrap {
   padding-bottom: $footer-height;
 }
+
+// ==================== FONTS ====================
+
+@font-face {
+  font-family: 'BPG Boxo-Boxo';
+  src: url('../fonts/bpg-boxo-boxo/bpg-boxo-boxo-webfont.eot'); /* IE9 Compat Modes */
+  src: url('../fonts/bpg-boxo-boxo/bpg-boxo-boxo-webfont.eot?#iefix')
+      format('embedded-opentype'),
+    /* IE6-IE8 */ url('../fonts/bpg-boxo-boxo/bpg-boxo-boxo-webfont.woff2')
+      format('woff2'),
+    /* Super Modern Browsers */
+      url('../fonts/bpg-boxo-boxo/bpg-boxo-boxo-webfont.woff') format('woff'),
+    /* Pretty Modern Browsers */
+      url('../fonts/bpg-boxo-boxo/bpg-boxo-boxo-webfont.ttf') format('truetype'),
+    /* Safari, Android, iOS */
+      url('../fonts/bpg-boxo-boxo/bpg-boxo-boxo-webfont.svg#bpg_boxo-boxoregular')
+      format('svg'); /* Legacy iOS */
+}
+
+// ================ END OF FONTS ================
