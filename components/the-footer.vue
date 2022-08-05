@@ -1,6 +1,7 @@
 <template>
   <footer>
-    <div class="copyright">© ts-ai-kitkhe, 2022</div>
+    <span class="copyright">Copyright © 2022</span>
+    <span class="company">ts-ai-kitkhe</span>
   </footer>
 </template>
 
@@ -18,6 +19,11 @@ footer {
   align-items: center;
   justify-content: center;
   background-color: $bg-color-main;
-  color: white;
+  color: $txt-color-main;
+
+  .company {
+    margin-left: 5px;
+    color: white;
+  }
 }
 </style>

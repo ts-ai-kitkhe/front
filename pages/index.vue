@@ -376,6 +376,7 @@ export default {
 
             .link-btn-sm {
               display: inline;
+              text-align: center;
             }
           }
         }

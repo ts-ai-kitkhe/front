@@ -25,6 +25,21 @@ export default {}
     color: $txt-color-main;
   }
 
+  .navbar-toggler {
+    padding: 8px;
+  }
+
+  .navbar-toggler[aria-expanded='true'] {
+    .navbar-toggler-icon {
+      transform: rotate(90deg);
+    }
+  }
+
+  .navbar-toggler-icon {
+    transition: 0.2s linear;
+    background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'><path stroke='rgba(255, 255, 255, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/></svg>") !important;
+  }
+
   .navbar-nav {
     a {
       color: $txt-color-main;
@@ -36,6 +51,14 @@ export default {}
       &:hover {
         color: $txt-color-main-hover;
       }
+
+      @include xs {
+        color: $txt-color-main-hover;
+      }
+    }
+
+    @include xs {
+      margin: 5px 0;
     }
   }
 }
