@@ -1,12 +1,15 @@
 <template>
   <div class="books-container content-wrap">
-    <div class="container my-5">
-      <div class="row books-cover-row">
-        <img
-          src="~/assets/images/no_img.png"
-          alt="Books Feed Cover"
-          class="books-cover mb-5"
-        />
+    <div class="container my-3">
+      <div class="row books-cover-row mb-5">
+        <div class="books-cover-wrapper">
+          <img
+            src="~/assets/images/cover_bg.webp"
+            alt="Books Feed Cover"
+            class="books-cover"
+          />
+          <div class="books-cover-txt">#იკითხექართულად</div>
+        </div>
       </div>
       <div class="row">
         <div class="col-lg-3 px-lg-5">
@@ -75,8 +78,38 @@ export default {
 <style lang="scss" scoped>
 .books-container {
   .books-cover-row {
-    .books-cover {
+    .books-cover-wrapper {
+      position: relative;
       width: 100%;
+      height: 300px;
+
+      .books-cover {
+        width: 100%;
+        object-fit: cover;
+        height: 100%;
+      }
+
+      .books-cover-txt {
+        position: absolute;
+        font-family: 'BPG Boxo-Boxo', sans-serif;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 5vw;
+        letter-spacing: 2px;
+
+        @media screen and (max-width: 1400px) {
+          font-size: 6.5vw;
+        }
+
+        @include xs {
+          font-size: 8vw;
+        }
+      }
+
+      @include sm {
+        height: 200px;
+      }
     }
   }
 
