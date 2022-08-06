@@ -22,3 +22,13 @@
     }
   }
 }
+
+.vue-select-author {
+  .vs__clear {
+    margin-top: -4px;
+  }
+
+  ul {
+    max-height: 130px;
+  }
+}

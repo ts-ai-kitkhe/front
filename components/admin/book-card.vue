@@ -19,8 +19,12 @@
                 <b-form-group label="სათაური" label-for="title">
                   <b-form-input id="title" :value="adminBook.title" />
                 </b-form-group>
-                <b-form-group label="ავტორი" label-for="author">
-                  <b-form-input id="author" :value="adminBook.author" />
+                <b-form-group label="ავტორი">
+                  <VueSelect
+                    :options="allAuthors"
+                    class="vue-select-author"
+                    taggable
+                  ></VueSelect>
                 </b-form-group>
                 <b-form-group label="საჯაროობა">
                   <b-form-radio v-model="visibility" value="Private">
@@ -60,6 +64,8 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   props: {
     adminBook: {
@@ -74,10 +80,20 @@ export default {
     }
   },
 
+  computed: {
+    ...mapGetters('admin', ['allAuthors']),
+  },
+
+  created() {
+    this.getAllAuthors()
+  },
+
   methods: {
     modalId() {
       return 'modal-' + this.adminBook.id
     },
+
+    ...mapActions('admin', ['getAllAuthors']),
   },
 }
 </script>

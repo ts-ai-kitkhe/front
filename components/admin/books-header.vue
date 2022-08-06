@@ -17,8 +17,12 @@
               <b-form-group label="სათაური" label-for="title-input">
                 <b-form-input id="title-input" required></b-form-input>
               </b-form-group>
-              <b-form-group label="ავტორი" label-for="author-input">
-                <b-form-input id="author-input" required></b-form-input>
+              <b-form-group label="ავტორი">
+                <VueSelect
+                  :options="allAuthors"
+                  class="vue-select-author"
+                  taggable
+                ></VueSelect>
               </b-form-group>
               <b-form-group label="მთავარი სურათი" label-for="cover-image">
                 <b-form-file
@@ -49,10 +53,21 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
-  computed: mapGetters('admin', ['adminEmail']),
+  computed: {
+    ...mapGetters('admin', ['adminEmail']),
+    ...mapGetters('admin', ['allAuthors']),
+  },
+
+  created() {
+    this.getAllAuthors()
+  },
+
+  methods: {
+    ...mapActions('admin', ['getAllAuthors']),
+  },
 }
 </script>
 

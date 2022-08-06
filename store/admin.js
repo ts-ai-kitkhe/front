@@ -4,6 +4,7 @@ export const state = () => ({
   adminEmail: null,
   adminBooks: [],
   adminBook: null,
+  allAuthors: [],
 })
 
 export const mutations = {
@@ -15,10 +16,7 @@ export const mutations = {
   },
   setAdminBooks: (state, adminBooks) => (state.adminBooks = adminBooks),
   setAdminBook: (state, adminBook) => (state.adminBook = adminBook),
-  setAdminBookPages: (state, adminBookPages) =>
-    (state.adminBookPages = adminBookPages),
-  setAdminBookPage: (state, adminBookPage) =>
-    (state.adminBookPage = adminBookPage),
+  setAllAuthors: (state, allAuthors) => (state.allAuthors = allAuthors),
 }
 
 export const actions = {
@@ -31,10 +29,16 @@ export const actions = {
     const response = await axios.get('/books.json')
     commit('setAdminBook', response.data[id - 1])
   },
+
+  async getAllAuthors({ commit }) {
+    const response = await axios.get('/authors.json')
+    commit('setAllAuthors', response.data)
+  },
 }
 
 export const getters = {
   adminEmail: (state) => state.adminEmail ?? localStorage.getItem('adminEmail'),
   allAdminBooks: (state) => state.adminBooks,
   adminBookById: (state) => state.adminBook,
+  allAuthors: (state) => state.allAuthors,
 }

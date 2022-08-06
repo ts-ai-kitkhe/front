@@ -28,6 +28,7 @@ export default {
     '~plugins/draggable-resizable.js',
     '~plugins/easy-lightbox.js',
     '~plugins/progress.js',
+    '~plugins/select.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
