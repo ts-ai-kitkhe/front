@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-3 px-lg-5">
+        <div class="col-lg-3 px-lg-4">
           <FilterBar />
         </div>
         <div class="col-lg-9 px-lg-5">
