@@ -2,7 +2,7 @@
   <div class="sidebar-container pb-4">
     <b-navbar toggleable="lg p-0">
       <b-navbar-toggle target="nav-collapse">
-        <template #default>Filters</template>
+        <template #default>ფილტრები</template>
       </b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <div class="sidebar-dropdown mb-5">
@@ -72,13 +72,32 @@ export default {
     justify-content: center;
 
     .navbar-toggler {
-      color: black;
-      font-size: 18px;
+      color: white;
+      font-size: 16px;
+      border: 2px solid white;
+      padding: 10px 15px;
+      border-radius: 20px;
+      width: 100%;
+      transition: 0.1s ease-out;
+
+      @media screen and (max-width: 400px) {
+        width: 80%;
+      }
+
+      &:hover {
+        color: black;
+        background-color: white;
+      }
     }
 
     .navbar-collapse {
       flex-direction: column;
       align-items: flex-start;
+
+      @include md {
+        margin-top: 1rem;
+        padding: 1rem;
+      }
 
       .sidebar-dropdown {
         .dropdown {

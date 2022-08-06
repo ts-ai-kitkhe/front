@@ -1,5 +1,5 @@
 <template>
-  <div class="col-lg-3 col-md-4 col-sm-4 col-7 my-3">
+  <div class="book-card-outer col-lg-3 col-md-4 col-sm-6 col-6 my-3">
     <NuxtLink :to="`/books/${bookInfo.id}`" class="book-card-container">
       <div class="card">
         <img :src="bookInfo.image" alt="Book Card Image" />
@@ -24,35 +24,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.book-card-container {
-  color: white;
-  text-decoration: none;
+.book-card-outer {
+  .book-card-container {
+    color: white;
+    text-decoration: none;
 
-  .card {
-    border: none;
-    background-color: transparent;
-    transform: scale(0.95);
-    transition: all 0.15s ease-out;
+    .card {
+      border: none;
+      background-color: transparent;
+      transform: scale(0.95);
+      transition: all 0.15s ease-out;
 
-    img {
-      width: 100%;
-    }
-
-    .card-body {
-      text-align: center;
-
-      h5 {
-        font-size: 18px;
+      img {
+        width: 100%;
       }
 
-      h6 {
-        font-size: 16px;
-        font-weight: 200;
+      .card-body {
+        text-align: center;
+
+        h5 {
+          font-size: 18px;
+        }
+
+        h6 {
+          font-size: 16px;
+          font-weight: 200;
+        }
+      }
+
+      &:hover {
+        transform: scale(1);
       }
     }
+  }
 
-    &:hover {
-      transform: scale(1);
+  &.col-6 {
+    @media screen and (max-width: 400px) {
+      flex: 0 0 80%;
+      max-width: 80%;
     }
   }
 }

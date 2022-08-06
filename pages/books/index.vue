@@ -1,8 +1,8 @@
 <template>
   <div class="books-container content-wrap">
     <div class="container my-3">
-      <div class="row books-cover-row mb-5">
-        <div class="books-cover-wrapper mb-3">
+      <div class="row books-cover-row">
+        <div class="books-cover-wrapper">
           <img
             src="~/assets/images/cover_bg.webp"
             alt="Books Feed Cover"
@@ -78,6 +78,12 @@ export default {
 <style lang="scss" scoped>
 .books-container {
   .books-cover-row {
+    margin-bottom: 3rem;
+
+    @include md {
+      margin-bottom: 2rem;
+    }
+
     .books-cover-wrapper {
       position: relative;
       width: 100%;
@@ -132,6 +138,11 @@ export default {
         border-color: #929397;
         box-shadow: none;
       }
+    }
+
+    @media screen and (max-width: 400px) {
+      width: 80%;
+      margin: 0 auto;
     }
   }
 
