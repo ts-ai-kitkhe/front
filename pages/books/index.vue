@@ -2,7 +2,7 @@
   <div class="books-container content-wrap">
     <div class="container my-3">
       <div class="row books-cover-row mb-5">
-        <div class="books-cover-wrapper">
+        <div class="books-cover-wrapper mb-3">
           <img
             src="~/assets/images/cover_bg.webp"
             alt="Books Feed Cover"
@@ -97,6 +97,7 @@ export default {
         transform: translate(-50%, -50%);
         font-size: 5vw;
         letter-spacing: 2px;
+        cursor: default;
 
         @media screen and (max-width: 1400px) {
           font-size: 6.5vw;
@@ -118,6 +119,19 @@ export default {
       border-width: 2px;
       border-radius: 20px;
       padding: 15px;
+      border: 2px solid #37393d;
+      background-color: #2f2f2f;
+      color: white;
+
+      &::placeholder {
+        color: #929397;
+        opacity: 1;
+      }
+
+      &:focus {
+        border-color: #929397;
+        box-shadow: none;
+      }
     }
   }
 
