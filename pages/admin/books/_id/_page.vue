@@ -39,6 +39,11 @@
             :y="rect.y"
             :z="99"
             :active="rect.active"
+            :style="[
+              rect.confidence < 0.5 ? { outline: '2px solid #ea4235' } : {},
+              rect.confidence >= 0.5 ? { outline: '2px solid #fabc05' } : {},
+              rect.confidence > 0.75 ? { outline: '2px solid #32a953' } : {},
+            ]"
             @activated="handleRectActivation(rect)"
             @deactivated="handleRectDeactivation(rect)"
           >
@@ -109,7 +114,7 @@ export default {
 
   methods: {
     async fetchData() {
-      return await fetch('/coords.json')
+      return await fetch('/predictions.json')
         .then((response) => response.json())
         .then((data) => {
           const imgShape = { h: 2120, w: 1406 }
@@ -118,14 +123,15 @@ export default {
           const rescaleH = (x) => (x / imgShape.h) * screenSize.h
           const rescaleW = (x) => (x / imgShape.w) * screenSize.w
 
-          this.rectCoords = Object.entries(data).map(([key, coords]) => ({
-            id: key,
-            x: rescaleW(coords[0][0]),
-            y: rescaleH(coords[0][1]),
-            h: rescaleH(coords[2][1] - coords[0][1]),
-            w: rescaleW(coords[2][0] - coords[0][0]),
+          this.rectCoords = data.map((rect) => ({
+            id: rect.id,
+            x: rescaleW(rect.corners[0][0]),
+            y: rescaleH(rect.corners[0][1]),
+            h: rescaleH(rect.corners[2][1] - rect.corners[0][1]),
+            w: rescaleW(rect.corners[2][0] - rect.corners[0][0]),
             active: false,
-            letter: 'ჯ',
+            confidence: parseFloat(rect.confidence),
+            letter: rect.letter,
           }))
         })
     },
@@ -195,8 +201,11 @@ export default {
 @import '~/assets/scss/vdr.scss';
 
 .operator-container {
+  $upper-panel-h: 5vh;
+  $img-wrapper-h: 83vh;
+
   .upper-panel {
-    height: 8vh;
+    height: $upper-panel-h;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -292,10 +301,11 @@ export default {
   }
 
   .img-wrapper {
-    border: 1px solid black;
+    border-top: 2px solid rgb(230, 230, 230);
+    border-bottom: 2px solid rgb(230, 230, 230);
     overflow: scroll;
     position: relative;
-    height: 77vh;
+    height: $img-wrapper-h;
     user-select: none;
 
     img {
@@ -313,8 +323,9 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px;
-    gap: 20px;
+    height: 100vh - ($upper-panel-h + $img-wrapper-h);
+    justify-content: center;
+    gap: 10px;
 
     button {
       padding: 5px 13px;
