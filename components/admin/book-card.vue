@@ -17,7 +17,11 @@
             >
               <b-form action="" method="">
                 <b-form-group label="სათაური" label-for="title">
-                  <b-form-input id="title" :value="adminBook.title" />
+                  <b-form-input
+                    id="title"
+                    :value="adminBook.title"
+                    class="title-input"
+                  />
                 </b-form-group>
                 <b-form-group label="ავტორი">
                   <VueSelect
@@ -201,6 +205,13 @@ export default {
         }
       }
     }
+  }
+}
+
+.title-input {
+  &.form-control {
+    color: #333333 !important;
+    padding: 0.375rem 0.55rem !important;
   }
 }
 </style>

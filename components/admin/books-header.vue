@@ -15,7 +15,11 @@
           >
             <form>
               <b-form-group label="სათაური" label-for="title-input">
-                <b-form-input id="title-input" required></b-form-input>
+                <b-form-input
+                  id="title-input"
+                  class="title-input"
+                  required
+                ></b-form-input>
               </b-form-group>
               <b-form-group label="ავტორი">
                 <VueSelect
@@ -94,6 +98,13 @@ export default {
         color: #007bff;
       }
     }
+  }
+}
+
+.title-input {
+  &.form-control {
+    color: #333333 !important;
+    padding: 0.375rem 0.55rem !important;
   }
 }
 </style>
