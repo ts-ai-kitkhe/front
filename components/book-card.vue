@@ -2,7 +2,12 @@
   <div class="book-card-outer col-lg-3 col-md-4 col-sm-6 col-6 my-3">
     <NuxtLink :to="`/books/${bookInfo.id}`" class="book-card-container">
       <div class="card">
-        <img :src="bookInfo.image" alt="Book Card Image" />
+        <img
+          v-if="bookInfo.image"
+          :src="bookInfo.image"
+          alt="Book Card Image"
+        />
+        <img v-else src="~/assets/images/no_cover.jpg" alt="Book Card Image" />
         <div class="card-body">
           <h5>{{ bookInfo.title }}</h5>
           <h6>{{ bookInfo.author }}</h6>

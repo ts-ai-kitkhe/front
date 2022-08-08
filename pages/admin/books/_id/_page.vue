@@ -148,6 +148,7 @@ export default {
           h: initRectDim,
           w: initRectDim,
           active: false,
+          confidence: 1,
           letter: '',
         })
 

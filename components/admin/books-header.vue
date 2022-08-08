@@ -23,17 +23,14 @@
               </b-form-group>
               <b-form-group label="ავტორი">
                 <VueSelect
-                  :options="allAuthors"
+                  :options="
+                    allAuthors.filter(
+                      (value, index, self) => self.indexOf(value) === index
+                    )
+                  "
                   class="vue-select-author"
                   taggable
                 ></VueSelect>
-              </b-form-group>
-              <b-form-group label="მთავარი სურათი" label-for="cover-image">
-                <b-form-file
-                  id="cover-image"
-                  required
-                  accept=".png, .jpg, .jpeg"
-                ></b-form-file>
               </b-form-group>
             </form>
           </b-modal>

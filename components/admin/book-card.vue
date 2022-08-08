@@ -3,7 +3,16 @@
     <div class="admin-book-card-container mx-4 my-2">
       <div class="card px-4 px-sm-0">
         <div class="img-wrapper">
-          <img :src="adminBook.image" alt="Book Card Image" />
+          <img
+            v-if="adminBook.image"
+            :src="adminBook.image"
+            alt="Book Card Image"
+          />
+          <img
+            v-else
+            src="~/assets/images/no_cover.jpg"
+            alt="Book Card Image"
+          />
           <div class="pencil-icon">
             <b-btn v-b-modal="modalId() + '-r'">
               <b-icon icon="pencil-square"></b-icon>
@@ -25,10 +34,24 @@
                 </b-form-group>
                 <b-form-group label="ავტორი">
                   <VueSelect
-                    :options="allAuthors"
+                    :options="
+                      allAuthors.filter(
+                        (value, index, self) => self.indexOf(value) === index
+                      )
+                    "
                     class="vue-select-author"
                     taggable
                   ></VueSelect>
+                </b-form-group>
+                <b-form-group
+                  label="მთავარი სურათის შეცვლა"
+                  label-for="cover-image"
+                >
+                  <b-form-file
+                    id="cover-image"
+                    required
+                    accept=".png, .jpg, .jpeg"
+                  ></b-form-file>
                 </b-form-group>
                 <b-form-group label="საჯაროობა">
                   <b-form-radio v-model="visibility" value="Private">

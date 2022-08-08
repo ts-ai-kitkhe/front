@@ -4,7 +4,18 @@
       <div v-if="bookById" class="row">
         <div class="col-md-6">
           <div class="book-img-container">
-            <img :src="bookById.image" alt="Book Image" class="book-img" />
+            <img
+              v-if="bookById.image"
+              :src="bookById.image"
+              alt="Book Image"
+              class="book-img"
+            />
+            <img
+              v-else
+              src="~/assets/images/no_cover.jpg"
+              alt="Book Image"
+              class="book-img"
+            />
           </div>
         </div>
         <div class="col-md-6 px-md-0 my-md-0 my-5 px-5">

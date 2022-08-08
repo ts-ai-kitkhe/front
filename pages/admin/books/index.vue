@@ -13,7 +13,7 @@
             ></b-form-input>
           </b-input-group>
         </div>
-        <div class="row row-3 mt-4">
+        <div class="row mt-4">
           <AdminBookCard
             v-for="book in matchingAdminBooks"
             :key="book.id"
@@ -79,7 +79,7 @@ export default {
     }
 
     .row {
-      align-items: center;
+      align-items: baseline;
     }
   }
 }
