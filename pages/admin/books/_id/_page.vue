@@ -4,16 +4,23 @@
       <div class="nav-panel">
         <div
           class="arrow-container right"
-          :class="{ 'is-hidden': currPage === 1 }"
+          :class="{ 'is-hidden': parseInt(currPage) === 1 }"
+          @click="navigateToPrevPage"
         >
           <i class="arrow arrow-right"></i>
         </div>
-        <input type="text" class="current-page" :value="currPage" />
+        <input
+          type="text"
+          class="current-page"
+          :value="currPage"
+          @keyup.enter="navigateToEnteredPage($event)"
+        />
         <div class="slash">/</div>
         <div class="pages-total">{{ numPages }}</div>
         <div
           class="arrow-container left"
-          :class="{ 'is-hidden': currPage === numPages }"
+          :class="{ 'is-hidden': parseInt(currPage) === numPages }"
+          @click="navigateToNextPage"
         >
           <i class="arrow arrow-left"></i>
         </div>
@@ -77,7 +84,7 @@ export default {
   data() {
     return {
       rectCoords: [],
-      currPage: 1,
+      currPage: this.$route.params.page,
       numPages: 13,
       topY: 0,
       selectedRect: null,
@@ -138,7 +145,7 @@ export default {
 
     checkAndAddRect(event) {
       if (this.addRectMode) {
-        const initRectDim = 40
+        const initRectDim = 30
         const topOffset = this.$refs.upperPanel.clientHeight - this.topY
 
         this.rectCoords.push({
@@ -192,6 +199,48 @@ export default {
           }
           return true
         })
+      }
+    },
+
+    navigateToPrevPage() {
+      if (this.currPage > 1) {
+        this.currPage--
+        const currPath = this.$route.path
+        const newPath =
+          currPath.substr(0, currPath.lastIndexOf('/')) +
+          '/' +
+          String(this.currPage)
+        this.$router.push({ path: newPath })
+      }
+    },
+
+    navigateToNextPage() {
+      if (this.currPage < this.numPages) {
+        this.currPage++
+        const currPath = this.$route.path
+        const newPath =
+          currPath.substr(0, currPath.lastIndexOf('/')) +
+          '/' +
+          String(this.currPage)
+        this.$router.push({ path: newPath })
+      }
+    },
+
+    navigateToEnteredPage(event) {
+      const pageInput = event.target.value
+      if (
+        Number.isInteger(Number(pageInput)) &&
+        pageInput > 0 &&
+        pageInput <= this.numPages
+      ) {
+        const currPath = this.$route.path
+        const newPath =
+          currPath.substr(0, currPath.lastIndexOf('/')) +
+          '/' +
+          String(pageInput)
+        this.$router.push({ path: newPath })
+      } else {
+        event.target.value = this.currPage
       }
     },
   },
@@ -329,7 +378,7 @@ export default {
     gap: 10px;
 
     button {
-      padding: 5px 13px;
+      padding: 5px 10px;
       font-size: 16px;
       border-radius: 20px;
       transition: all 0.1s ease-out;
@@ -338,7 +387,7 @@ export default {
       &:nth-child(2) {
         background-color: white;
         color: black;
-        border: 2px solid black;
+        border: 2px solid rgba(0, 0, 0, 0.3);
 
         &:hover {
           $dark-gray: rgba(0, 0, 0, 0.75);
