@@ -136,7 +136,7 @@ export default {
 .admin-pages-container {
   .save-changes-btn {
     $dark-blue: #0069d9;
-    $light-blue: #007bff;
+    $light-blue: $admin-blue;
 
     color: white !important;
     background-color: $light-blue !important;

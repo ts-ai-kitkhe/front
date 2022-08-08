@@ -1,6 +1,10 @@
 <template>
   <div class="operator-container">
     <div ref="upperPanel" class="upper-panel">
+      <button class="go-back-btn" @click="goBackToBook">
+        <b-icon icon="arrow-left" class="arrow-icon"></b-icon>
+        <span>უკან დაბრუნება</span>
+      </button>
       <div class="nav-panel">
         <div
           class="arrow-container right"
@@ -25,6 +29,7 @@
           <i class="arrow arrow-left"></i>
         </div>
       </div>
+      <div></div>
     </div>
     <div ref="imgWrapper" class="img-wrapper">
       <img
@@ -243,6 +248,12 @@ export default {
         event.target.value = this.currPage
       }
     },
+
+    goBackToBook() {
+      const currPath = this.$route.path
+      const newPath = currPath.substr(0, currPath.lastIndexOf('/'))
+      this.$router.push({ path: newPath })
+    },
   },
 }
 </script>
@@ -257,10 +268,28 @@ export default {
   .upper-panel {
     height: $upper-panel-h;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     text-align: center;
+
+    $go-back-btn-width: 165px;
+    $go-back-btn-ml: 30px;
+
+    .go-back-btn {
+      width: $go-back-btn-width;
+      margin-left: $go-back-btn-ml;
+      background-color: transparent;
+      border: none;
+      transition: 0.1s ease-in;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+
+      &:hover {
+        color: $blue-color;
+      }
+    }
 
     .nav-panel {
       margin: 10px 0;
@@ -268,6 +297,7 @@ export default {
       font-size: 18px;
       display: flex;
       align-items: center;
+      margin-left: -1 * ($go-back-btn-width + $go-back-btn-ml);
 
       .current-page {
         width: 55px;

@@ -87,7 +87,7 @@ $handle-size: 10px;
   }
 
   &.rect-active {
-    outline: 2px solid $blue-color;
+    outline: 2px solid $blue-color !important;
     box-shadow: 0px 0px 0px 999999px rgba(0, 0, 0, 0.8);
     z-index: 9 !important;
     color: black;

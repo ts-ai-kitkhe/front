@@ -92,7 +92,7 @@ export default {
     &:hover {
       span,
       &:after {
-        color: #007bff;
+        color: $admin-blue;
       }
     }
   }

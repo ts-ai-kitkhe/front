@@ -93,7 +93,7 @@ export default {
         &:nth-child(1),
         &:nth-child(3) {
           font-weight: bold;
-          color: #007bff;
+          color: $admin-blue;
         }
       }
     }

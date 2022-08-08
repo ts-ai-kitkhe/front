@@ -219,7 +219,7 @@ export default {
 
         &:hover {
           h5 {
-            color: #007bff;
+            color: $admin-blue;
           }
 
           h6 {
