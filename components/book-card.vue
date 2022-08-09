@@ -9,8 +9,8 @@
         />
         <img v-else src="~/assets/images/no_cover.jpg" alt="Book Card Image" />
         <div class="card-body">
-          <h5>{{ bookInfo.title }}</h5>
-          <h6>{{ bookInfo.author }}</h6>
+          <h5>{{ bookInfo.title | truncateStr }}</h5>
+          <h6>{{ bookInfo.author | truncateStr }}</h6>
         </div>
       </div>
     </NuxtLink>
@@ -19,6 +19,16 @@
 
 <script>
 export default {
+  filters: {
+    truncateStr: function (value) {
+      const maxSize = 33
+      if (value && value.length > maxSize) {
+        value = value.substring(0, maxSize - 3) + '...'
+      }
+      return value
+    },
+  },
+
   props: {
     bookInfo: {
       type: Object,

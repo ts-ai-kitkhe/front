@@ -339,7 +339,7 @@ export default {
           display: flex;
           align-items: center;
           justify-content: space-between;
-          margin: 15px 0;
+          margin: 10px 0 30px;
 
           h2 {
             font-size: 20px;

@@ -5,7 +5,7 @@
       <div class="container">
         <h1 class="my-5">ჩემი წიგნები</h1>
         <div class="search-bar-container">
-          <b-input-group class="mb-3">
+          <b-input-group>
             <b-form-input
               v-model="search"
               type="search"
@@ -13,7 +13,7 @@
             ></b-form-input>
           </b-input-group>
         </div>
-        <div class="row mt-4">
+        <div class="row">
           <AdminBookCard
             v-for="book in matchingAdminBooks"
             :key="book.id"
@@ -64,6 +64,7 @@ export default {
 .admin-books-container {
   .main-content {
     margin-top: 80px;
+    margin-bottom: 50px;
 
     h1 {
       text-align: center;
@@ -71,6 +72,7 @@ export default {
 
     .search-bar-container {
       margin: 0 20px;
+      margin-bottom: 30px;
 
       input {
         border-radius: 20px;

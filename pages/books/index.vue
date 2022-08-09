@@ -148,7 +148,7 @@ export default {
 
   .books-row {
     .row {
-      align-items: center;
+      align-items: baseline;
 
       @include xs {
         justify-content: center;

@@ -81,8 +81,8 @@
         </div>
         <div class="card-body">
           <NuxtLink :to="`${adminBook.id}`" append class="admin-book-link">
-            <h5>{{ adminBook.title }}</h5>
-            <h6>{{ adminBook.author }}</h6>
+            <h5>{{ adminBook.title | truncateStr }}</h5>
+            <h6>{{ adminBook.author | truncateStr }}</h6>
           </NuxtLink>
         </div>
       </div>
@@ -94,6 +94,16 @@
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
+  filters: {
+    truncateStr: function (value) {
+      const maxSize = 34
+      if (value && value.length > maxSize) {
+        value = value.substring(0, maxSize - 3) + '...'
+      }
+      return value
+    },
+  },
+
   props: {
     adminBook: {
       type: Object,
