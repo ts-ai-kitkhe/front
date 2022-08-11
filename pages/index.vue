@@ -300,7 +300,7 @@ export default {
   .feed-slide {
     .feed-container {
       .cover-img-container {
-        margin: 100px 0;
+        margin: 80px 0;
         text-align: center;
 
         .cover-img {
@@ -308,8 +308,8 @@ export default {
         }
 
         .ornament {
-          margin: 80px 0 20px;
-          width: 20%;
+          margin: 70px 0 20px;
+          width: 30%;
         }
 
         .cover-img-sm {
