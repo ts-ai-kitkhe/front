@@ -29,7 +29,7 @@
             <div class="row">
               <BookCard
                 v-for="book in matchingBooks"
-                :key="book.id"
+                :key="book.Id"
                 :book-info="book"
               />
             </div>

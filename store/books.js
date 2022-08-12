@@ -12,13 +12,15 @@ export const mutations = {
 
 export const actions = {
   async getBooks({ commit }) {
-    const response = await axios.get('/books.json')
+    const response = await axios.get('https://api.ts-ai-kitkhe.ge/core/books')
     commit('setBooks', response.data)
   },
 
   async getBookById({ commit }, id) {
-    const response = await axios.get('/books.json')
-    commit('setBook', response.data[id - 1])
+    const response = await axios.get(
+      `https://api.ts-ai-kitkhe.ge/core/books/${id}`
+    )
+    commit('setBook', response.data)
   },
 }
 

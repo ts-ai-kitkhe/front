@@ -1,6 +1,6 @@
 <template>
   <div class="book-card-outer col-lg-3 col-md-4 col-sm-6 col-6 my-3">
-    <NuxtLink :to="`/books/${bookInfo.id}`" class="book-card-container">
+    <NuxtLink :to="`/books/${bookInfo.Id}`" class="book-card-container">
       <div class="card">
         <img
           v-if="bookInfo.image"
@@ -10,7 +10,7 @@
         <img v-else src="~/assets/images/no_cover.jpg" alt="Book Card Image" />
         <div class="card-body">
           <h5>{{ bookInfo.title | truncateStr }}</h5>
-          <h6>{{ bookInfo.author | truncateStr }}</h6>
+          <h6>{{ bookInfo.authorName | truncateStr }}</h6>
         </div>
       </div>
     </NuxtLink>

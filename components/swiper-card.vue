@@ -5,7 +5,7 @@
       <img v-else src="~/assets/images/no_cover.jpg" alt="Book Card Image" />
       <div class="card-body">
         <h5>{{ cardInfo.title | truncateStr }}</h5>
-        <h6>{{ cardInfo.author | truncateStr }}</h6>
+        <h6>{{ cardInfo.authorName | truncateStr }}</h6>
       </div>
     </div>
   </NuxtLink>

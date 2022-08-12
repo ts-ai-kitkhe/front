@@ -48,7 +48,7 @@
               <div class="swiper-wrapper">
                 <div
                   v-for="card in allSwiperCards"
-                  :key="card.id"
+                  :key="card.Id"
                   class="swiper-slide"
                 >
                   <SwiperCard :card-info="card" />

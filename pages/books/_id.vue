@@ -22,7 +22,8 @@
           <div class="text-center text-md-left">
             <div class="book-info">
               <h1>{{ bookById.title }}</h1>
-              <h2>{{ bookById.author }}</h2>
+              <h2>{{ bookById.authorName }}</h2>
+              <h3>{{ bookById.year }} წელი</h3>
             </div>
             <div class="progress-circle">
               <VueProgress
