@@ -27,11 +27,17 @@
             </div>
             <div class="progress-circle">
               <VueProgress
-                stroke-color="green"
+                :stroke-color="
+                  confidence < 0.5
+                    ? 'red'
+                    : confidence <= 0.75
+                    ? 'orange'
+                    : 'green'
+                "
                 :transition-duration="2000"
                 :radius="55"
                 :stroke-width="10"
-                value="83.13"
+                :value="(confidence * 100).toFixed(2)"
               >
               </VueProgress>
             </div>
@@ -61,6 +67,7 @@ export default {
   data() {
     return {
       bookId: this.$route.params.id,
+      confidence: Math.random(),
     }
   },
 
@@ -105,7 +112,7 @@ export default {
     h2 {
       font-size: 35px;
       font-family: $geo-font-primary;
-      margin: 20px 0;
+      margin: 15px 0 20px;
 
       @include sm {
         font-size: 25px;
