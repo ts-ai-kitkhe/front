@@ -98,7 +98,6 @@ export default {
 
     h2 {
       font-size: 28px;
-      font-weight: 200;
     }
   }
 
@@ -128,7 +127,6 @@ export default {
       &:hover {
         color: black;
         background-color: white;
-        font-weight: 500;
       }
 
       svg {

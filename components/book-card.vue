@@ -63,7 +63,6 @@ export default {
 
         h6 {
           font-size: 16px;
-          font-weight: 200;
         }
       }
 
