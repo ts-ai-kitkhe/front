@@ -83,6 +83,8 @@
 </template>
 
 <script>
+import { v4 as uuidv4 } from 'uuid'
+
 export default {
   layout: 'operator',
 
@@ -154,7 +156,7 @@ export default {
         const topOffset = this.$refs.upperPanel.clientHeight - this.topY
 
         this.rectCoords.push({
-          id: Math.random() * 999999,
+          id: uuidv4(),
           x: event.clientX - initRectDim / 2,
           y: event.clientY - topOffset - initRectDim / 2,
           h: initRectDim,
