@@ -94,10 +94,16 @@ export default {
 
     h1 {
       font-size: 36px;
+      font-family: $geo-font-primary-bold;
     }
 
     h2 {
       font-size: 28px;
+      font-family: $geo-font-primary;
+    }
+
+    h3 {
+      font-family: $geo-font-primary-light;
     }
   }
 
@@ -115,6 +121,7 @@ export default {
     flex-direction: column;
 
     button {
+      font-family: $geo-font-primary;
       width: 250px;
       margin: 10px 0;
       padding: 10px;
@@ -123,10 +130,12 @@ export default {
       border: 2px solid white;
       border-radius: 25px;
       transition: 0.1s ease-out;
+      font-size: 18px;
 
       &:hover {
         color: black;
         background-color: white;
+        font-family: $geo-font-primary-bold;
       }
 
       svg {

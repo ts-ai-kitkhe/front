@@ -59,7 +59,7 @@ export default {
       return this.allBooks.filter((book) => {
         return (
           book.title.toLowerCase().includes(this.search.toLowerCase()) ||
-          book.author.toLowerCase().includes(this.search.toLowerCase())
+          book.authorName.toLowerCase().includes(this.search.toLowerCase())
         )
       })
     },

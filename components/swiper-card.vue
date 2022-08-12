@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink :to="`/books/${cardInfo.id}`" class="swiper-card-container">
+  <NuxtLink :to="`/books/${cardInfo.Id}`" class="swiper-card-container">
     <div class="card">
       <img v-if="cardInfo.image" :src="cardInfo.image" alt="Book Card Image" />
       <img v-else src="~/assets/images/no_cover.jpg" alt="Book Card Image" />
@@ -48,11 +48,13 @@ export default {
       text-align: center;
 
       h5 {
-        font-size: 18px;
+        font-size: 20px;
+        font-family: $geo-font-primary-bold;
       }
 
       h6 {
-        font-size: 16px;
+        font-size: 20px;
+        font-family: $geo-font-primary-light;
       }
     }
 

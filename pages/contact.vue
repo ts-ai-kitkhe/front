@@ -56,6 +56,8 @@ export default {
 
 <style lang="scss" scoped>
 .contact-container {
+  font-family: $geo-font-primary;
+
   .contact-upper {
     margin-top: 30px;
     text-align: center;

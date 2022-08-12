@@ -299,6 +299,8 @@ export default {
 
   .feed-slide {
     .feed-container {
+      font-family: $geo-font-primary;
+
       .cover-img-container {
         margin: 80px 0;
         text-align: center;
@@ -342,15 +344,15 @@ export default {
           margin: 10px 0 30px;
 
           h2 {
-            font-size: 20px;
+            font-size: 26px;
             margin: 0 20px;
           }
 
           .link-btn {
             color: $txt-color-main;
             text-decoration: none;
-            font-size: 18px;
             margin: 0 20px;
+            font-size: 24px;
             transition: all 0.1s ease-out;
 
             &:hover {
@@ -361,13 +363,14 @@ export default {
           .link-btn-sm {
             color: white;
             text-decoration: none;
-            font-size: 20px;
+            font-size: 26px;
             font-weight: bold;
             display: none;
           }
 
           @include xs {
             justify-content: center;
+            margin-bottom: 20px;
 
             h2,
             .link-btn {

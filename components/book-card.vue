@@ -58,11 +58,13 @@ export default {
         text-align: center;
 
         h5 {
-          font-size: 18px;
+          font-size: 20px;
+          font-family: $geo-font-primary-bold;
         }
 
         h6 {
-          font-size: 16px;
+          font-size: 20px;
+          font-family: $geo-font-primary-light;
         }
       }
 

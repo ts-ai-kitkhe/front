@@ -20,6 +20,9 @@ export default {}
 <style lang="scss">
 .header-container {
   background-color: transparent;
+  font-family: $geo-font-primary;
+  letter-spacing: 0.5px;
+  font-size: 22px;
 
   .navbar-brand {
     color: $txt-color-main;
@@ -46,7 +49,6 @@ export default {}
       margin: 10px 15px;
       text-decoration: none;
       transition: all 0.1s ease-out;
-      font-size: 18px;
 
       &:hover {
         color: $txt-color-main-hover;

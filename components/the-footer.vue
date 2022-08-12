@@ -20,6 +20,9 @@ footer {
   justify-content: center;
   background-color: $bg-color-main;
   color: $txt-color-main;
+  font-family: $geo-font-primary;
+  font-size: 20px;
+  letter-spacing: 1px;
 
   .company {
     margin-left: 5px;

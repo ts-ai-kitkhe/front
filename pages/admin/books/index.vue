@@ -44,7 +44,7 @@ export default {
       return this.allAdminBooks.filter((book) => {
         return (
           book.title.toLowerCase().includes(this.search.toLowerCase()) ||
-          book.author.toLowerCase().includes(this.search.toLowerCase())
+          book.authorName.toLowerCase().includes(this.search.toLowerCase())
         )
       })
     },
@@ -68,6 +68,8 @@ export default {
 
     h1 {
       text-align: center;
+      font-weight: 400;
+      font-size: 36px;
     }
 
     .search-bar-container {
