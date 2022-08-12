@@ -93,17 +93,33 @@ export default {
     margin-bottom: 20px;
 
     h1 {
-      font-size: 36px;
+      font-size: 40px;
       font-family: $geo-font-primary-bold;
+      margin: 0;
+
+      @include sm {
+        font-size: 30px;
+      }
     }
 
     h2 {
-      font-size: 28px;
+      font-size: 35px;
       font-family: $geo-font-primary;
+      margin: 20px 0;
+
+      @include sm {
+        font-size: 25px;
+      }
     }
 
     h3 {
+      font-size: 30px;
       font-family: $geo-font-primary-light;
+      margin: 0;
+
+      @include sm {
+        font-size: 20px;
+      }
     }
   }
 
@@ -119,6 +135,7 @@ export default {
   .download-panel {
     display: flex;
     flex-direction: column;
+    margin-bottom: 20px;
 
     button {
       font-family: $geo-font-primary;
