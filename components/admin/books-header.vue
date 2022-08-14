@@ -32,6 +32,18 @@
                   taggable
                 ></VueSelect>
               </b-form-group>
+              <b-form-group label="გამოცემის წელი" label-for="year-input">
+                <b-form-input
+                  id="year-input"
+                  class="year-input"
+                  type="number"
+                  min="1"
+                  max="2025"
+                  step="1"
+                  onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  required
+                ></b-form-input>
+              </b-form-group>
             </form>
           </b-modal>
           <b-nav-item-dropdown :text="adminEmail" class="admin-dropdown">

@@ -39,14 +39,26 @@
                         (value, index, self) => self.indexOf(value) === index
                       )
                     "
+                    :value="authorInput"
                     class="vue-select-author"
                     taggable
+                    @input="setSelectedAuthor"
                   ></VueSelect>
                 </b-form-group>
-                <b-form-group
-                  label="მთავარი სურათის შეცვლა"
-                  label-for="cover-image"
-                >
+                <b-form-group label="გამოცემის წელი" label-for="year-input">
+                  <b-form-input
+                    id="year-input"
+                    class="year-input"
+                    type="number"
+                    min="1"
+                    max="2025"
+                    step="1"
+                    onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                    required
+                    :value="adminBook.year"
+                  ></b-form-input>
+                </b-form-group>
+                <b-form-group label="მთავარი სურათი" label-for="cover-image">
                   <b-form-file
                     id="cover-image"
                     required
@@ -114,6 +126,7 @@ export default {
   data() {
     return {
       visibility: 'Private',
+      authorInput: this.adminBook.authorName,
     }
   },
 
@@ -131,6 +144,10 @@ export default {
     },
 
     ...mapActions('admin', ['getAllAuthors']),
+
+    setSelectedAuthor(value) {
+      this.authorInput = value
+    },
   },
 }
 </script>
@@ -247,5 +264,9 @@ export default {
     color: #333333 !important;
     padding: 0.375rem 0.55rem !important;
   }
+}
+
+.year-input {
+  color: #333333;
 }
 </style>

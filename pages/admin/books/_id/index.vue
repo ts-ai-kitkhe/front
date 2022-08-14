@@ -13,6 +13,7 @@
           <div class="description">
             <h1 class="title">{{ adminBookById.title }}</h1>
             <h2 class="author">{{ adminBookById.authorName }}</h2>
+            <h3 class="year">{{ adminBookById.year }} წელი</h3>
           </div>
         </div>
         <div v-if="pageImages.length === 0" class="dropzone-panel">
@@ -166,8 +167,20 @@ export default {
       text-align: center;
 
       .description {
+        .title {
+          font-weight: 400;
+          font-size: 36px;
+        }
+
         .author {
-          font-weight: 300;
+          font-weight: 400;
+          font-size: 31px;
+          margin: 15px 0;
+        }
+
+        .year {
+          font-weight: 200;
+          font-size: 26px;
         }
       }
     }
@@ -187,7 +200,7 @@ export default {
     }
 
     .pages-row {
-      padding: 30px 0 100px;
+      padding: 20px 0 100px;
       align-items: center;
     }
 
