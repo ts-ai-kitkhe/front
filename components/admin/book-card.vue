@@ -80,9 +80,9 @@
           </div>
         </div>
         <div class="card-body">
-          <NuxtLink :to="`${adminBook.id}`" append class="admin-book-link">
+          <NuxtLink :to="`${adminBook.Id}`" append class="admin-book-link">
             <h5>{{ adminBook.title | truncateStr }}</h5>
-            <h6>{{ adminBook.author | truncateStr }}</h6>
+            <h6>{{ adminBook.authorName | truncateStr }}</h6>
           </NuxtLink>
         </div>
       </div>
@@ -127,7 +127,7 @@ export default {
 
   methods: {
     modalId() {
-      return 'modal-' + this.adminBook.id
+      return 'modal-' + this.adminBook.Id
     },
 
     ...mapActions('admin', ['getAllAuthors']),
@@ -219,12 +219,13 @@ export default {
         h5 {
           transition: 0.1s ease-out;
           font-size: 18px;
+          font-weight: 400;
         }
 
         h6 {
           transition: 0.1s ease-out;
           font-size: 16px;
-          font-weight: 200;
+          font-weight: 300;
         }
 
         &:hover {

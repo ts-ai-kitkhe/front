@@ -13,6 +13,7 @@
         background-color: transparent;
         color: black;
         text-decoration: none;
+        transition: 0.1s ease-out;
 
         &:hover {
           color: $admin-blue;

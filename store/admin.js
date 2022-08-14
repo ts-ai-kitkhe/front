@@ -21,13 +21,15 @@ export const mutations = {
 
 export const actions = {
   async getAdminBooks({ commit }) {
-    const response = await axios.get('/books.json')
+    const response = await axios.get('https://api.ts-ai-kitkhe.ge/core/books')
     commit('setAdminBooks', response.data)
   },
 
   async getAdminBookById({ commit }, id) {
-    const response = await axios.get('/books.json')
-    commit('setAdminBook', response.data[id - 1])
+    const response = await axios.get(
+      `https://api.ts-ai-kitkhe.ge/core/books/${id}`
+    )
+    commit('setAdminBook', response.data)
   },
 
   async getAllAuthors({ commit }) {

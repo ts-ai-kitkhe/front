@@ -12,7 +12,7 @@
         <div class="book-info">
           <div class="description">
             <h1 class="title">{{ adminBookById.title }}</h1>
-            <h2 class="author">{{ adminBookById.author }}</h2>
+            <h2 class="author">{{ adminBookById.authorName }}</h2>
           </div>
         </div>
         <div v-if="pageImages.length === 0" class="dropzone-panel">
