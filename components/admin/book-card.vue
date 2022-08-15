@@ -19,27 +19,33 @@
             </b-btn>
             <b-modal
               :id="modalId() + '-r'"
+              :ref="modalRef('bookModal')"
               centered
               title="მონაცემების შეცვლა"
               cancel-title="გაუქმება"
               ok-title="დადასტურება"
+              :ok-disabled="isDisabled"
+              @ok="updateBook"
             >
-              <b-form action="" method="">
+              <b-form>
                 <b-form-group label="სათაური" label-for="title">
                   <b-form-input
                     id="title"
-                    :value="adminBook.title"
+                    :ref="modalRef('bookTitle')"
+                    v-model="title"
                     class="title-input"
+                    :state="titleState"
+                    required
                   />
                 </b-form-group>
                 <b-form-group label="ავტორი">
                   <VueSelect
+                    v-model="authorInput"
                     :options="
                       allAuthors.filter(
                         (value, index, self) => self.indexOf(value) === index
                       )
                     "
-                    :value="authorInput"
                     class="vue-select-author"
                     taggable
                     @input="setSelectedAuthor"
@@ -48,12 +54,15 @@
                 <b-form-group label="გამოცემის წელი" label-for="year-input">
                   <b-form-input
                     id="year-input"
+                    :ref="modalRef('bookYear')"
+                    v-model="year"
                     class="year-input"
                     type="number"
                     min="1"
                     max="2025"
                     step="1"
                     onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                    :state="yearState"
                     required
                     :value="adminBook.year"
                   ></b-form-input>
@@ -103,7 +112,8 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
+import axios from 'axios'
 
 export default {
   filters: {
@@ -127,6 +137,12 @@ export default {
     return {
       visibility: 'Private',
       authorInput: this.adminBook.authorName,
+      authorState: null,
+      isDisabled: false,
+      title: this.adminBook.title,
+      titleState: null,
+      year: this.adminBook.year,
+      yearState: null,
     }
   },
 
@@ -143,10 +159,50 @@ export default {
       return 'modal-' + this.adminBook.Id
     },
 
+    modalRef(title) {
+      return title + this.adminBook.id
+    },
+
     ...mapActions('admin', ['getAllAuthors']),
+    ...mapMutations('admin', ['updateAdminBook']),
 
     setSelectedAuthor(value) {
       this.authorInput = value
+    },
+
+    updateBook(bvModalEvent) {
+      bvModalEvent.preventDefault()
+      const isValid = this.checkFormValidity()
+      if (isValid) {
+        this.isDisabled = true
+        this.submitBook()
+      }
+    },
+
+    checkFormValidity() {
+      this.titleState = this.$refs[this.modalRef('bookTitle')].checkValidity()
+      this.authorState = this.authorInput !== null
+      this.yearState = this.$refs[this.modalRef('bookYear')].checkValidity()
+      return this.titleState && this.authorState && this.yearState
+    },
+
+    async submitBook() {
+      const data = {
+        id: this.adminBook.Id,
+        title: this.title,
+        authorName: this.authorInput,
+        year: this.year,
+      }
+
+      const response = await axios.post(
+        `https://api.ts-ai-kitkhe.ge/core/books/${this.adminBook.Id}`,
+        data
+      )
+
+      this.$refs[this.modalRef('bookModal')].hide()
+      this.updateAdminBook(response.data)
+      this.isDisabled = false
+      this.titleState = this.authorState = this.yearState = null
     },
   },
 }

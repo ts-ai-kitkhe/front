@@ -27,7 +27,7 @@
                   required
                 ></b-form-input>
               </b-form-group>
-              <b-form-group label="ავტორი" :state="titleState">
+              <b-form-group label="ავტორი">
                 <VueSelect
                   :options="
                     allAuthors.filter(
@@ -145,6 +145,7 @@ export default {
         this.authorName =
         this.year =
         this.titleState =
+        this.authorState =
         this.yearState =
           null
     },

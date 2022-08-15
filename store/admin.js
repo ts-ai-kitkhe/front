@@ -14,10 +14,21 @@ export const mutations = {
       localStorage.setItem('adminEmail', adminEmail)
     }
   },
+
   setAdminBooks: (state, adminBooks) => (state.adminBooks = adminBooks),
   setAdminBook: (state, adminBook) => (state.adminBook = adminBook),
   setAllAuthors: (state, allAuthors) => (state.allAuthors = allAuthors),
   addNewAdminBook: (state, newBook) => state.adminBooks.push(newBook),
+
+  updateAdminBook: (state, updatedBook) => {
+    state.adminBooks.forEach((book) => {
+      if (book.Id === updatedBook.Id) {
+        for (const key of Object.keys(updatedBook)) {
+          book[key] = updatedBook[key]
+        }
+      }
+    })
+  },
 }
 
 export const actions = {
