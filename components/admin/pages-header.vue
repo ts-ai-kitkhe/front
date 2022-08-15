@@ -25,7 +25,7 @@
             scrollable
           >
             <div class="dropzone-modal">
-              <VueDropzone></VueDropzone>
+              <VueDropzone :book-id="bookId"></VueDropzone>
             </div>
           </b-modal>
         </b-navbar-nav>
@@ -47,6 +47,12 @@ export default {
       type: Boolean,
       default: true,
     },
+  },
+
+  data() {
+    return {
+      bookId: this.$route.params.id,
+    }
   },
 }
 </script>

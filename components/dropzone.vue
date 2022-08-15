@@ -20,6 +20,14 @@ Dropzone.autoDiscover = false
 
 export default {
   name: 'VueDropzone',
+
+  props: {
+    bookId: {
+      type: String,
+      default: null,
+    },
+  },
+
   mounted() {
     const vm = this
 
@@ -42,12 +50,13 @@ export default {
       autoProcessQueue: false,
 
       async accept(file, done) {
-        const endpoint =
-          'https://q0pl6fpjwf.execute-api.eu-central-1.amazonaws.com/test'
+        const endpoint = `https://api.ts-ai-kitkhe.ge/core/books/${vm.bookId}/pages/signed-url`
+
         const payload = {
           filePath: file.name,
           contentType: file.type,
         }
+
         await axios
           .post(endpoint, payload)
           .then((res) => res.data.url)
