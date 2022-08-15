@@ -8,20 +8,25 @@
           <button v-b-modal.upload-book-modal>წიგნის ატვირთვა</button>
           <b-modal
             id="upload-book-modal"
+            ref="bookModal"
             centered
             title="წიგნის ატვირთვა"
             cancel-title="გაუქმება"
             ok-title="დადასტურება"
+            @ok="createBook"
           >
-            <form>
+            <b-form>
               <b-form-group label="სათაური" label-for="title-input">
                 <b-form-input
                   id="title-input"
+                  ref="bookTitle"
+                  v-model="title"
                   class="title-input"
+                  :state="titleState"
                   required
                 ></b-form-input>
               </b-form-group>
-              <b-form-group label="ავტორი">
+              <b-form-group label="ავტორი" :state="titleState">
                 <VueSelect
                   :options="
                     allAuthors.filter(
@@ -30,21 +35,26 @@
                   "
                   class="vue-select-author"
                   taggable
+                  :value="authorName"
+                  @input="setSelectedAuthor"
                 ></VueSelect>
               </b-form-group>
               <b-form-group label="გამოცემის წელი" label-for="year-input">
                 <b-form-input
                   id="year-input"
+                  ref="bookYear"
+                  v-model="year"
                   class="year-input"
                   type="number"
                   min="1"
                   max="2025"
                   step="1"
                   onkeypress="return event.charCode >= 48 && event.charCode <= 57"
+                  :state="yearState"
                   required
                 ></b-form-input>
               </b-form-group>
-            </form>
+            </b-form>
           </b-modal>
           <b-nav-item-dropdown :text="adminEmail" class="admin-dropdown">
             <b-dropdown-item v-b-modal.logout-modal>გამოსვლა</b-dropdown-item>
@@ -67,8 +77,20 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex'
+import axios from 'axios'
 
 export default {
+  data() {
+    return {
+      title: null,
+      authorName: null,
+      year: null,
+      titleState: null,
+      authorState: null,
+      yearState: null,
+    }
+  },
+
   computed: {
     ...mapGetters('admin', ['adminEmail']),
     ...mapGetters('admin', ['allAuthors']),
@@ -80,6 +102,42 @@ export default {
 
   methods: {
     ...mapActions('admin', ['getAllAuthors']),
+
+    setSelectedAuthor(value) {
+      this.authorName = value
+    },
+
+    createBook(bvModalEvent) {
+      bvModalEvent.preventDefault()
+      const isValid = this.checkFormValidity()
+      if (isValid) {
+        this.submitBook()
+      }
+    },
+
+    checkFormValidity() {
+      this.titleState = this.$refs.bookTitle.checkValidity()
+      this.authorState = this.authorName !== null
+      this.yearState = this.$refs.bookYear.checkValidity()
+      return this.titleState && this.authorState && this.yearState
+    },
+
+    async submitBook() {
+      const data = {
+        title: this.title,
+        authorName: this.authorName,
+        year: this.year,
+      }
+
+      await axios.post('https://api.ts-ai-kitkhe.ge/core/books', data)
+      this.$refs.bookModal.hide()
+      this.title =
+        this.authorName =
+        this.year =
+        this.titleState =
+        this.yearState =
+          null
+    },
   },
 }
 </script>
