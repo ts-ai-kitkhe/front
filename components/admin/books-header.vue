@@ -13,6 +13,7 @@
             title="წიგნის ატვირთვა"
             cancel-title="გაუქმება"
             ok-title="დადასტურება"
+            :ok-disabled="isDisabled"
             @ok="createBook"
           >
             <b-form>
@@ -76,7 +77,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions, mapGetters, mapMutations } from 'vuex'
 import axios from 'axios'
 
 export default {
@@ -88,6 +89,7 @@ export default {
       titleState: null,
       authorState: null,
       yearState: null,
+      isDisabled: false,
     }
   },
 
@@ -102,6 +104,7 @@ export default {
 
   methods: {
     ...mapActions('admin', ['getAllAuthors']),
+    ...mapMutations('admin', ['addNewAdminBook']),
 
     setSelectedAuthor(value) {
       this.authorName = value
@@ -111,6 +114,7 @@ export default {
       bvModalEvent.preventDefault()
       const isValid = this.checkFormValidity()
       if (isValid) {
+        this.isDisabled = true
         this.submitBook()
       }
     },
@@ -129,8 +133,14 @@ export default {
         year: this.year,
       }
 
-      await axios.post('https://api.ts-ai-kitkhe.ge/core/books', data)
+      const response = await axios.post(
+        'https://api.ts-ai-kitkhe.ge/core/books',
+        data
+      )
+
+      this.addNewAdminBook(response.data)
       this.$refs.bookModal.hide()
+      this.isDisabled = false
       this.title =
         this.authorName =
         this.year =

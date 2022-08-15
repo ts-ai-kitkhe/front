@@ -17,6 +17,7 @@ export const mutations = {
   setAdminBooks: (state, adminBooks) => (state.adminBooks = adminBooks),
   setAdminBook: (state, adminBook) => (state.adminBook = adminBook),
   setAllAuthors: (state, allAuthors) => (state.allAuthors = allAuthors),
+  addNewAdminBook: (state, newBook) => state.adminBooks.push(newBook),
 }
 
 export const actions = {
