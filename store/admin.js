@@ -19,6 +19,8 @@ export const mutations = {
   setAdminBook: (state, adminBook) => (state.adminBook = adminBook),
   setAllAuthors: (state, allAuthors) => (state.allAuthors = allAuthors),
   addNewAdminBook: (state, newBook) => state.adminBooks.push(newBook),
+  deleteAdminBook: (state, bookId) =>
+    (state.adminBooks = state.adminBooks.filter((book) => book.Id !== bookId)),
 
   updateAdminBook: (state, updatedBook) => {
     state.adminBooks.forEach((book) => {

@@ -14,11 +14,11 @@
             alt="Book Card Image"
           />
           <div class="pencil-icon">
-            <b-btn v-b-modal="modalId() + '-r'">
+            <b-btn v-b-modal="modalId() + '-t'">
               <b-icon icon="pencil-square"></b-icon>
             </b-btn>
             <b-modal
-              :id="modalId() + '-r'"
+              :id="modalId() + '-t'"
               :ref="modalRef('bookModal')"
               centered
               title="მონაცემების შეცვლა"
@@ -86,15 +86,16 @@
             </b-modal>
           </div>
           <div class="trash-icon">
-            <b-btn v-b-modal="modalId() + '-l'">
+            <b-btn v-b-modal="modalId() + '-b'">
               <b-icon icon="trash"></b-icon>
             </b-btn>
             <b-modal
-              :id="modalId() + '-l'"
+              :id="modalId() + '-b'"
               centered
               title="წიგნის წაშლა"
               cancel-title="გაუქმება"
               ok-title="დიახ"
+              @ok="deleteBook"
             >
               <p>დარწმუნებული ხართ, რომ გსურთ წიგნის წაშლა?</p>
             </b-modal>
@@ -165,6 +166,7 @@ export default {
 
     ...mapActions('admin', ['getAllAuthors']),
     ...mapMutations('admin', ['updateAdminBook']),
+    ...mapMutations('admin', ['deleteAdminBook']),
 
     setSelectedAuthor(value) {
       this.authorInput = value
@@ -203,6 +205,14 @@ export default {
       this.updateAdminBook(response.data)
       this.isDisabled = false
       this.titleState = this.authorState = this.yearState = null
+    },
+
+    async deleteBook() {
+      await axios.delete(
+        `https://api.ts-ai-kitkhe.ge/core/books/${this.adminBook.Id}`,
+        {}
+      )
+      this.deleteAdminBook(this.adminBook.Id)
     },
   },
 }
