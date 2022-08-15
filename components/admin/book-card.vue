@@ -161,7 +161,7 @@ export default {
     },
 
     modalRef(title) {
-      return title + this.adminBook.id
+      return title + this.adminBook.Id
     },
 
     ...mapActions('admin', ['getAllAuthors']),

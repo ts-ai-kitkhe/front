@@ -16,7 +16,7 @@
         <div class="row">
           <AdminBookCard
             v-for="book in matchingAdminBooks"
-            :key="book.id"
+            :key="book.Id"
             :admin-book="book"
           />
         </div>
