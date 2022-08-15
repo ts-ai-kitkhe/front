@@ -1,83 +1,88 @@
 <template>
-  <div class="operator-container">
-    <div ref="upperPanel" class="upper-panel">
-      <button class="go-back-btn" @click="goBackToBook">
-        <b-icon icon="arrow-left" class="arrow-icon"></b-icon>
-        <span>უკან დაბრუნება</span>
-      </button>
-      <div class="nav-panel">
-        <div
-          class="arrow-container right"
-          :class="{ 'is-hidden': parseInt(currPage) === 1 }"
-          @click="navigateToPrevPage"
-        >
-          <i class="arrow arrow-right"></i>
-        </div>
-        <input
-          type="text"
-          class="current-page"
-          :value="currPage"
-          @keyup.enter="navigateToEnteredPage($event)"
-        />
-        <div class="slash">/</div>
-        <div class="pages-total">{{ numPages }}</div>
-        <div
-          class="arrow-container left"
-          :class="{ 'is-hidden': parseInt(currPage) === numPages }"
-          @click="navigateToNextPage"
-        >
-          <i class="arrow arrow-left"></i>
-        </div>
-      </div>
-      <div></div>
+  <div>
+    <div v-if="loadingMode" class="loading-mode">
+      <AdminBookSpinner />
     </div>
-    <div ref="imgWrapper" class="img-wrapper">
-      <img
-        id="main-img"
-        ref="mainImg"
-        src="~/assets/images/test1.jpg"
-        alt="Scanned Page"
-        :style="[addRectMode ? { cursor: 'cell' } : {}]"
-        @load="fetchData"
-        @click="checkAndAddRect"
-      />
-      <div class="canvas">
-        <div v-for="(rect, index) in rectCoords" :key="index">
-          <VueDraggableResizable
-            class-name-active="rect-active"
-            :w="rect.w"
-            :h="rect.h"
-            :x="rect.x"
-            :y="rect.y"
-            :z="99"
-            :active="rect.active"
-            :style="[
-              rect.confidence < 0.5 ? { outline: '2px solid #ea4235' } : {},
-              rect.confidence >= 0.5 ? { outline: '2px solid #fabc05' } : {},
-              rect.confidence > 0.75 ? { outline: '2px solid #32a953' } : {},
-            ]"
-            @activated="handleRectActivation(rect)"
-            @deactivated="handleRectDeactivation(rect)"
+    <div v-else class="operator-container">
+      <div ref="upperPanel" class="upper-panel">
+        <button class="go-back-btn" @click="goBackToBook">
+          <b-icon icon="arrow-left" class="arrow-icon"></b-icon>
+          <span>უკან დაბრუნება</span>
+        </button>
+        <div class="nav-panel">
+          <div
+            class="arrow-container right"
+            :class="{ 'is-hidden': parseInt(currPage) === 1 }"
+            @click="navigateToPrevPage"
           >
-            <input
-              class="letter"
-              :value="rect.letter"
-              maxlength="1"
-              @keydown="changeLetter($event, rect)"
-              @keyup.backspace="deleteRect"
-            />
-          </VueDraggableResizable>
+            <i class="arrow arrow-right"></i>
+          </div>
+          <input
+            type="text"
+            class="current-page"
+            :value="currPage"
+            @keyup.enter="navigateToEnteredPage($event)"
+          />
+          <div class="slash">/</div>
+          <div class="pages-total">{{ numPages }}</div>
+          <div
+            class="arrow-container left"
+            :class="{ 'is-hidden': parseInt(currPage) === numPages }"
+            @click="navigateToNextPage"
+          >
+            <i class="arrow arrow-left"></i>
+          </div>
+        </div>
+        <div></div>
+      </div>
+      <div ref="imgWrapper" class="img-wrapper">
+        <img
+          id="main-img"
+          ref="mainImg"
+          src="~/assets/images/test1.jpg"
+          alt="Scanned Page"
+          :style="[addRectMode ? { cursor: 'cell' } : {}]"
+          @load="fetchData"
+          @click="checkAndAddRect"
+        />
+        <div class="canvas">
+          <div v-for="(rect, index) in rectCoords" :key="index">
+            <VueDraggableResizable
+              class-name-active="rect-active"
+              :w="rect.w"
+              :h="rect.h"
+              :x="rect.x"
+              :y="rect.y"
+              :z="99"
+              :active="rect.active"
+              :style="[
+                rect.confidence < 0.5 ? { outline: '2px solid #ea4235' } : {},
+                rect.confidence >= 0.5 ? { outline: '2px solid #fabc05' } : {},
+                rect.confidence > 0.75 ? { outline: '2px solid #32a953' } : {},
+              ]"
+              @activated="handleRectActivation(rect)"
+              @deactivated="handleRectDeactivation(rect)"
+            >
+              <input
+                class="letter"
+                :value="rect.letter"
+                maxlength="1"
+                @keydown="changeLetter($event, rect)"
+                @keyup.backspace="deleteRect"
+              />
+            </VueDraggableResizable>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="bottom-panel">
-      <button v-show="!addRectMode" @click="addRectMode = true">
-        მართკუთხედის დამატება
-      </button>
-      <button v-show="addRectMode" @click="addRectMode = false">
-        გაუქმება
-      </button>
-      <button>რედაქტირების დასრულება</button>
+      <div class="bottom-panel">
+        <button v-show="!addRectMode" @click="addRectMode = true">
+          მართკუთხედის დამატება
+        </button>
+        <button v-show="addRectMode" @click="addRectMode = false">
+          გაუქმება
+        </button>
+        <button>რედაქტირების დასრულება</button>
+      </div>
     </div>
   </div>
 </template>
@@ -90,6 +95,7 @@ export default {
 
   data() {
     return {
+      loadingMode: true,
       rectCoords: [],
       currPage: this.$route.params.page,
       numPages: 13,
@@ -116,7 +122,7 @@ export default {
   },
 
   mounted() {
-    this.$refs.imgWrapper.addEventListener('scroll', this.updateCooordinates)
+    this.$refs.imgWrapper?.addEventListener('scroll', this.updateCooordinates)
   },
 
   destroyed() {
@@ -262,6 +268,11 @@ export default {
 
 <style lang="scss">
 @import '~/assets/scss/vdr.scss';
+
+.loading-mode {
+  width: 100%;
+  height: 100vh;
+}
 
 .operator-container {
   $upper-panel-h: 5vh;
