@@ -123,12 +123,21 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .sidebar-container {
   .navbar {
     justify-content: center;
     font-family: 'BPG Nino Mkhedruli';
     font-size: 18px;
+
+    .custom-control-input:checked ~ .custom-control-label::before {
+      border-color: #7c66d8 !important;
+      background-color: #7c66d8 !important;
+    }
+
+    .custom-control-input:focus ~ .custom-control-label::before {
+      box-shadow: 0 0 0 0.2rem rgb(124 102 216 / 35%);
+    }
 
     .navbar-toggler {
       color: white;
@@ -188,13 +197,26 @@ export default {
           justify-content: center;
           flex-direction: column;
         }
+
+        .vue-slider {
+          margin-top: 30px;
+
+          .vue-slider-process {
+            background-color: #7c66d8;
+          }
+
+          .vue-slider-dot-handle {
+            border: 2px solid #beb3ec;
+          }
+
+          .vue-slider-dot-handle-focus {
+            border-color: beb3ec;
+            box-shadow: 0 0 0 5px rgb(124 102 216 / 35%);
+          }
+        }
       }
     }
   }
-}
-
-.vue-slider {
-  margin-top: 30px;
 }
 
 .books-container {
