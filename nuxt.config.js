@@ -28,6 +28,7 @@ export default {
     '~plugins/draggable-resizable.js',
     '~plugins/easy-lightbox.js',
     '~plugins/progress.js',
+    '~plugins/range-slider.js',
     '~plugins/select.js',
   ],
 
