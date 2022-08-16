@@ -22,25 +22,25 @@
                 <div class="sidebar-radio mt-1 mb-5">
                   <b-form-group>
                     <label class="filter-label sort-label mb-3">დასორტვა</label>
-                    <b-form-radio v-model="radio" value="new"
+                    <b-form-radio v-model="filterBy" value="new"
                       >ბოლოს დამატებული</b-form-radio
                     >
-                    <b-form-radio v-model="radio" value="titleabc"
+                    <b-form-radio v-model="filterBy" value="titleabc"
                       >სათაური (ანბანის მიხედვით)</b-form-radio
                     >
-                    <b-form-radio v-model="radio" value="authorabc"
+                    <b-form-radio v-model="filterBy" value="authorabc"
                       >ავტორი (ანბანის მიხედვით)</b-form-radio
                     >
-                    <b-form-radio v-model="radio" value="conf1"
+                    <b-form-radio v-model="filterBy" value="conf1"
                       >დამაჯერებლობა (ზრდადობით)</b-form-radio
                     >
-                    <b-form-radio v-model="radio" value="conf2"
+                    <b-form-radio v-model="filterBy" value="conf2"
                       >დამაჯერებლობა (კლებადობით)</b-form-radio
                     >
-                    <b-form-radio v-model="radio" value="year1"
+                    <b-form-radio v-model="filterBy" value="year1"
                       >გამოცემის თარიღი (ძველიდან ახლისკენ)</b-form-radio
                     >
-                    <b-form-radio v-model="radio" value="year2"
+                    <b-form-radio v-model="filterBy" value="year2"
                       >გამოცემის თარიღი (ახლიდან ძველისკენ)</b-form-radio
                     >
                   </b-form-group>
@@ -95,8 +95,8 @@ export default {
   data() {
     return {
       search: '',
-      radio: '',
-      value: [13, 31],
+      filterBy: 'new',
+      value: [13, 65],
     }
   },
 
@@ -104,12 +104,26 @@ export default {
     ...mapGetters('books', ['allBooks']),
 
     matchingBooks: function () {
-      return this.allBooks.filter((book) => {
+      const matchingBooks = this.allBooks.filter((book) => {
         return (
           book.title.toLowerCase().includes(this.search.toLowerCase()) ||
-          book.authorName.toLowerCase().includes(this.search.toLowerCase())
+          book.authorName.toLowerCase().includes(this.search.toLowerCase()) ||
+          book.year.toString().includes(this.search)
         )
       })
+
+      const fnMap = {
+        new: () => this.sortBy(matchingBooks, 'createdAt', true),
+        titleabc: () => this.sortBy(matchingBooks, 'title'),
+        authorabc: () => this.sortBy(matchingBooks, 'authorName'),
+        conf1: () => null, // TODO
+        conf2: () => null, // TODO
+        year1: () => this.sortBy(matchingBooks, 'year'),
+        year2: () => this.sortBy(matchingBooks, 'year', true),
+      }
+
+      fnMap[this.filterBy]()
+      return matchingBooks
     },
   },
 
@@ -119,6 +133,15 @@ export default {
 
   methods: {
     ...mapActions('books', ['getBooks']),
+
+    sortBy(arr, field, reverse = false) {
+      arr.sort((a, b) =>
+        a[field] > b[field] ? 1 : b[field] > a[field] ? -1 : 0
+      )
+      if (reverse) {
+        arr.reverse()
+      }
+    },
   },
 }
 </script>
@@ -137,6 +160,12 @@ export default {
 
     .custom-control-input:focus ~ .custom-control-label::before {
       box-shadow: 0 0 0 0.2rem rgb(124 102 216 / 35%);
+    }
+
+    .custom-control-input:not(:disabled):active
+      ~ .custom-control-label::before {
+      background-color: #7c66d8;
+      border-color: #7c66d8;
     }
 
     .navbar-toggler {

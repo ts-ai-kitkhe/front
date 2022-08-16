@@ -44,7 +44,8 @@ export default {
       return this.allAdminBooks.filter((book) => {
         return (
           book.title.toLowerCase().includes(this.search.toLowerCase()) ||
-          book.authorName.toLowerCase().includes(this.search.toLowerCase())
+          book.authorName.toLowerCase().includes(this.search.toLowerCase()) ||
+          book.year.toString().includes(this.search)
         )
       })
     },
