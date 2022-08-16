@@ -21,7 +21,9 @@
               <b-collapse id="nav-collapse" is-nav>
                 <div class="sidebar-radio mt-1 mb-5">
                   <b-form-group>
-                    <label class="filter-label sort-label mb-3">დასორტვა</label>
+                    <label class="filter-label sort-label mb-3"
+                      >სორტირება</label
+                    >
                     <b-form-radio v-model="filterBy" value="new"
                       >ბოლოს დამატებული</b-form-radio
                     >

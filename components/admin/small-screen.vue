@@ -29,7 +29,7 @@ export default {}
     justify-content: center;
     height: 100%;
     flex-direction: column;
-    width: min(400px, 70%);
+    width: min(500px, 70%);
     margin: 0 auto;
     text-align: center;
 
@@ -39,9 +39,10 @@ export default {}
     }
 
     .small-screen-txt {
-      margin-top: 30px;
-      letter-spacing: 1px;
-      line-height: 30px;
+      font-family: 'BPG Nino Mkhedruli';
+      font-size: 26px;
+      margin-top: 20px;
+      line-height: 36px;
     }
   }
 }

@@ -170,17 +170,20 @@ export default {
         .title {
           font-weight: 400;
           font-size: 36px;
+          letter-spacing: 2px;
         }
 
         .author {
-          font-weight: 400;
+          font-weight: 300;
           font-size: 31px;
-          margin: 15px 0;
+          margin: 15px;
+          letter-spacing: 2px;
         }
 
         .year {
           font-weight: 200;
-          font-size: 26px;
+          font-size: 22px;
+          letter-spacing: 2px;
         }
       }
     }
