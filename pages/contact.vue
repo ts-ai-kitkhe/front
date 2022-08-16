@@ -2,22 +2,18 @@
   <div class="contact-container">
     <div class="container contact-upper">
       <h1>კონტაქტი</h1>
-      <p class="contact-text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua.
-      </p>
       <div class="row contact-icons-row">
-        <div class="col-md-4 map-col">
-          <b-icon icon="pin-map" class="contact-icon"></b-icon>
-          <h2>მისამართი</h2>
-          <p>კახა ბენდუქიძის კამპუსი</p>
-          <p>თბილისი, დავით აღმაშენებლის ხეივანი, #240</p>
-        </div>
         <div class="col-md-4 envelope-col">
           <b-icon icon="envelope" class="contact-icon"></b-icon>
           <h2 class="email-top">ელექტრონული</h2>
           <h2>ფოსტა</h2>
           <a href="mailto: ts.ai.kitkhe@gmail.com">ts.ai.kitkhe@gmail.com</a>
+        </div>
+        <div class="col-md-4 map-col">
+          <b-icon icon="pin-map" class="contact-icon"></b-icon>
+          <h2>მისამართი</h2>
+          <p>კახა ბენდუქიძის კამპუსი</p>
+          <p>თბილისი, დავით აღმაშენებლის ხეივანი, #240</p>
         </div>
         <div class="col-md-4 github-col">
           <svg
@@ -59,46 +55,34 @@ export default {
   font-family: $geo-font-primary;
 
   .contact-upper {
-    margin-top: 30px;
     text-align: center;
 
     h1 {
       word-break: break-all;
       margin-bottom: 40px;
       letter-spacing: 1px;
+      font-size: 54px;
 
       @include sm {
-        font-size: 30px;
-      }
-    }
-
-    .contact-text {
-      width: 60%;
-      margin: 0 auto;
-      color: #999999;
-      font-weight: 300;
-      letter-spacing: 1px;
-
-      @include sm {
-        font-size: 15px;
+        font-size: 42px;
       }
     }
 
     .contact-icons-row {
-      margin-top: 50px;
+      margin-top: 75px;
+      margin-bottom: 80px;
       align-items: center;
 
       .contact-icon {
-        height: 70px;
-        width: 70px;
+        height: 60px;
+        width: 60px;
         margin-bottom: 20px;
       }
 
       h2 {
-        color: $txt-color-main;
-        font-weight: bold;
+        color: $txt-color-main-hover;
         letter-spacing: 2px;
-        font-size: 18px;
+        font-size: 26px;
         margin-bottom: 15px;
       }
 
@@ -106,24 +90,21 @@ export default {
         margin: 0 auto;
         width: 90%;
         font-weight: 200;
+        font-size: 20px;
         letter-spacing: 1px;
+        font-family: 'BPG Nino Mkhedruli Book';
       }
 
       a {
-        color: lightblue;
+        color: #beb3ec;
         font-weight: 200;
+        font-size: 20px;
         letter-spacing: 1px;
         text-decoration: none;
-      }
+        transition: 0.1s ease-out;
 
-      .github-col {
-        svg {
-          height: 70px;
-          width: 70px;
-        }
-
-        @include md {
-          margin-top: 30px;
+        &:hover {
+          color: #7c66d8;
         }
       }
 
@@ -131,14 +112,28 @@ export default {
         .email-top {
           margin-bottom: 5px;
         }
+      }
+
+      .map-col {
+        @include md {
+          margin-top: 50px;
+        }
+      }
+
+      .github-col {
+        svg {
+          height: 60px;
+          width: 60px;
+        }
 
         @include md {
-          margin-top: 30px;
+          margin-top: 50px;
         }
       }
 
       @include md {
-        align-items: flex-start;
+        margin-top: 40px;
+        margin-bottom: 40px;
       }
     }
   }
@@ -148,6 +143,7 @@ export default {
     margin-top: 50px;
 
     iframe {
+      background-color: #e5e3df;
       height: max(550px, 50vh);
     }
   }
