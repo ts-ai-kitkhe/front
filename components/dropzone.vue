@@ -34,7 +34,7 @@ export default {
     const options = {
       url: '/',
       method: 'put',
-      acceptedFiles: '.jpeg,.jpg,.png',
+      acceptedFiles: '.jpeg,.jpg,.png,.webp',
 
       sending(file, xhr) {
         const _send = xhr.send

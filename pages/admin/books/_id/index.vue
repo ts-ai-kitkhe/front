@@ -160,7 +160,7 @@ export default {
   }
 
   .main-content {
-    margin-top: 80px;
+    margin-top: 60px;
     padding: 0 3vw;
 
     .book-info {
@@ -304,6 +304,7 @@ export default {
 .fade-leave-active {
   transition: opacity 0.1s;
 }
+
 .fade-enter,
 .fade-leave-to {
   opacity: 0;

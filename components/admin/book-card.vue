@@ -71,7 +71,7 @@
                   <b-form-file
                     id="cover-image"
                     required
-                    accept=".png, .jpg, .jpeg"
+                    accept=".png, .jpg, .jpeg, .webp"
                   ></b-form-file>
                 </b-form-group>
                 <b-form-group label="საჯაროობა">
