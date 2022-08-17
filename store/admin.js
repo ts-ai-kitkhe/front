@@ -35,7 +35,9 @@ export const mutations = {
 
 export const actions = {
   async getAdminBooks({ commit }) {
-    const response = await axios.get('https://api.ts-ai-kitkhe.ge/core/books')
+    const response = await axios.get(
+      'https://api.ts-ai-kitkhe.ge/core/admin/books'
+    )
     commit('setAdminBooks', response.data)
   },
 
