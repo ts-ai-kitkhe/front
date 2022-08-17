@@ -47,7 +47,7 @@ export const actions = {
   },
 
   async getAllAuthors({ commit }) {
-    const response = await axios.get('/authors.json')
+    const response = await axios.get('https://api.ts-ai-kitkhe.ge/core/authors')
     commit('setAllAuthors', response.data)
   },
 }
