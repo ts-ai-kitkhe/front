@@ -136,7 +136,7 @@ export default {
 
   data() {
     return {
-      visibility: 'Private',
+      visibility: this.adminBook.visibility,
       authorInput: this.adminBook.authorName,
       authorState: null,
       isDisabled: false,
@@ -194,6 +194,7 @@ export default {
         title: this.title,
         authorName: this.authorInput,
         year: this.year,
+        visibility: this.visibility,
       }
 
       const response = await axios.post(
