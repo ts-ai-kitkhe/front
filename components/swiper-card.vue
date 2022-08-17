@@ -2,7 +2,7 @@
   <NuxtLink :to="`/books/${cardInfo.Id}`" class="swiper-card-container">
     <div class="card">
       <img v-if="cardInfo.image" :src="cardInfo.image" alt="Book Card Image" />
-      <img v-else src="~/assets/images/no_cover.jpg" alt="Book Card Image" />
+      <img v-else src="~/assets/images/no_cover.webp" alt="Book Card Image" />
       <div class="card-body">
         <h5>{{ cardInfo.title | truncateStr }}</h5>
         <h6>{{ cardInfo.authorName | truncateStr }}</h6>

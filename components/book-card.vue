@@ -7,7 +7,7 @@
           :src="bookInfo.image"
           alt="Book Card Image"
         />
-        <img v-else src="~/assets/images/no_cover.jpg" alt="Book Card Image" />
+        <img v-else src="~/assets/images/no_cover.webp" alt="Book Card Image" />
         <div class="card-body">
           <h5>{{ bookInfo.title | truncateStr }}</h5>
           <h6>{{ bookInfo.authorName | truncateStr }}</h6>

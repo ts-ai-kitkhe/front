@@ -10,7 +10,7 @@
           />
           <img
             v-else
-            src="~/assets/images/no_cover.jpg"
+            src="~/assets/images/no_cover.webp"
             alt="Book Card Image"
           />
           <div class="pencil-icon">
