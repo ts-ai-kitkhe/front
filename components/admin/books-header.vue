@@ -138,7 +138,14 @@ export default {
 
       const response = await axios.post(
         'https://api.ts-ai-kitkhe.ge/core/books',
-        data
+        data,
+        {
+          headers: {
+            authorization:
+              'Bearer ' +
+              this.$auth.strategies.cognito.token.session.idToken.jwtToken,
+          },
+        }
       )
 
       this.addNewAdminBook(response.data)

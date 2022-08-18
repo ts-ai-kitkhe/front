@@ -199,7 +199,14 @@ export default {
 
       const response = await axios.post(
         `https://api.ts-ai-kitkhe.ge/core/books/${this.adminBook.Id}`,
-        data
+        data,
+        {
+          headers: {
+            authorization:
+              'Bearer ' +
+              this.$auth.strategies.cognito.token.session.idToken.jwtToken,
+          },
+        }
       )
 
       this.$refs[this.modalRef('bookModal')].hide()
@@ -211,7 +218,13 @@ export default {
     async deleteBook() {
       await axios.delete(
         `https://api.ts-ai-kitkhe.ge/core/books/${this.adminBook.Id}`,
-        {}
+        {
+          headers: {
+            authorization:
+              'Bearer ' +
+              this.$auth.strategies.cognito.token.session.idToken.jwtToken,
+          },
+        }
       )
       this.deleteAdminBook(this.adminBook.Id)
     },

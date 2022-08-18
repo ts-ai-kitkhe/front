@@ -36,7 +36,14 @@ export const mutations = {
 export const actions = {
   async getAdminBooks({ commit }) {
     const response = await axios.get(
-      'https://api.ts-ai-kitkhe.ge/core/admin/books'
+      'https://api.ts-ai-kitkhe.ge/core/admin/books',
+      {
+        headers: {
+          authorization:
+            'Bearer ' +
+            this.$auth.strategies.cognito.token.session.idToken.jwtToken,
+        },
+      }
     )
     commit('setAdminBooks', response.data)
   },
