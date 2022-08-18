@@ -6,7 +6,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'front',
+    title: 'ts-ai-kitkhe',
     htmlAttrs: {
       lang: 'en',
     },
