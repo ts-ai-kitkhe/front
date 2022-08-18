@@ -10,7 +10,9 @@ export const mutations = {
 
 export const actions = {
   async getSwiperCards({ commit }) {
-    const response = await axios.get('https://api.ts-ai-kitkhe.ge/core/books')
+    const response = await axios.get('https://api.ts-ai-kitkhe.ge/core/books', {
+      params: { limit: 10 },
+    })
     commit('setSwiperCards', response.data)
   },
 }
