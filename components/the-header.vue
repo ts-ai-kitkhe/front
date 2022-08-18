@@ -1,7 +1,10 @@
 <template>
   <header class="header-container">
     <b-navbar toggleable="sm">
-      <NuxtLink to="/#feed" class="navbar-brand">LOGO</NuxtLink>
+      <NuxtLink to="/#feed" class="navbar-brand">
+        <img src="~/assets/images/logo.svg" alt="Logo" class="logo" />
+        <span class="logo-text">წაიკითხე</span>
+      </NuxtLink>
       <b-navbar-toggle target="header-collapse"></b-navbar-toggle>
       <b-collapse id="header-collapse" is-nav>
         <b-navbar-nav class="ml-auto">
@@ -25,7 +28,47 @@ export default {}
   font-size: 22px;
 
   .navbar-brand {
-    color: $txt-color-main;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-left: 10px;
+      transition: all 0.1s ease-out;
+      filter: invert(81%) sepia(23%) saturate(0%) hue-rotate(264deg)
+        brightness(95%) contrast(83%);
+
+      @include xs {
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(88deg)
+          brightness(105%) contrast(103%);
+      }
+    }
+
+    .logo-text {
+      font-family: $geo-font-primary;
+      color: $txt-color-main;
+      letter-spacing: 2px;
+      transition: all 0.1s ease-out;
+      font-size: 24px;
+      line-height: 24px;
+
+      @include xs {
+        display: none;
+      }
+    }
+
+    &:hover {
+      .logo {
+        filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(88deg)
+          brightness(105%) contrast(103%);
+      }
+
+      .logo-text {
+        color: $txt-color-main-hover;
+      }
+    }
   }
 
   .navbar-toggler {

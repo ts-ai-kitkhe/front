@@ -39,10 +39,11 @@ export default {}
     }
 
     .small-screen-txt {
-      font-family: 'BPG Nino Mkhedruli';
+      font-family: $geo-font-primary;
       font-size: 26px;
       margin-top: 20px;
       line-height: 36px;
+      letter-spacing: 1px;
     }
   }
 }

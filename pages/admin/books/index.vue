@@ -64,14 +64,14 @@ export default {
 <style lang="scss" scoped>
 .admin-books-container {
   .main-content {
-    margin-top: 60px;
+    margin-top: 80px;
     margin-bottom: 50px;
 
     h1 {
       text-align: center;
       font-weight: 400;
       font-size: 36px;
-      letter-spacing: 2px;
+      letter-spacing: 1px;
     }
 
     .search-bar-container {

@@ -1,7 +1,10 @@
 <template>
   <header class="admin-header-container">
     <b-navbar toggleable="sm" fixed="top">
-      <NuxtLink to="/#feed" class="navbar-brand">LOGO</NuxtLink>
+      <NuxtLink to="/#feed" class="navbar-brand">
+        <img src="~/assets/images/logo.svg" alt="Logo" class="logo" />
+        <span class="logo-text">წაიკითხე</span>
+      </NuxtLink>
       <b-navbar-toggle target="header-collapse"></b-navbar-toggle>
       <b-collapse id="header-collapse" is-nav>
         <b-navbar-nav class="ml-auto">

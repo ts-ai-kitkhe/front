@@ -92,7 +92,7 @@ export default {
         font-weight: 200;
         font-size: 20px;
         letter-spacing: 1px;
-        font-family: 'BPG Nino Mkhedruli Book';
+        font-family: $geo-font-primary-light;
       }
 
       a {

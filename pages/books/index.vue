@@ -152,7 +152,7 @@ export default {
 .sidebar-container {
   .navbar {
     justify-content: center;
-    font-family: 'BPG Nino Mkhedruli';
+    font-family: $geo-font-primary;
     font-size: 18px;
 
     .custom-control-input:checked ~ .custom-control-label::before {
@@ -199,7 +199,7 @@ export default {
 
       .filter-label {
         font-size: 24px;
-        font-family: 'BPG Nino Mkhedruli Bold';
+        font-family: $geo-font-primary-bold;
       }
 
       .sidebar-radio {
@@ -297,11 +297,13 @@ export default {
   .search-bar-container {
     input {
       border-width: 2px;
-      border-radius: 20px;
-      padding: 15px;
+      border-radius: 40px;
+      padding: 20px;
       border: 2px solid #37393d;
       background-color: #2f2f2f;
       color: white;
+      font-family: $geo-font-primary;
+      font-size: 20px;
 
       &::placeholder {
         color: #929397;

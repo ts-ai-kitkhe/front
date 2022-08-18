@@ -160,7 +160,7 @@ export default {
   }
 
   .main-content {
-    margin-top: 60px;
+    margin-top: 80px;
     padding: 0 3vw;
 
     .book-info {
@@ -170,20 +170,20 @@ export default {
         .title {
           font-weight: 400;
           font-size: 36px;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
         }
 
         .author {
           font-weight: 300;
           font-size: 31px;
           margin: 15px;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
         }
 
         .year {
           font-weight: 200;
           font-size: 22px;
-          letter-spacing: 2px;
+          letter-spacing: 1px;
         }
       }
     }

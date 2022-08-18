@@ -226,7 +226,7 @@ export default {
   .loading-text {
     margin: 50px 0 10px;
     font-size: 32px;
-    font-family: 'BPG Nino Mkhedruli';
+    font-family: $geo-font-primary;
     display: flex;
 
     .dots {
@@ -263,7 +263,7 @@ export default {
   }
 
   button {
-    font-family: 'BPG Nino Mkhedruli';
+    font-family: $geo-font-primary;
     color: white;
     background-color: black;
     border: none;
