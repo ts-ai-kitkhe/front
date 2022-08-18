@@ -58,7 +58,13 @@ export default {
         }
 
         await axios
-          .post(endpoint, payload)
+          .post(endpoint, payload, {
+            headers: {
+              authorization:
+                'Bearer ' +
+                vm.$auth.strategies.cognito.token.session.idToken.jwtToken,
+            },
+          })
           .then((res) => res.data.url)
           .then((url) => {
             file.uploadURL = url
