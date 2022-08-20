@@ -5,6 +5,7 @@ export const state = () => ({
   adminBooks: [],
   adminBook: null,
   allAuthors: [],
+  adminBookPages: [],
 })
 
 export const mutations = {
@@ -18,6 +19,8 @@ export const mutations = {
   setAdminBooks: (state, adminBooks) => (state.adminBooks = adminBooks),
   setAdminBook: (state, adminBook) => (state.adminBook = adminBook),
   setAllAuthors: (state, allAuthors) => (state.allAuthors = allAuthors),
+  setAdminBookPages: (state, adminBookPages) =>
+    (state.adminBookPages = adminBookPages),
   addNewAdminBook: (state, newBook) => state.adminBooks.unshift(newBook),
   deleteAdminBook: (state, bookId) =>
     (state.adminBooks = state.adminBooks.filter((book) => book.Id !== bookId)),
@@ -59,6 +62,13 @@ export const actions = {
     const response = await axios.get('https://api.ts-ai-kitkhe.ge/core/authors')
     commit('setAllAuthors', response.data)
   },
+
+  async getAdminBookPages({ commit }, id) {
+    const response = await axios.get(
+      `https://api.ts-ai-kitkhe.ge/core/admin/books/${id}/pages`
+    )
+    commit('setAdminBookPages', response.data)
+  },
 }
 
 export const getters = {
@@ -66,4 +76,5 @@ export const getters = {
   allAdminBooks: (state) => state.adminBooks,
   adminBookById: (state) => state.adminBook,
   allAuthors: (state) => state.allAuthors,
+  adminBookPages: (state) => state.adminBookPages,
 }

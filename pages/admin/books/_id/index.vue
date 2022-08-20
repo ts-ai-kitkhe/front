@@ -16,18 +16,18 @@
             <h3 class="year">{{ adminBookById.year }} წელი</h3>
           </div>
         </div>
-        <div v-if="pageImages.length === 0" class="dropzone-panel">
+        <div v-if="adminBookPages.length === 0" class="dropzone-panel">
           <VueDropzone></VueDropzone>
         </div>
         <VueDraggable
           v-else
-          :list="pageImages"
+          v-model="adminBookPages"
           class="row pages-row"
           ghost-class="ghost"
           @change="pagesReordered"
         >
           <div
-            v-for="(src, i) in pageImages"
+            v-for="(page, i) in adminBookPages"
             :key="i"
             class="page-card-container col-xl-2 col-lg-3 col-md-4"
           >
@@ -38,7 +38,7 @@
                 class="page-name"
                 :style="[reorderMode ? { 'pointer-events': 'none' } : {}]"
               >
-                {{ src.length > 13 ? '...' + src.slice(-10) : src }}
+                {{ page.url | truncateUrl }}
               </NuxtLink>
               <div class="page-wrapper">
                 <div class="trash-icon">
@@ -56,8 +56,8 @@
                   </b-modal>
                 </div>
                 <img
-                  :src="src"
-                  alt="Page"
+                  :src="page.url"
+                  alt=""
                   class="page-img"
                   @click="() => showImg(i)"
                 />
@@ -68,7 +68,7 @@
         </VueDraggable>
         <VueEasyLightbox
           :visible="visible"
-          :imgs="pageImages"
+          :imgs="adminBookPages.map((page) => page.url)"
           :index="index"
           @hide="handleHide"
         ></VueEasyLightbox>
@@ -86,36 +86,47 @@ export default {
     VueDropzone,
   },
 
+  filters: {
+    truncateUrl: function (url) {
+      const maxSize = 18
+      url = url.split('/').pop()
+      return url.length > maxSize ? '...' + url.slice(-1 * (maxSize - 3)) : url
+    },
+  },
+
   layout: 'operator',
 
   data() {
     return {
       visible: false,
       index: 0,
-      pageImages: [
-        require('~/assets/images/test1.jpg'),
-        require('~/assets/images/test2.jpg'),
-        require('~/assets/images/test3.jpg'),
-        require('~/assets/images/test1.jpg'),
-        require('~/assets/images/test2.jpg'),
-        require('~/assets/images/test3.jpg'),
-        require('~/assets/images/test1.jpg'),
-        require('~/assets/images/test2.jpg'),
-        require('~/assets/images/test3.jpg'),
-      ],
       adminBookId: this.$route.params.id,
       reorderMode: false,
     }
   },
 
-  computed: mapGetters('admin', ['adminBookById']),
+  computed: {
+    ...mapGetters('admin', ['adminBookById']),
+
+    adminBookPages: {
+      get() {
+        return this.$store.state.admin.adminBookPages
+      },
+
+      set(value) {
+        this.$store.commit('admin/setAdminBookPages', value)
+      },
+    },
+  },
 
   created() {
     this.getAdminBookById(this.adminBookId)
+    this.getAdminBookPages(this.adminBookId)
   },
 
   methods: {
     ...mapActions('admin', ['getAdminBookById']),
+    ...mapActions('admin', ['getAdminBookPages']),
 
     showImg(index) {
       this.index = index
@@ -269,9 +280,16 @@ export default {
           padding: 30px 15px;
           width: 100%;
           cursor: zoom-in;
-          box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
-            rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
-            rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 5px;
+
+          &:hover {
+            box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
+
+            .trash-icon {
+              visibility: visible;
+              opacity: 1;
+            }
+          }
         }
 
         .page-num {
@@ -281,15 +299,6 @@ export default {
           line-height: 18px;
           font-size: 18px;
           bottom: 10px;
-        }
-
-        &:hover {
-          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-          .trash-icon {
-            visibility: visible;
-            opacity: 1;
-          }
         }
       }
     }
