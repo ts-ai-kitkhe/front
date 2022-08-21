@@ -70,6 +70,7 @@
                 <b-form-group label="მთავარი სურათი" label-for="cover-image">
                   <b-form-file
                     id="cover-image"
+                    v-model="cover"
                     required
                     accept=".png, .jpg, .jpeg, .webp"
                   ></b-form-file>
@@ -144,6 +145,7 @@ export default {
       titleState: null,
       year: this.adminBook.year,
       yearState: null,
+      cover: null,
     }
   },
 
@@ -188,31 +190,41 @@ export default {
       return this.titleState && this.authorState && this.yearState
     },
 
-    async submitBook() {
-      const data = {
-        id: this.adminBook.Id,
-        title: this.title,
-        authorName: this.authorInput,
-        year: this.year,
-        visibility: this.visibility,
-      }
+    submitBook() {
+      const formData = this.buildFormData()
+      axios
+        .post(
+          `https://api.ts-ai-kitkhe.ge/core/books/${this.adminBook.Id}`,
+          formData,
+          {
+            headers: {
+              'Content-Type': 'multipart/form-data',
+              authorization:
+                'Bearer ' +
+                this.$auth.strategies.cognito.token.session.idToken.jwtToken,
+            },
+          }
+        )
+        .then((res) => {
+          this.$refs[this.modalRef('bookModal')].hide()
+          this.updateAdminBook(res.data)
+        })
+        .catch((e) => console.error(e))
+        .finally((_) => {
+          this.isDisabled = false
+          this.titleState = this.authorState = this.yearState = null
+        })
+    },
 
-      const response = await axios.post(
-        `https://api.ts-ai-kitkhe.ge/core/books/${this.adminBook.Id}`,
-        data,
-        {
-          headers: {
-            authorization:
-              'Bearer ' +
-              this.$auth.strategies.cognito.token.session.idToken.jwtToken,
-          },
-        }
-      )
-
-      this.$refs[this.modalRef('bookModal')].hide()
-      this.updateAdminBook(response.data)
-      this.isDisabled = false
-      this.titleState = this.authorState = this.yearState = null
+    buildFormData() {
+      const formData = new FormData()
+      formData.append('id', this.adminBook.Id)
+      formData.append('title', this.title)
+      formData.append('authorName', this.authorInput)
+      formData.append('year', this.year)
+      formData.append('visibility', this.visibility)
+      formData.append('cover', this.cover)
+      return formData
     },
 
     async deleteBook() {
