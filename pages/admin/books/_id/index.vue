@@ -33,7 +33,10 @@
           >
             <div class="card-details">
               <NuxtLink
-                :to="`${i + 1}`"
+                :to="{
+                  path: generatePath(page.url),
+                  query: { ext: generateQueryParam(page.url) },
+                }"
                 append
                 class="page-name"
                 :style="[reorderMode ? { 'pointer-events': 'none' } : {}]"
@@ -139,6 +142,15 @@ export default {
 
     pagesReordered() {
       this.reorderMode = true
+    },
+
+    generatePath(url) {
+      const filename = url.split('/').pop()
+      return filename.slice(0, filename.lastIndexOf('.'))
+    },
+
+    generateQueryParam(url) {
+      return url.split('/').pop().split('.').pop()
     },
   },
 }

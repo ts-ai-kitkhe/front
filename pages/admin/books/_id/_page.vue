@@ -39,8 +39,16 @@
         <img
           id="main-img"
           ref="mainImg"
-          src="~/assets/images/test1.jpg"
-          alt="Scanned Page"
+          :src="
+            'https://assets.ts-ai-kitkhe.ge/books/' +
+            bookId +
+            '/pages/' +
+            filename +
+            '.' +
+            extension
+          "
+          alt="Scanned
+        Page"
           :style="[addRectMode ? { cursor: 'cell' } : {}]"
           @load="fetchData"
           @click="checkAndAddRect"
@@ -95,9 +103,12 @@ export default {
 
   data() {
     return {
-      loadingMode: true,
+      loadingMode: false,
       rectCoords: [],
-      currPage: this.$route.params.page,
+      currPage: this.$route.params.page, // TODO: Refactor
+      bookId: this.$route.params.id,
+      filename: this.$route.params.page,
+      extension: this.$route.query.ext,
       numPages: 13,
       topY: 0,
       selectedRect: null,
@@ -134,16 +145,17 @@ export default {
 
   methods: {
     async fetchData() {
-      return await fetch('/predictions.json')
+      const predictionsURL = `https://ml.ts-ai-kitkhe.ge/books/${this.bookId}/pages/${this.filename}.json`
+      return await fetch(predictionsURL)
         .then((response) => response.json())
         .then((data) => {
-          const imgShape = { h: 2120, w: 1406 }
+          const imgShape = { h: data.shape.height, w: data.shape.width }
           const screenSize = { h: this.imageHeight, w: this.imageWidth }
 
           const rescaleH = (x) => (x / imgShape.h) * screenSize.h
           const rescaleW = (x) => (x / imgShape.w) * screenSize.w
 
-          this.rectCoords = data.map((rect) => ({
+          this.rectCoords = data.data.map((rect) => ({
             id: rect.id,
             x: rescaleW(rect.corners[0][0]),
             y: rescaleH(rect.corners[0][1]),
