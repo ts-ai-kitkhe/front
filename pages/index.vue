@@ -390,6 +390,8 @@ export default {
           width: 100%;
 
           .swiper-wrapper {
+            align-items: flex-start;
+
             .swiper-slide {
               display: flex;
               align-items: center;
@@ -404,6 +406,7 @@ export default {
           color: white;
           top: 50%;
           transition: all 0.1s ease;
+          margin-top: -60px;
 
           &.swiper-button-prev {
             left: -20px;
