@@ -81,6 +81,10 @@ export default {
     vm.dropzone.on('processing', (file) => {
       vm.dropzone.options.url = file.uploadURL
     })
+
+    vm.dropzone.on('queuecomplete', function () {
+      window.location.reload(true)
+    })
   },
 }
 </script>
