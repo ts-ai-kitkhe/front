@@ -324,7 +324,7 @@ export default {
 
   .books-row {
     .row {
-      align-items: baseline;
+      align-items: flex-start;
 
       @include xs {
         justify-content: center;

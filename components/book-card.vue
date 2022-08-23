@@ -3,8 +3,8 @@
     <NuxtLink :to="`/books/${bookInfo.Id}`" class="book-card-container">
       <div class="card">
         <img
-          v-if="bookInfo.image"
-          :src="bookInfo.image"
+          v-if="bookInfo.coverImagePath"
+          :src="`https://assets.ts-ai-kitkhe.ge/${bookInfo.coverImagePath}`"
           alt="Book Card Image"
         />
         <img v-else src="~/assets/images/no_cover.webp" alt="Book Card Image" />

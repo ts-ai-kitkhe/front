@@ -5,8 +5,8 @@
         <div class="col-md-6">
           <div class="book-img-container">
             <img
-              v-if="bookById.image"
-              :src="bookById.image"
+              v-if="bookById.coverImagePath"
+              :src="`https://assets.ts-ai-kitkhe.ge/${bookById.coverImagePath}`"
               alt="Book Image"
               class="book-img"
             />
