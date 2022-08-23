@@ -1,7 +1,11 @@
 <template>
   <NuxtLink :to="`/books/${cardInfo.Id}`" class="swiper-card-container">
     <div class="card">
-      <img v-if="cardInfo.image" :src="cardInfo.image" alt="Book Card Image" />
+      <img
+        v-if="cardInfo.coverImagePath"
+        :src="`https://assets.ts-ai-kitkhe.ge/${cardInfo.coverImagePath}`"
+        alt="Book Card Image"
+      />
       <img v-else src="~/assets/images/no_cover.webp" alt="Book Card Image" />
       <div class="card-body">
         <h5>{{ cardInfo.title | truncateStr }}</h5>
