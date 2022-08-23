@@ -33,7 +33,7 @@
               <b-form-group label="ავტორი">
                 <VueSelect
                   :options="
-                    allAuthors.filter(
+                    authors.filter(
                       (value, index, self) => self.indexOf(value) === index
                     )
                   "
@@ -80,10 +80,17 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 import axios from 'axios'
 
 export default {
+  props: {
+    authors: {
+      type: Array,
+      default: null,
+    },
+  },
+
   data() {
     return {
       title: null,
@@ -98,16 +105,11 @@ export default {
 
   computed: {
     ...mapGetters('admin', ['adminEmail']),
-    ...mapGetters('admin', ['allAuthors']),
-  },
-
-  created() {
-    this.getAllAuthors()
   },
 
   methods: {
-    ...mapActions('admin', ['getAllAuthors']),
     ...mapMutations('admin', ['addNewAdminBook']),
+    ...mapMutations('admin', ['addNewAuthor']),
 
     setSelectedAuthor(value) {
       this.authorName = value
@@ -149,6 +151,7 @@ export default {
       )
 
       this.addNewAdminBook(response.data)
+      this.addNewAuthor(this.authorName)
       this.$refs.bookModal.hide()
       this.isDisabled = false
       this.title =

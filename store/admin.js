@@ -19,6 +19,10 @@ export const mutations = {
   setAdminBooks: (state, adminBooks) => (state.adminBooks = adminBooks),
   setAdminBook: (state, adminBook) => (state.adminBook = adminBook),
   setAllAuthors: (state, allAuthors) => (state.allAuthors = allAuthors),
+  addNewAuthor: (state, newAuthor) => {
+    state.allAuthors.push(newAuthor)
+    state.allAuthors.sort()
+  },
   setAdminBookPages: (state, adminBookPages) =>
     (state.adminBookPages = adminBookPages),
   addNewAdminBook: (state, newBook) => state.adminBooks.unshift(newBook),

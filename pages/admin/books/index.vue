@@ -1,6 +1,6 @@
 <template>
   <div class="admin-books-container">
-    <AdminBooksHeader />
+    <AdminBooksHeader :authors="allAuthors" />
     <div class="main-content">
       <div class="container">
         <h1 class="my-5">ჩემი წიგნები</h1>
@@ -18,6 +18,7 @@
             v-for="book in matchingAdminBooks"
             :key="book.Id"
             :admin-book="book"
+            :authors="allAuthors"
           />
         </div>
       </div>
@@ -39,6 +40,7 @@ export default {
 
   computed: {
     ...mapGetters('admin', ['allAdminBooks']),
+    ...mapGetters('admin', ['allAuthors']),
 
     matchingAdminBooks: function () {
       return this.allAdminBooks.filter((book) => {
@@ -53,10 +55,12 @@ export default {
 
   created() {
     this.getAdminBooks()
+    this.getAllAuthors()
   },
 
   methods: {
     ...mapActions('admin', ['getAdminBooks']),
+    ...mapActions('admin', ['getAllAuthors']),
   },
 }
 </script>

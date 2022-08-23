@@ -42,7 +42,7 @@
                   <VueSelect
                     v-model="authorInput"
                     :options="
-                      allAuthors.filter(
+                      authors.filter(
                         (value, index, self) => self.indexOf(value) === index
                       )
                     "
@@ -114,7 +114,7 @@
 </template>
 
 <script>
-import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { mapMutations } from 'vuex'
 import axios from 'axios'
 
 export default {
@@ -133,11 +133,17 @@ export default {
       type: Object,
       default: null,
     },
+
+    authors: {
+      type: Array,
+      default: null,
+    },
   },
 
   data() {
     return {
       visibility: this.adminBook.visibility,
+      currAuthor: this.adminBook.authorName,
       authorInput: this.adminBook.authorName,
       authorState: null,
       isDisabled: false,
@@ -149,14 +155,6 @@ export default {
     }
   },
 
-  computed: {
-    ...mapGetters('admin', ['allAuthors']),
-  },
-
-  created() {
-    this.getAllAuthors()
-  },
-
   methods: {
     modalId() {
       return 'modal-' + this.adminBook.Id
@@ -166,9 +164,9 @@ export default {
       return title + this.adminBook.Id
     },
 
-    ...mapActions('admin', ['getAllAuthors']),
     ...mapMutations('admin', ['updateAdminBook']),
     ...mapMutations('admin', ['deleteAdminBook']),
+    ...mapMutations('admin', ['addNewAuthor']),
 
     setSelectedAuthor(value) {
       this.authorInput = value
@@ -208,6 +206,9 @@ export default {
         .then((res) => {
           this.$refs[this.modalRef('bookModal')].hide()
           this.updateAdminBook(res.data)
+          if (this.currAuthor !== this.authorInput) {
+            this.addNewAuthor(this.authorInput)
+          }
         })
         .catch((e) => console.error(e))
         .finally((_) => {
