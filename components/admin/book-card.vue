@@ -4,8 +4,8 @@
       <div class="card px-4 px-sm-0">
         <div class="img-wrapper">
           <img
-            v-if="adminBook.image"
-            :src="adminBook.image"
+            v-if="adminBook.coverImagePath"
+            :src="`https://assets.ts-ai-kitkhe.ge/${adminBook.coverImagePath}`"
             alt="Book Card Image"
           />
           <img
