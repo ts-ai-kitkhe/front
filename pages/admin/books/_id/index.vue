@@ -17,7 +17,7 @@
           </div>
         </div>
         <div v-if="adminBookPages.length === 0" class="dropzone-panel">
-          <VueDropzone></VueDropzone>
+          <VueDropzone :book-id="adminBookId"></VueDropzone>
         </div>
         <VueDraggable
           v-else
