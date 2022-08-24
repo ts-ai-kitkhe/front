@@ -166,6 +166,7 @@ export default {
             letter: rect.letter,
           }))
         })
+        .catch((_) => (this.loadingMode = true))
     },
 
     checkAndAddRect(event) {
