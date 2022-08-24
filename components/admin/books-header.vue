@@ -151,7 +151,10 @@ export default {
           this.addNewAdminBook(res.data)
           this.addNewAuthor(this.authorName)
         })
-        .catch((e) => console.error(e))
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.error(e)
+        })
         .finally((_) => {
           this.isDisabled = false
           this.title =

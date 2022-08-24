@@ -210,7 +210,10 @@ export default {
             this.addNewAuthor(this.authorInput)
           }
         })
-        .catch((e) => console.error(e))
+        .catch((e) => {
+          /* eslint-disable no-console */
+          console.error(e)
+        })
         .finally((_) => {
           this.isDisabled = false
           this.titleState = this.authorState = this.yearState = null
