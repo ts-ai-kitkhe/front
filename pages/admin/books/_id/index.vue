@@ -293,10 +293,11 @@ export default {
           padding: 20px 15px 35px;
           width: 100%;
           cursor: zoom-in;
-          box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 5px;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 5px;
+          transition: 0.1s ease-out;
 
           &:hover {
-            box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 10px;
           }
         }
 

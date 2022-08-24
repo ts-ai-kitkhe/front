@@ -255,6 +255,7 @@ export default {
 
     .img-wrapper {
       position: relative;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 10px;
 
       img {
         width: 100%;
@@ -311,7 +312,7 @@ export default {
 
       &:hover {
         img {
-          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 20px;
+          box-shadow: rgba(0, 0, 0, 0.25) 0px 2px 15px;
         }
 
         .pencil-icon,
