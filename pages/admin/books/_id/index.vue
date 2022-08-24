@@ -45,11 +45,11 @@
               </NuxtLink>
               <div class="page-wrapper">
                 <div class="trash-icon">
-                  <b-btn v-b-modal="i + 1 + '-delete'">
+                  <b-btn v-b-modal="page.url.split('/').pop() + '-delete'">
                     <b-icon icon="trash"></b-icon>
                   </b-btn>
                   <b-modal
-                    :id="i + 1 + '-delete'"
+                    :id="page.url.split('/').pop() + '-delete'"
                     centered
                     title="გვერდის წაშლა"
                     cancel-title="გაუქმება"
@@ -250,6 +250,7 @@ export default {
         position: relative;
         width: 90%;
         margin: 10px auto;
+        transition: 0.15s ease-out;
 
         .trash-icon {
           position: absolute;
@@ -289,18 +290,13 @@ export default {
         }
 
         .page-img {
-          padding: 30px 15px;
+          padding: 20px 15px 35px;
           width: 100%;
           cursor: zoom-in;
           box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 5px;
 
           &:hover {
             box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px;
-
-            .trash-icon {
-              visibility: visible;
-              opacity: 1;
-            }
           }
         }
 
@@ -309,8 +305,15 @@ export default {
           position: absolute;
           width: 100%;
           line-height: 18px;
-          font-size: 18px;
+          font-size: 16px;
           bottom: 10px;
+        }
+
+        &:hover {
+          .trash-icon {
+            visibility: visible;
+            opacity: 1;
+          }
         }
       }
     }
