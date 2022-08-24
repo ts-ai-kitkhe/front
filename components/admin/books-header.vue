@@ -131,36 +131,37 @@ export default {
       return this.titleState && this.authorState && this.yearState
     },
 
-    async submitBook() {
+    submitBook() {
       const data = {
         title: this.title,
         authorName: this.authorName,
         year: this.year,
       }
 
-      const response = await axios.post(
-        'https://api.ts-ai-kitkhe.ge/core/books',
-        data,
-        {
+      axios
+        .post('https://api.ts-ai-kitkhe.ge/core/books', data, {
           headers: {
             authorization:
               'Bearer ' +
               this.$auth.strategies.cognito.token.session.idToken.jwtToken,
           },
-        }
-      )
-
-      this.addNewAdminBook(response.data)
-      this.addNewAuthor(this.authorName)
-      this.$refs.bookModal.hide()
-      this.isDisabled = false
-      this.title =
-        this.authorName =
-        this.year =
-        this.titleState =
-        this.authorState =
-        this.yearState =
-          null
+        })
+        .then((res) => {
+          this.$refs.bookModal.hide()
+          this.addNewAdminBook(res.data)
+          this.addNewAuthor(this.authorName)
+        })
+        .catch((e) => console.error(e))
+        .finally((_) => {
+          this.isDisabled = false
+          this.title =
+            this.authorName =
+            this.year =
+            this.titleState =
+            this.authorState =
+            this.yearState =
+              null
+        })
     },
   },
 }
