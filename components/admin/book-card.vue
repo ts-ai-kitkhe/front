@@ -191,7 +191,7 @@ export default {
     submitBook() {
       const formData = this.buildFormData()
       axios
-        .post(
+        .patch(
           `https://api.ts-ai-kitkhe.ge/core/books/${this.adminBook.Id}`,
           formData,
           {
