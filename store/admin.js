@@ -28,6 +28,10 @@ export const mutations = {
   addNewAdminBook: (state, newBook) => state.adminBooks.unshift(newBook),
   deleteAdminBook: (state, bookId) =>
     (state.adminBooks = state.adminBooks.filter((book) => book.Id !== bookId)),
+  deleteAdminBookPage: (state, filename) =>
+    (state.adminBookPages = state.adminBookPages.filter(
+      (page) => page.url !== filename
+    )),
 
   updateAdminBook: (state, updatedBook) => {
     state.adminBooks.forEach((book) => {
