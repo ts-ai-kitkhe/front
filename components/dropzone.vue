@@ -82,7 +82,26 @@ export default {
       vm.dropzone.options.url = file.uploadURL
     })
 
-    vm.dropzone.on('queuecomplete', function () {
+    vm.dropzone.on('queuecomplete', async function () {
+      const oldFiles = vm.$store.state.admin.adminBookPages.map((page) =>
+        page.url.split('/').pop()
+      )
+      const newFiles = this.getAcceptedFiles().map(
+        (file) => file.upload.filename
+      )
+      const files = [...oldFiles, ...newFiles]
+
+      await axios.patch(
+        `https://api.ts-ai-kitkhe.ge/core/admin/books/${vm.bookId}/pages`,
+        { files },
+        {
+          headers: {
+            authorization:
+              'Bearer ' +
+              vm.$auth.strategies.cognito.token.session.idToken.jwtToken,
+          },
+        }
+      )
       window.location.reload(true)
     })
   },
