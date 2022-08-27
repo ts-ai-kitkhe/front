@@ -89,11 +89,11 @@ export default {
       const newFiles = this.getAcceptedFiles().map(
         (file) => file.upload.filename
       )
-      const files = [...oldFiles, ...newFiles]
+      const pages = [...oldFiles, ...newFiles]
 
       await axios.patch(
         `https://api.ts-ai-kitkhe.ge/core/admin/books/${vm.bookId}/pages`,
-        { files },
+        { pages },
         {
           headers: {
             authorization:
