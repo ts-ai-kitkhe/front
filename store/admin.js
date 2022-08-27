@@ -69,7 +69,14 @@ export const actions = {
 
   async getAdminBookPages({ commit }, id) {
     const response = await axios.get(
-      `https://api.ts-ai-kitkhe.ge/core/admin/books/${id}/pages`
+      `https://api.ts-ai-kitkhe.ge/core/admin/books/${id}/pages`,
+      {
+        headers: {
+          authorization:
+            'Bearer ' +
+            this.$auth.strategies.cognito.token.session.idToken.jwtToken,
+        },
+      }
     )
     commit('setAdminBookPages', response.data)
   },
