@@ -2,7 +2,12 @@
   <div class="admin-pages-container">
     <AdminPagesHeader :show-header-buttons="!reorderMode">
       <transition name="fade">
-        <button v-show="reorderMode" class="save-changes-btn">
+        <button
+          v-show="reorderMode"
+          ref="saveChangesBtn"
+          class="save-changes-btn"
+          @click="saveChanges"
+        >
           ცვლილებების შენახვა
         </button>
       </transition>
@@ -45,7 +50,7 @@
               </NuxtLink>
               <div class="page-wrapper">
                 <div class="trash-icon">
-                  <b-btn v-b-modal="page.url">
+                  <b-btn v-show="!reorderMode" v-b-modal="page.url">
                     <b-icon icon="trash"></b-icon>
                   </b-btn>
                   <b-modal
@@ -172,6 +177,10 @@ export default {
       )
 
       this.deleteAdminBookPage(url)
+      this.saveChanges()
+    },
+
+    async saveChanges() {
       const pages = this.$store.state.admin.adminBookPages.map((page) =>
         page.url.split('/').pop()
       )
@@ -187,6 +196,9 @@ export default {
           },
         }
       )
+
+      this.$refs.saveChangesBtn.style.display = 'none'
+      this.reorderMode = false
     },
   },
 }
