@@ -45,15 +45,16 @@
               </NuxtLink>
               <div class="page-wrapper">
                 <div class="trash-icon">
-                  <b-btn v-b-modal="page.url.split('/').pop() + '-delete'">
+                  <b-btn v-b-modal="page.url.split('/').pop()">
                     <b-icon icon="trash"></b-icon>
                   </b-btn>
                   <b-modal
-                    :id="page.url.split('/').pop() + '-delete'"
+                    :id="page.url.split('/').pop()"
                     centered
                     title="გვერდის წაშლა"
                     cancel-title="გაუქმება"
                     ok-title="დიახ"
+                    @ok="deletePage"
                   >
                     <p>დარწმუნებული ხართ, რომ გსურთ გვერდის წაშლა?</p>
                   </b-modal>
@@ -81,6 +82,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex'
 import VueDropzone from '../../../../components/dropzone.vue'
 
@@ -151,6 +153,20 @@ export default {
 
     generateQueryParam(url) {
       return url.split('/').pop().split('.').pop()
+    },
+
+    async deletePage(bvModalEvent) {
+      const filename = bvModalEvent.componentId
+      await axios.delete(
+        `https://api.ts-ai-kitkhe.ge/core/admin/books/${this.adminBookId}/pages/${filename}`,
+        {
+          headers: {
+            authorization:
+              'Bearer ' +
+              this.$auth.strategies.cognito.token.session.idToken.jwtToken,
+          },
+        }
+      )
     },
   },
 }
