@@ -159,6 +159,7 @@ export default {
     async deletePage(bvModalEvent) {
       const url = bvModalEvent.componentId
       const filename = url.split('/').pop()
+
       await axios.delete(
         `https://api.ts-ai-kitkhe.ge/core/admin/books/${this.adminBookId}/pages/${filename}`,
         {
@@ -169,7 +170,23 @@ export default {
           },
         }
       )
+
       this.deleteAdminBookPage(url)
+      const pages = this.$store.state.admin.adminBookPages.map((page) =>
+        page.url.split('/').pop()
+      )
+
+      await axios.patch(
+        `https://api.ts-ai-kitkhe.ge/core/admin/books/${this.adminBookId}/pages`,
+        { pages },
+        {
+          headers: {
+            authorization:
+              'Bearer ' +
+              this.$auth.strategies.cognito.token.session.idToken.jwtToken,
+          },
+        }
+      )
     },
   },
 }
