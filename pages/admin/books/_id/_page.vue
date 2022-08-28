@@ -310,7 +310,7 @@ export default {
       const updatedRects = {
         added: Array.from(newRectsCurr).map(findObjectById),
         modified: Array.from(modifiedRectsCurr).map(findObjectById),
-        deleted: Array.from(this.deletedRects).map(findObjectById),
+        deleted: this.deletedRects,
       }
 
       await axios.patch(
