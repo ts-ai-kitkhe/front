@@ -42,14 +42,18 @@
               </VueProgress>
             </div>
             <div class="download-panel">
-              <button>
+              <a
+                v-if="bookById.bookPdfUrl"
+                :href="bookById.bookPdfUrl"
+                target="_blank"
+              >
                 <b-icon icon="download"></b-icon>
-                <span>Download 1</span>
-              </button>
-              <button>
+                <span>წიგნის გახსნა</span>
+              </a>
+              <a href="" target="_blank">
                 <b-icon icon="download"></b-icon>
-                <span>Download 2</span>
-              </button>
+                <span>ტექსტის გახსნა</span>
+              </a>
             </div>
           </div>
         </div>
@@ -144,7 +148,7 @@ export default {
     flex-direction: column;
     margin-bottom: 20px;
 
-    button {
+    a {
       font-family: $geo-font-primary;
       width: 250px;
       margin: 10px 0;
@@ -154,7 +158,10 @@ export default {
       border: 2px solid white;
       border-radius: 25px;
       transition: 0.1s ease-out;
-      font-size: 18px;
+      font-size: 20px;
+      letter-spacing: 0.5px;
+      text-align: center;
+      text-decoration: none;
 
       &:hover {
         color: black;
@@ -163,7 +170,7 @@ export default {
       }
 
       svg {
-        margin-right: 3px;
+        margin-right: 5px;
       }
     }
 
