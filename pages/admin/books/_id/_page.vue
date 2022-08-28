@@ -70,6 +70,8 @@
               ]"
               @activated="handleRectActivation(rect)"
               @deactivated="handleRectDeactivation(rect)"
+              @resizestop="handleResizeStop(rect)"
+              @dragstop="handleDragStop(rect)"
             >
               <input
                 class="letter"
@@ -89,13 +91,14 @@
         <button v-show="addRectMode" @click="addRectMode = false">
           გაუქმება
         </button>
-        <button>რედაქტირების დასრულება</button>
+        <button @click="finishEditing">რედაქტირების დასრულება</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
 
 export default {
@@ -113,6 +116,9 @@ export default {
       topY: 0,
       selectedRect: null,
       addRectMode: false,
+      newRects: new Set(),
+      modifiedRects: new Set(),
+      deletedRects: new Set(),
     }
   },
 
@@ -145,9 +151,10 @@ export default {
 
   methods: {
     async fetchData() {
-      const predictionsURL = `https://ml.ts-ai-kitkhe.ge/books/${this.bookId}/pages/${this.filename}.json`
-      return await fetch(predictionsURL)
-        .then((response) => response.json())
+      const predictionsURL = `https://ml.ts-ai-kitkhe.ge/books/${this.bookId}/pages/predictions/${this.filename}.json`
+      return await axios
+        .get(predictionsURL)
+        .then((response) => response.data)
         .then((data) => {
           const imgShape = { h: data.shape.height, w: data.shape.width }
           const screenSize = { h: this.imageHeight, w: this.imageWidth }
@@ -173,9 +180,10 @@ export default {
       if (this.addRectMode) {
         const initRectDim = 30
         const topOffset = this.$refs.upperPanel.clientHeight - this.topY
+        const newRectId = uuidv4()
 
         this.rectCoords.push({
-          id: uuidv4(),
+          id: newRectId,
           x: event.clientX - initRectDim / 2,
           y: event.clientY - topOffset - initRectDim / 2,
           h: initRectDim,
@@ -185,6 +193,7 @@ export default {
           letter: '',
         })
 
+        this.newRects.add(newRectId)
         this.addRectMode = false
       }
     },
@@ -204,10 +213,19 @@ export default {
       }
     },
 
+    handleResizeStop(rect) {
+      this.modifiedRects.add(rect.id)
+    },
+
+    handleDragStop(rect) {
+      this.modifiedRects.add(rect.id)
+    },
+
     changeLetter(event, rect) {
       if (event.key.length === 1) {
         event.target.value = event.key
         rect.letter = event.key
+        this.modifiedRects.add(rect.id)
       }
 
       if (event.key === 'Backspace') {
@@ -220,6 +238,7 @@ export default {
         this.rectCoords = this.rectCoords.filter((rect) => {
           rect.active = false
           if (rect.id === this.selectedRect?.id) {
+            this.deletedRects.add(rect.id)
             this.handleRectDeactivation(rect)
             return false
           }
@@ -274,6 +293,39 @@ export default {
       const currPath = this.$route.path
       const newPath = currPath.substr(0, currPath.lastIndexOf('/'))
       this.$router.push({ path: newPath })
+    },
+
+    async finishEditing() {
+      const newRectsCurr = new Set(
+        [...this.newRects].filter((x) => !this.deletedRects.has(x))
+      )
+
+      const modifiedRectsCurr = new Set(
+        [...this.modifiedRects].filter((x) => !this.deletedRects.has(x))
+      )
+
+      const findObjectById = (objId) =>
+        this.rectCoords.find((rect) => rect.id === objId)
+
+      const updatedRects = {
+        added: Array.from(newRectsCurr).map(findObjectById),
+        modified: Array.from(modifiedRectsCurr).map(findObjectById),
+        deleted: Array.from(this.deletedRects).map(findObjectById),
+      }
+
+      await axios.patch(
+        `https://api.ts-ai-kitkhe.ge/ml/books/${this.bookId}/pages/${this.filename}/predictions`,
+        { updatedRects },
+        {
+          headers: {
+            authorization:
+              'Bearer ' +
+              this.$auth.strategies.cognito.token.session.idToken.jwtToken,
+          },
+        }
+      )
+
+      window.location.reload(true)
     },
   },
 }
