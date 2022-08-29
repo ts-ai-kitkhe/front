@@ -70,8 +70,8 @@
               ]"
               @activated="handleRectActivation(rect)"
               @deactivated="handleRectDeactivation(rect)"
-              @resizestop="handleResizeStop(rect)"
-              @dragstop="handleDragStop(rect)"
+              @resizestop="handleResizeStop(rect, ...arguments)"
+              @dragstop="handleDragStop(rect, ...arguments)"
             >
               <input
                 class="letter"
@@ -213,18 +213,31 @@ export default {
       }
     },
 
-    handleResizeStop(rect) {
+    handleResizeStop(rect, x, y, width, height) {
       this.modifiedRects.add(rect.id)
+      this.rectCoords = this.rectCoords.map((curr) => {
+        if (curr.id === rect.id) {
+          return { ...curr, x, y, w: width, h: height, confidence: 1 }
+        }
+        return curr
+      })
     },
 
-    handleDragStop(rect) {
+    handleDragStop(rect, x, y) {
       this.modifiedRects.add(rect.id)
+      this.rectCoords = this.rectCoords.map((curr) => {
+        if (curr.id === rect.id) {
+          return { ...curr, x, y, confidence: 1 }
+        }
+        return curr
+      })
     },
 
     changeLetter(event, rect) {
       if (event.key.length === 1) {
         event.target.value = event.key
         rect.letter = event.key
+        rect.confidence = 1
         this.modifiedRects.add(rect.id)
       }
 
