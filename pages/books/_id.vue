@@ -27,17 +27,18 @@
             </div>
             <div class="progress-circle">
               <VueProgress
+                v-if="bookDataById && bookDataById.confidence"
                 :stroke-color="
-                  confidence < 0.5
+                  bookDataById.confidence < 0.5
                     ? 'red'
-                    : confidence <= 0.75
+                    : bookDataById.confidence <= 0.75
                     ? 'orange'
                     : 'green'
                 "
                 :transition-duration="2000"
                 :radius="55"
                 :stroke-width="10"
-                :value="(confidence * 100).toFixed(2)"
+                :value="(bookDataById.confidence * 100).toFixed(2)"
               >
               </VueProgress>
             </div>
@@ -50,7 +51,11 @@
                 <b-icon icon="download"></b-icon>
                 <span>წიგნის გახსნა</span>
               </a>
-              <a href="" target="_blank">
+              <a
+                v-if="bookDataById && bookDataById.textUrl"
+                :href="bookDataById.textUrl"
+                target="_blank"
+              >
                 <b-icon icon="download"></b-icon>
                 <span>ტექსტის გახსნა</span>
               </a>
@@ -71,18 +76,22 @@ export default {
   data() {
     return {
       bookId: this.$route.params.id,
-      confidence: Math.random(),
     }
   },
 
-  computed: mapGetters('books', ['bookById']),
+  computed: {
+    ...mapGetters('books', ['bookById']),
+    ...mapGetters('books', ['bookDataById']),
+  },
 
   created() {
     this.getBookById(this.bookId)
+    this.getBookDataById(this.bookId)
   },
 
   methods: {
     ...mapActions('books', ['getBookById']),
+    ...mapActions('books', ['getBookDataById']),
   },
 }
 </script>
