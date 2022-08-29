@@ -49,6 +49,12 @@ export default {
     }
   },
 
+  head() {
+    return {
+      title: 'Log in',
+    }
+  },
+
   computed: {
     validation() {
       return this.correctCredentials

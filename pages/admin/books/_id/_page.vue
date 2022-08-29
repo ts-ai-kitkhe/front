@@ -124,7 +124,7 @@ export default {
 
   head() {
     return {
-      title: 'Operator',
+      title: 'Admin',
     }
   },
 

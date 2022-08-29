@@ -115,6 +115,12 @@ export default {
     }
   },
 
+  head() {
+    return {
+      title: 'Admin',
+    }
+  },
+
   computed: {
     ...mapGetters('admin', ['adminBookById']),
 

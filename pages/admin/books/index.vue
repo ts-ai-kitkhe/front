@@ -38,6 +38,12 @@ export default {
     }
   },
 
+  head() {
+    return {
+      title: 'Admin',
+    }
+  },
+
   computed: {
     ...mapGetters('admin', ['allAdminBooks']),
     ...mapGetters('admin', ['allAuthors']),
