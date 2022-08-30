@@ -158,7 +158,9 @@ export default {
 
   methods: {
     async fetchData() {
-      const predictionsURL = `https://ml.ts-ai-kitkhe.ge/books/${this.bookId}/pages/predictions/${this.filename}.json`
+      const predictionsURL = `https://ml.ts-ai-kitkhe.ge/books/${
+        this.bookId
+      }/pages/predictions/${this.filename}.json?${Date.now()}`
       return await axios
         .get(predictionsURL)
         .then((response) => response.data)
