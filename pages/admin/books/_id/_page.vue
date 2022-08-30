@@ -399,6 +399,10 @@ export default {
       align-items: center;
       gap: 8px;
 
+      svg {
+        margin-top: 2px;
+      }
+
       &:hover {
         color: $blue-color;
       }
