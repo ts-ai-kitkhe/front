@@ -13,22 +13,22 @@
           <div
             class="arrow-container right"
             :class="{ 'is-hidden': parseInt(currPage) === 1 }"
-            @click="navigateToPrevPage"
+            @click="navigateToPrevPage(adminBookPages)"
           >
             <i class="arrow arrow-right"></i>
           </div>
           <input
             type="text"
             class="current-page"
-            :value="currPage"
-            @keyup.enter="navigateToEnteredPage($event)"
+            :value="calculateCurrPage(adminBookPages)"
+            @keyup.enter="navigateToEnteredPage($event, adminBookPages)"
           />
           <div class="slash">/</div>
-          <div class="pages-total">{{ numPages }}</div>
+          <div class="pages-total">{{ calculateNumPages(adminBookPages) }}</div>
           <div
             class="arrow-container left"
             :class="{ 'is-hidden': parseInt(currPage) === numPages }"
-            @click="navigateToNextPage"
+            @click="navigateToNextPage(adminBookPages)"
           >
             <i class="arrow arrow-left"></i>
           </div>
@@ -100,6 +100,7 @@
 <script>
 import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   layout: 'operator',
@@ -108,11 +109,11 @@ export default {
     return {
       loadingMode: false,
       rectCoords: [],
-      currPage: this.$route.params.page, // TODO: Refactor
+      currPage: 0,
       bookId: this.$route.params.id,
       filename: this.$route.params.page,
       extension: this.$route.query.ext,
-      numPages: 13,
+      numPages: 0,
       topY: 0,
       selectedRect: null,
       addRectMode: false,
@@ -129,6 +130,8 @@ export default {
   },
 
   computed: {
+    ...mapGetters('admin', ['adminBookPages']),
+
     imageHeight() {
       return this.$refs.mainImg.clientHeight
     },
@@ -136,6 +139,10 @@ export default {
     imageWidth() {
       return this.$refs.mainImg.clientWidth
     },
+  },
+
+  created() {
+    this.getAdminBookPages(this.bookId)
   },
 
   mounted() {
@@ -175,6 +182,8 @@ export default {
         })
         .catch((_) => (this.loadingMode = true))
     },
+
+    ...mapActions('admin', ['getAdminBookPages']),
 
     checkAndAddRect(event) {
       if (this.addRectMode) {
@@ -260,46 +269,59 @@ export default {
       }
     },
 
-    navigateToPrevPage() {
+    calculateCurrPage(pages) {
+      const index = pages.findIndex(
+        (page) => page.id === this.filename + '.' + this.extension
+      )
+
+      if (index !== -1) {
+        this.currPage = index + 1
+      }
+
+      return this.currPage
+    },
+
+    calculateNumPages(pages) {
+      this.numPages = pages.length
+      return this.numPages
+    },
+
+    navigateToPrevPage(pages) {
       if (this.currPage > 1) {
-        this.currPage--
-        const currPath = this.$route.path
-        const newPath =
-          currPath.substr(0, currPath.lastIndexOf('/')) +
-          '/' +
-          String(this.currPage)
-        this.$router.push({ path: newPath })
+        this.generatePathForNav(pages[this.currPage - 2].id)
       }
     },
 
-    navigateToNextPage() {
+    navigateToNextPage(pages) {
       if (this.currPage < this.numPages) {
-        this.currPage++
-        const currPath = this.$route.path
-        const newPath =
-          currPath.substr(0, currPath.lastIndexOf('/')) +
-          '/' +
-          String(this.currPage)
-        this.$router.push({ path: newPath })
+        this.generatePathForNav(pages[this.currPage].id)
       }
     },
 
-    navigateToEnteredPage(event) {
+    navigateToEnteredPage(event, pages) {
       const pageInput = event.target.value
       if (
         Number.isInteger(Number(pageInput)) &&
         pageInput > 0 &&
         pageInput <= this.numPages
       ) {
-        const currPath = this.$route.path
-        const newPath =
-          currPath.substr(0, currPath.lastIndexOf('/')) +
-          '/' +
-          String(pageInput)
-        this.$router.push({ path: newPath })
+        this.generatePathForNav(pages[pageInput - 1].id)
       } else {
         event.target.value = this.currPage
       }
+    },
+
+    generatePathForNav(navPage) {
+      const filename = navPage.slice(0, navPage.lastIndexOf('.'))
+      const ext = navPage.split('.').pop()
+      const currPath = this.$route.path
+      const newPath =
+        currPath.substr(0, currPath.lastIndexOf('/')) +
+        '/' +
+        filename +
+        '?ext=' +
+        ext
+      this.$router.push({ path: newPath })
     },
 
     goBackToBook() {
