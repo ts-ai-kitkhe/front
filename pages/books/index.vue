@@ -104,6 +104,7 @@ export default {
 
   computed: {
     ...mapGetters('books', ['allBooks']),
+    ...mapGetters('books', ['allConfidences']),
 
     matchingBooks: function () {
       const matchingBooks = this.allBooks.filter((book) => {
@@ -131,10 +132,12 @@ export default {
 
   created() {
     this.getBooks()
+    this.getConfidences()
   },
 
   methods: {
     ...mapActions('books', ['getBooks']),
+    ...mapActions('books', ['getConfidences']),
 
     sortBy(arr, field, reverse = false) {
       arr.sort((a, b) =>
