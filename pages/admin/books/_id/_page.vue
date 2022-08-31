@@ -165,18 +165,34 @@ export default {
         .get(predictionsURL)
         .then((response) => response.data)
         .then((data) => {
-          const imgShape = { h: data.shape.height, w: data.shape.width }
-          const screenSize = { h: this.imageHeight, w: this.imageWidth }
+          const startHeight = data.shape.height
+          const startWidth = data.shape.width
 
-          const rescaleH = (x) => (x / imgShape.h) * screenSize.h
-          const rescaleW = (x) => (x / imgShape.w) * screenSize.w
+          this.startHeight = startHeight
+          this.startWidth = startWidth
 
           this.rectCoords = data.data.map((rect) => ({
             id: rect.id,
-            x: rescaleW(rect.corners[0][0]),
-            y: rescaleH(rect.corners[0][1]),
-            h: rescaleH(rect.corners[2][1] - rect.corners[0][1]),
-            w: rescaleW(rect.corners[2][0] - rect.corners[0][0]),
+            x: this.rescaleCoords(
+              rect.corners[0][0],
+              this.startWidth,
+              this.imageWidth
+            ),
+            y: this.rescaleCoords(
+              rect.corners[0][1],
+              this.startHeight,
+              this.imageHeight
+            ),
+            h: this.rescaleCoords(
+              rect.corners[2][1] - rect.corners[0][1],
+              this.startHeight,
+              this.imageHeight
+            ),
+            w: this.rescaleCoords(
+              rect.corners[2][0] - rect.corners[0][0],
+              this.startWidth,
+              this.imageWidth
+            ),
             active: false,
             confidence: parseFloat(rect.confidence),
             letter: rect.letter,
@@ -186,6 +202,10 @@ export default {
     },
 
     ...mapActions('admin', ['getAdminBookPages']),
+
+    rescaleCoords(coord, initial, final) {
+      return (coord / initial) * final
+    },
 
     checkAndAddRect(event) {
       if (this.addRectMode) {
@@ -344,9 +364,21 @@ export default {
       const findObjectById = (objId) =>
         this.rectCoords.find((rect) => rect.id === objId)
 
+      const scaleBack = (obj) => {
+        return {
+          ...obj,
+          x: this.rescaleCoords(obj.x, this.imageWidth, this.startWidth),
+          y: this.rescaleCoords(obj.y, this.imageHeight, this.startHeight),
+          h: this.rescaleCoords(obj.h, this.imageHeight, this.startHeight),
+          w: this.rescaleCoords(obj.w, this.imageWidth, this.startWidth),
+        }
+      }
+
       const updatedRects = {
-        added: Array.from(newRectsCurr).map(findObjectById),
-        modified: Array.from(modifiedRectsCurr).map(findObjectById),
+        added: Array.from(newRectsCurr).map(findObjectById).map(scaleBack),
+        modified: Array.from(modifiedRectsCurr)
+          .map(findObjectById)
+          .map(scaleBack),
         deleted: Array.from(this.deletedRects),
       }
 
