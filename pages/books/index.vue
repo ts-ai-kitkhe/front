@@ -107,7 +107,7 @@ export default {
     ...mapGetters('books', ['allConfidences']),
 
     matchingBooks: function () {
-      const matchingBooks = this.allBooks.filter((book) => {
+      let matchingBooks = this.allBooks.filter((book) => {
         return (
           book.title.toLowerCase().includes(this.search.toLowerCase()) ||
           book.authorName.toLowerCase().includes(this.search.toLowerCase()) ||
@@ -115,12 +115,23 @@ export default {
         )
       })
 
+      const confidences = this.allConfidences.books
+      if (confidences) {
+        matchingBooks = matchingBooks.map((book) => ({
+          ...book,
+          confidence: (
+            confidences.find((bookConf) => bookConf.id === book.Id).confidence *
+            100
+          ).toFixed(2),
+        }))
+      }
+
       const fnMap = {
         new: () => this.sortBy(matchingBooks, 'createdAt', true),
         titleabc: () => this.sortBy(matchingBooks, 'title'),
         authorabc: () => this.sortBy(matchingBooks, 'authorName'),
-        conf1: () => null, // TODO
-        conf2: () => null, // TODO
+        conf1: () => this.sortBy(matchingBooks, 'confidence'),
+        conf2: () => this.sortBy(matchingBooks, 'confidence', true),
         year1: () => this.sortBy(matchingBooks, 'year'),
         year2: () => this.sortBy(matchingBooks, 'year', true),
       }
