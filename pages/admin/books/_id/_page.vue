@@ -67,6 +67,7 @@
                 rect.confidence < 0.5 ? { outline: '2px solid #ea4235' } : {},
                 rect.confidence >= 0.5 ? { outline: '2px solid #fabc05' } : {},
                 rect.confidence > 0.75 ? { outline: '2px solid #32a953' } : {},
+                { 'font-size': Math.min(rect.w, rect.h) + 'px' },
               ]"
               @activated="handleRectActivation(rect)"
               @deactivated="handleRectDeactivation(rect)"
