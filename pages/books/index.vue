@@ -98,7 +98,7 @@ export default {
     return {
       search: '',
       filterBy: 'new',
-      value: [13, 65],
+      value: [0, 100],
     }
   },
 
@@ -137,7 +137,11 @@ export default {
       }
 
       fnMap[this.filterBy]()
-      return matchingBooks
+
+      return matchingBooks.filter(
+        (book) =>
+          book.confidence >= this.value[0] && book.confidence <= this.value[1]
+      )
     },
   },
 
