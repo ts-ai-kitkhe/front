@@ -54,7 +54,7 @@
                   </label>
                   <VueSlider
                     id="mr-slider"
-                    v-model="value"
+                    v-model="confidenceRange"
                     :tooltip-formatter="'{value}%'"
                   />
                 </div>
@@ -142,6 +142,34 @@ export default {
         (book) =>
           book.confidence >= this.value[0] && book.confidence <= this.value[1]
       )
+    },
+
+    confidenceRange: {
+      get() {
+        if (this.allConfidences.books) {
+          return [
+            Math.floor(
+              Math.min(
+                ...this.allConfidences.books.map((book) =>
+                  parseFloat(book.confidence * 100)
+                )
+              )
+            ),
+            Math.ceil(
+              Math.max(
+                ...this.allConfidences.books.map((book) =>
+                  parseFloat(book.confidence * 100)
+                )
+              )
+            ),
+          ]
+        } else return [0, 100]
+      },
+
+      set(low, high) {
+        this.value = [...low, high]
+        return [low, high]
+      },
     },
   },
 
