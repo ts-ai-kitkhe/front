@@ -10544,10 +10544,10 @@ vue-draggable-resizable@^2.3.0:
   resolved "https://registry.yarnpkg.com/vue-draggable-resizable/-/vue-draggable-resizable-2.3.0.tgz#94c433ca748bc1a4d0959ba1c5c0e1c3536cee5b"
   integrity sha512-77CLRj1TPwB30pwsjOf3pkd1UzYanCdKXbqhILJ0Oo5QQl50lvBfyQCXxMFzwWwTc3sbBbQH3FfWSV+BkoSElA==
 
-vue-easy-lightbox@^0.19.0:
-  version "0.19.0"
-  resolved "https://registry.yarnpkg.com/vue-easy-lightbox/-/vue-easy-lightbox-0.19.0.tgz#42cab5e29d5e695121ca0a9ef061d8727570b1de"
-  integrity sha512-UKrOUDvjkxlMg0OWCs1Y6Fb2nuJ4oqxtRExHTJIy71nP8e2/olVEcP1T5XU58mWblLj8pMMpC3kRebT8UbyPGw==
+vue-easy-lightbox@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/vue-easy-lightbox/-/vue-easy-lightbox-0.21.0.tgz#6843bdd3c6bf12e275e43f8bb1e9f760f734183e"
+  integrity sha512-mvPvNM4sAK9KecGK1XrcnM/mOq+trEKyBfcBt/CgevjIWNSyrr88uYx9oLKWXSbGHinXOzZSJKRrnXlo3Nvu4g==
 
 vue-eslint-parser@^8.0.1:
   version "8.3.0"
