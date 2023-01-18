@@ -29,7 +29,7 @@
     "dropzone": "^6.0.0-beta.2",
     "easy-circular-progress": "^1.0.4",
     "nuxt": "^2.15.8",
-    "swiper": "^6.8.4",
+    "swiper": "^8.4.6",
     "vue": "^2.6.14",
     "vue-draggable-resizable": "^2.3.0",
     "vue-easy-lightbox": "^0.19.0",
